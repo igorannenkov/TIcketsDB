@@ -18,16 +18,15 @@ namespace TIckets
         }
 
         private void ShowAdmBtn_Click(object sender, EventArgs e)
-        {
-            
+        {        
             AdminForm admForm = new AdminForm(); 
+            admForm.StartPosition = FormStartPosition.CenterScreen;
             admForm.Show();
         }
 
         private void Выход_Click(object sender, EventArgs e)
         {
             Application.Exit();
-
         }
 
         private void ShowTechnicBtn_Click(object sender, EventArgs e)

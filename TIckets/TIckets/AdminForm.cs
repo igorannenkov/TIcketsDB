@@ -26,7 +26,8 @@ namespace TIckets
         private void ролиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RolesForm rf = new RolesForm();
-            rf.Show();
+            rf.StartPosition = FormStartPosition.CenterParent;
+            rf.ShowDialog();
         }
     }
 }

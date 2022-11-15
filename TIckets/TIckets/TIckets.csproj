@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database.cs" />
     <Compile Include="Devices\AddDeviceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,11 +92,11 @@
     <Compile Include="DeviceTypes\UpdDeviceTypeForm.Designer.cs">
       <DependentUpon>UpdDeviceTypeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Roles\AddRoleForm.cs">
+    <Compile Include="Roles\RoleHandleForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Roles\AddRoleForm.Designer.cs">
-      <DependentUpon>AddRoleForm.cs</DependentUpon>
+    <Compile Include="Roles\RoleHandleForm.Designer.cs">
+      <DependentUpon>RoleHandleForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TechnicStatuses\AddTechnicStatus.cs">
       <SubType>Form</SubType>
@@ -181,12 +182,6 @@
     <Compile Include="AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Roles\UpdRoleForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Roles\UpdRoleForm.Designer.cs">
-      <DependentUpon>UpdRoleForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Users\UpdUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -246,14 +241,11 @@
     <EmbeddedResource Include="DeviceTypes\UpdDeviceTypeForm.resx">
       <DependentUpon>UpdDeviceTypeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Roles\AddRoleForm.resx">
-      <DependentUpon>AddRoleForm.cs</DependentUpon>
+    <EmbeddedResource Include="Roles\RoleHandleForm.resx">
+      <DependentUpon>RoleHandleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Roles\RolesForm.resx">
       <DependentUpon>RolesForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Roles\UpdRoleForm.resx">
-      <DependentUpon>UpdRoleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TechnicStatuses\AddTechnicStatus.resx">
       <DependentUpon>AddTechnicStatus.cs</DependentUpon>
