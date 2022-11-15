@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TIckets
+namespace TIckets.Admin.TechnicStatuses
 {
-    public partial class Form1 : Form
+    public partial class TechnicStatuses : Form
     {
-        public Form1()
+        public TechnicStatuses()
         {
             InitializeComponent();
         }

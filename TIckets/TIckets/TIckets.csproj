@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -46,14 +61,251 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Devices\AddDeviceForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Devices\AddDeviceForm.Designer.cs">
+      <DependentUpon>AddDeviceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\DeviceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Devices\DeviceForm.Designer.cs">
+      <DependentUpon>DeviceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\UpdDeviceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Devices\UpdDeviceForm.Designer.cs">
+      <DependentUpon>UpdDeviceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceTypes\AddDeviceTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeviceTypes\AddDeviceTypeForm.Designer.cs">
+      <DependentUpon>AddDeviceTypeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceTypes\UpdDeviceTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeviceTypes\UpdDeviceTypeForm.Designer.cs">
+      <DependentUpon>UpdDeviceTypeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Roles\AddRoleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Roles\AddRoleForm.Designer.cs">
+      <DependentUpon>AddRoleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TechnicStatuses\AddTechnicStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnicStatuses\AddTechnicStatus.Designer.cs">
+      <DependentUpon>AddTechnicStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TechnicStatuses\TechnicStatuses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnicStatuses\TechnicStatuses.Designer.cs">
+      <DependentUpon>TechnicStatuses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TechnicStatuses\UpdTechnicStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnicStatuses\UpdTechnicStatus.Designer.cs">
+      <DependentUpon>UpdTechnicStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Technics\AddTechnicForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Technics\AddTechnicForm.Designer.cs">
+      <DependentUpon>AddTechnicForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Technics\TechnicsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Technics\TechnicsForm.Designer.cs">
+      <DependentUpon>TechnicsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Technics\UpdTechnicForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Technics\UpdTechnicForm.Designer.cs">
+      <DependentUpon>UpdTechnicForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestForm.Designer.cs">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TicketStatuses\AddTicketStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TicketStatuses\AddTicketStatus.Designer.cs">
+      <DependentUpon>AddTicketStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TicketStatuses\UpdTicketStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TicketStatuses\UpdTicketStatus.Designer.cs">
+      <DependentUpon>UpdTicketStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tickets\AddTicketForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tickets\AddTicketForm.Designer.cs">
+      <DependentUpon>AddTicketForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tickets\TicketForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tickets\TicketForm.Designer.cs">
+      <DependentUpon>TicketForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tickets\UpdTicketForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tickets\UpdTicketForm.Designer.cs">
+      <DependentUpon>UpdTicketForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\AddUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\AddUserForm.Designer.cs">
+      <DependentUpon>AddUserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminForm.Designer.cs">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Roles\UpdRoleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Roles\UpdRoleForm.Designer.cs">
+      <DependentUpon>UpdRoleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\UpdUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\UpdUserForm.Designer.cs">
+      <DependentUpon>UpdUserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AuthorizationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuthorizationForm.Designer.cs">
+      <DependentUpon>AuthorizationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceTypes\DeviceTypesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeviceTypes\DeviceTypesForm.Designer.cs">
+      <DependentUpon>DeviceTypesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Roles\RolesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Roles\RolesForm.Designer.cs">
+      <DependentUpon>RolesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TechnicMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TechnicMainForm.Designer.cs">
+      <DependentUpon>TechnicMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TicketStatuses\TicketStatusesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TicketStatuses\TicketStatusesForm.Designer.cs">
+      <DependentUpon>TicketStatusesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\UsersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\UsersForm.Designer.cs">
+      <DependentUpon>UsersForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Devices\AddDeviceForm.resx">
+      <DependentUpon>AddDeviceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Devices\UpdDeviceForm.resx">
+      <DependentUpon>UpdDeviceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeviceTypes\AddDeviceTypeForm.resx">
+      <DependentUpon>AddDeviceTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeviceTypes\DeviceTypesForm.resx">
+      <DependentUpon>DeviceTypesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeviceTypes\UpdDeviceTypeForm.resx">
+      <DependentUpon>UpdDeviceTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Roles\AddRoleForm.resx">
+      <DependentUpon>AddRoleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Roles\RolesForm.resx">
+      <DependentUpon>RolesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Roles\UpdRoleForm.resx">
+      <DependentUpon>UpdRoleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechnicStatuses\AddTechnicStatus.resx">
+      <DependentUpon>AddTechnicStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechnicStatuses\TechnicStatuses.resx">
+      <DependentUpon>TechnicStatuses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechnicStatuses\UpdTechnicStatus.resx">
+      <DependentUpon>UpdTechnicStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Technics\AddTechnicForm.resx">
+      <DependentUpon>AddTechnicForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Technics\TechnicsForm.resx">
+      <DependentUpon>TechnicsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Technics\UpdTechnicForm.resx">
+      <DependentUpon>UpdTechnicForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestForm.resx">
+      <DependentUpon>TestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TicketStatuses\AddTicketStatus.resx">
+      <DependentUpon>AddTicketStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TicketStatuses\TicketStatusesForm.resx">
+      <DependentUpon>TicketStatusesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TicketStatuses\UpdTicketStatus.resx">
+      <DependentUpon>UpdTicketStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tickets\AddTicketForm.resx">
+      <DependentUpon>AddTicketForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tickets\TicketForm.resx">
+      <DependentUpon>TicketForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tickets\UpdTicketForm.resx">
+      <DependentUpon>UpdTicketForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\AddUserForm.resx">
+      <DependentUpon>AddUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminForm.resx">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\UpdUserForm.resx">
+      <DependentUpon>UpdUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuthorizationForm.resx">
+      <DependentUpon>AuthorizationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -63,6 +315,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Users\UsersForm.resx">
+      <DependentUpon>UsersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TechnicMainForm.resx">
+      <DependentUpon>TechnicMainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -76,5 +334,27 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Tickets.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tickets_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>Tickets.mdf</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
