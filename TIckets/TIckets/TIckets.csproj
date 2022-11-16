@@ -80,23 +80,17 @@
     <Compile Include="Devices\UpdDeviceForm.Designer.cs">
       <DependentUpon>UpdDeviceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DeviceTypes\AddDeviceTypeForm.cs">
+    <Compile Include="DeviceTypes\DeviceTypesHandlerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DeviceTypes\AddDeviceTypeForm.Designer.cs">
-      <DependentUpon>AddDeviceTypeForm.cs</DependentUpon>
+    <Compile Include="DeviceTypes\DeviceTypesHandlerForm.Designer.cs">
+      <DependentUpon>DeviceTypesHandlerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DeviceTypes\UpdDeviceTypeForm.cs">
+    <Compile Include="Roles\RoleHandlerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DeviceTypes\UpdDeviceTypeForm.Designer.cs">
-      <DependentUpon>UpdDeviceTypeForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Roles\RoleHandleForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Roles\RoleHandleForm.Designer.cs">
-      <DependentUpon>RoleHandleForm.cs</DependentUpon>
+    <Compile Include="Roles\RoleHandlerForm.Designer.cs">
+      <DependentUpon>RoleHandlerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TechnicStatuses\AddTechnicStatus.cs">
       <SubType>Form</SubType>
@@ -232,17 +226,14 @@
     <EmbeddedResource Include="Devices\UpdDeviceForm.resx">
       <DependentUpon>UpdDeviceForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DeviceTypes\AddDeviceTypeForm.resx">
-      <DependentUpon>AddDeviceTypeForm.cs</DependentUpon>
+    <EmbeddedResource Include="DeviceTypes\DeviceTypesHandlerForm.resx">
+      <DependentUpon>DeviceTypesHandlerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DeviceTypes\DeviceTypesForm.resx">
       <DependentUpon>DeviceTypesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DeviceTypes\UpdDeviceTypeForm.resx">
-      <DependentUpon>UpdDeviceTypeForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Roles\RoleHandleForm.resx">
-      <DependentUpon>RoleHandleForm.cs</DependentUpon>
+    <EmbeddedResource Include="Roles\RoleHandlerForm.resx">
+      <DependentUpon>RoleHandlerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Roles\RolesForm.resx">
       <DependentUpon>RolesForm.cs</DependentUpon>

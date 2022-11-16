@@ -30,22 +30,22 @@ namespace TIckets
 
         private void добавитьРольToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RoleHandleForm roleHandleForm = new RoleHandleForm();
+            RoleHandlerForm roleHandleForm = new RoleHandlerForm();
             roleHandleForm.StartPosition = FormStartPosition.CenterScreen;
-            (roleHandleForm.Controls["RoleHandleFormEditBtn"] as Button).Enabled = false;
+            (roleHandleForm.Controls["RoleHandlerFormEditBtn"] as Button).Enabled = false;
             roleHandleForm.Owner = this;
             roleHandleForm.ShowDialog();
         }
 
         private void RolesFormGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            RoleHandleForm roleHandleForm = new RoleHandleForm();
+            RoleHandlerForm roleHandleForm = new RoleHandlerForm();
             roleHandleForm.Owner = this;
             string prevRoleName = RolesFormGridView.CurrentCell.Value.ToString();
-            (roleHandleForm.Controls["RoleHandleFormRoleNameTb"] as TextBox).Text = prevRoleName;
+            (roleHandleForm.Controls["RoleHandlerFormRoleNameTb"] as TextBox).Text = prevRoleName;
             roleHandleForm.Tag = prevRoleName;
             roleHandleForm.StartPosition = FormStartPosition.CenterScreen;
-            (roleHandleForm.Controls["RoleHandleFormAddBtn"] as Button).Enabled = false;
+            (roleHandleForm.Controls["RoleHandlerFormAddBtn"] as Button).Enabled = false;
             roleHandleForm.ShowDialog();
         }
 

@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace TIckets
 {
-    public partial class RoleHandleForm : Form
+    public partial class RoleHandlerForm : Form
     {
-        public RoleHandleForm()
+        public RoleHandlerForm()
         {
             InitializeComponent();
         }
@@ -28,7 +28,7 @@ namespace TIckets
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Roles (RoleName) VALUES (N'" + RoleHandleFormRoleNameTb.Text +"')",connection);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Roles (RoleName) VALUES (N'" + RoleHandlerFormRoleNameTb.Text +"')",connection);
                 cmd.ExecuteNonQuery();
              
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT RoleName AS Роль FROM Roles", connection);
@@ -45,7 +45,7 @@ namespace TIckets
             {
                 connection.Open();
                 string prevRoleName = this.Tag.ToString();
-                SqlCommand cmd = new SqlCommand("UPDATE Roles SET RoleName =  (N'" + RoleHandleFormRoleNameTb.Text + "') WHERE RoleName = N'" + prevRoleName +"'", connection);
+                SqlCommand cmd = new SqlCommand("UPDATE Roles SET RoleName =  (N'" + RoleHandlerFormRoleNameTb.Text + "') WHERE RoleName = N'" + prevRoleName +"'", connection);
                 cmd.ExecuteNonQuery();
 
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT RoleName AS Роль FROM Roles", connection);

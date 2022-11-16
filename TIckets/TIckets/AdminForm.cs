@@ -29,5 +29,12 @@ namespace TIckets
             rf.StartPosition = FormStartPosition.CenterParent;
             rf.ShowDialog();
         }
+
+        private void ТипыУстройствToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeviceTypesForm dtf = new DeviceTypesForm();
+            dtf.StartPosition = FormStartPosition.CenterParent;
+            dtf.ShowDialog();
+        }
     }
 }

@@ -107,8 +107,9 @@
             // ТипыУстройствToolStripMenuItem
             // 
             this.ТипыУстройствToolStripMenuItem.Name = "ТипыУстройствToolStripMenuItem";
-            this.ТипыУстройствToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-            this.ТипыУстройствToolStripMenuItem.Text = "Типы устройств";
+            this.ТипыУстройствToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.ТипыУстройствToolStripMenuItem.Text = "Категории комплектующих";
+            this.ТипыУстройствToolStripMenuItem.Click += new System.EventHandler(this.ТипыУстройствToolStripMenuItem_Click);
             // 
             // статусыЗаявокToolStripMenuItem
             // 
@@ -134,19 +135,19 @@
             // заявкиВРазрезеТехниковToolStripMenuItem
             // 
             this.заявкиВРазрезеТехниковToolStripMenuItem.Name = "заявкиВРазрезеТехниковToolStripMenuItem";
-            this.заявкиВРазрезеТехниковToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.заявкиВРазрезеТехниковToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.заявкиВРазрезеТехниковToolStripMenuItem.Text = "Заявки в разрезе техников";
             // 
             // свободныеТехникиToolStripMenuItem
             // 
             this.свободныеТехникиToolStripMenuItem.Name = "свободныеТехникиToolStripMenuItem";
-            this.свободныеТехникиToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.свободныеТехникиToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.свободныеТехникиToolStripMenuItem.Text = "Свободные техники";
             // 
             // выгрузкаВExcelToolStripMenuItem
             // 
             this.выгрузкаВExcelToolStripMenuItem.Name = "выгрузкаВExcelToolStripMenuItem";
-            this.выгрузкаВExcelToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
+            this.выгрузкаВExcelToolStripMenuItem.Size = new System.Drawing.Size(109, 20);
             this.выгрузкаВExcelToolStripMenuItem.Text = "Выгрузка в Excel";
             // 
             // AdminForm
