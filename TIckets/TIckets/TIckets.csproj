@@ -92,29 +92,23 @@
     <Compile Include="Roles\RoleHandlerForm.Designer.cs">
       <DependentUpon>RoleHandlerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TechnicStatuses\AddTechnicStatus.cs">
+    <Compile Include="TechnicStatuses\TechnicStatusHandlerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TechnicStatuses\AddTechnicStatus.Designer.cs">
-      <DependentUpon>AddTechnicStatus.cs</DependentUpon>
+    <Compile Include="TechnicStatuses\TechnicStatusHandlerForm.Designer.cs">
+      <DependentUpon>TechnicStatusHandlerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TechnicStatuses\TechnicStatuses.cs">
+    <Compile Include="TechnicStatuses\TechnicStatusesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TechnicStatuses\TechnicStatuses.Designer.cs">
-      <DependentUpon>TechnicStatuses.cs</DependentUpon>
+    <Compile Include="TechnicStatuses\TechnicStatusesForm.Designer.cs">
+      <DependentUpon>TechnicStatusesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TechnicStatuses\UpdTechnicStatus.cs">
+    <Compile Include="Technics\TechnicHandlerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TechnicStatuses\UpdTechnicStatus.Designer.cs">
-      <DependentUpon>UpdTechnicStatus.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Technics\AddTechnicForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Technics\AddTechnicForm.Designer.cs">
-      <DependentUpon>AddTechnicForm.cs</DependentUpon>
+    <Compile Include="Technics\TechnicHandlerForm.Designer.cs">
+      <DependentUpon>TechnicHandlerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Technics\TechnicsForm.cs">
       <SubType>Form</SubType>
@@ -122,29 +116,17 @@
     <Compile Include="Technics\TechnicsForm.Designer.cs">
       <DependentUpon>TechnicsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Technics\UpdTechnicForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Technics\UpdTechnicForm.Designer.cs">
-      <DependentUpon>UpdTechnicForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TicketStatuses\AddTicketStatus.cs">
+    <Compile Include="TicketStatuses\TicketStatusHandlerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TicketStatuses\AddTicketStatus.Designer.cs">
-      <DependentUpon>AddTicketStatus.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TicketStatuses\UpdTicketStatus.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TicketStatuses\UpdTicketStatus.Designer.cs">
-      <DependentUpon>UpdTicketStatus.cs</DependentUpon>
+    <Compile Include="TicketStatuses\TicketStatusHandlerForm.Designer.cs">
+      <DependentUpon>TicketStatusHandlerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Tickets\AddTicketForm.cs">
       <SubType>Form</SubType>
@@ -238,35 +220,26 @@
     <EmbeddedResource Include="Roles\RolesForm.resx">
       <DependentUpon>RolesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TechnicStatuses\AddTechnicStatus.resx">
-      <DependentUpon>AddTechnicStatus.cs</DependentUpon>
+    <EmbeddedResource Include="TechnicStatuses\TechnicStatusHandlerForm.resx">
+      <DependentUpon>TechnicStatusHandlerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TechnicStatuses\TechnicStatuses.resx">
-      <DependentUpon>TechnicStatuses.cs</DependentUpon>
+    <EmbeddedResource Include="TechnicStatuses\TechnicStatusesForm.resx">
+      <DependentUpon>TechnicStatusesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TechnicStatuses\UpdTechnicStatus.resx">
-      <DependentUpon>UpdTechnicStatus.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Technics\AddTechnicForm.resx">
-      <DependentUpon>AddTechnicForm.cs</DependentUpon>
+    <EmbeddedResource Include="Technics\TechnicHandlerForm.resx">
+      <DependentUpon>TechnicHandlerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Technics\TechnicsForm.resx">
       <DependentUpon>TechnicsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Technics\UpdTechnicForm.resx">
-      <DependentUpon>UpdTechnicForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TicketStatuses\AddTicketStatus.resx">
-      <DependentUpon>AddTicketStatus.cs</DependentUpon>
+    <EmbeddedResource Include="TicketStatuses\TicketStatusHandlerForm.resx">
+      <DependentUpon>TicketStatusHandlerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TicketStatuses\TicketStatusesForm.resx">
       <DependentUpon>TicketStatusesForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TicketStatuses\UpdTicketStatus.resx">
-      <DependentUpon>UpdTicketStatus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tickets\AddTicketForm.resx">
       <DependentUpon>AddTicketForm.cs</DependentUpon>

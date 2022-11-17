@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TIckets
@@ -18,13 +12,12 @@ namespace TIckets
             InitializeComponent();
         }
 
-        private void DeviceTypesHandlerFormEditBtn_Click(object sender, EventArgs e)
+        private void DeviceTypesHandlerFormAddBtn_Click(object sender, EventArgs e)
         {
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
-                string prevDeviceTypeName = this.Tag.ToString();
-                SqlCommand cmd = new SqlCommand("UPDATE DeviceTypes SET DeviceTypeName =  (N'" + DeviceTypesHandlerFormTb.Text + "') WHERE DeviceTypeName = N'" + prevDeviceTypeName + "'", connection);
+                SqlCommand cmd = new SqlCommand("INSERT INTO DeviceTypes (DeviceTypeName) VALUES (N'" + DeviceTypesHandlerFormTb.Text + "')", connection);
                 cmd.ExecuteNonQuery();
 
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT DeviceTypeName AS Категория FROM DeviceTypes", connection);
@@ -35,12 +28,13 @@ namespace TIckets
             }
         }
 
-        private void DeviceTypesHandlerFormAddBtn_Click(object sender, EventArgs e)
+        private void DeviceTypesHandlerFormEditBtn_Click(object sender, EventArgs e)
         {
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO DeviceTypes (DeviceTypeName) VALUES (N'" + DeviceTypesHandlerFormTb.Text + "')", connection);
+                string prevDeviceTypeName = this.Tag.ToString();
+                SqlCommand cmd = new SqlCommand("UPDATE DeviceTypes SET DeviceTypeName =  (N'" + DeviceTypesHandlerFormTb.Text + "') WHERE DeviceTypeName = N'" + prevDeviceTypeName + "'", connection);
                 cmd.ExecuteNonQuery();
 
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT DeviceTypeName AS Категория FROM DeviceTypes", connection);

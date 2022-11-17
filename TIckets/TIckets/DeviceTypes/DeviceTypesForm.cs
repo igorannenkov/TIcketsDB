@@ -13,6 +13,7 @@ namespace TIckets
 
             using (SqlConnection connection = Database.GetConnection())
             {
+                connection.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT DeviceTypeName AS Категория FROM DeviceTypes", connection);
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);

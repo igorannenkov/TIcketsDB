@@ -36,5 +36,27 @@ namespace TIckets
             dtf.StartPosition = FormStartPosition.CenterParent;
             dtf.ShowDialog();
         }
+
+        private void статусыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TechnicStatusesForm ts = new TechnicStatusesForm();
+            ts.StartPosition = FormStartPosition.CenterParent;
+            ts.ShowDialog();
+        }
+
+        private void статусыЗаявокToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TicketStatusesForm ticketStatusesForm = new TicketStatusesForm();
+            ticketStatusesForm.StartPosition = FormStartPosition.CenterScreen;
+            ticketStatusesForm.ShowDialog();
+
+        }
+
+        private void техникиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TechnicsForm technicsForm = new TechnicsForm();
+            technicsForm.StartPosition = FormStartPosition.CenterScreen;
+            technicsForm.ShowDialog();
+        }
     }
 }
