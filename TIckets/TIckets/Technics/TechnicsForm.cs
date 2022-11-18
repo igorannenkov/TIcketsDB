@@ -69,7 +69,8 @@ namespace TIckets
 
                 TechnicHandlerForm technicHandleForm = new TechnicHandlerForm();
                 technicHandleForm.Owner = this;
-                string prevTechnicName = TechnicHandlerFormGridView.CurrentCell.Value.ToString();
+
+                string prevTechnicName = TechnicHandlerFormGridView.CurrentRow.Cells[1].Value.ToString();
                 (technicHandleForm.Controls["TechnicHandlerFormStatusNameTb"] as TextBox).Text = prevTechnicName;
                 technicHandleForm.Tag = prevTechnicName;
 
