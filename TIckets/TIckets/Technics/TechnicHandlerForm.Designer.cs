@@ -1,4 +1,4 @@
-﻿namespace TIckets.Admin.Technics
+﻿namespace TIckets
 {
     partial class TechnicHandlerForm
     {
