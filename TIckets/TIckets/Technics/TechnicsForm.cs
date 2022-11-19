@@ -44,18 +44,19 @@ namespace TIckets
                 {
                     connection.Open();
                     string toDelete = TechnicHandlerFormGridView.CurrentRow.Cells[0].Value.ToString();
-                    SqlCommand cmd = new SqlCommand("DELETE FROM Technics WHERE TechnicID = '" + toDelete + "'", connection);
+                    string sqlCommandText = "DELETE FROM Technics WHERE TechnicID = @toDelete";
+
+                    SqlCommand cmd = new SqlCommand(sqlCommandText, connection);
+                    cmd.Parameters.AddWithValue("@toDelete", toDelete);                
                     cmd.ExecuteNonQuery();
 
                     string command = "SELECT TechnicID AS ID, TechnicName [ФИО техника], TechnicStatusName AS [Статус] " +
-                               "FROM Technics T " +
-                               "INNER JOIN TechnicStatuses TS ON T.TechnicStatusID = TS.TechnicStatusID;";
+                                     "FROM Technics T " +
+                                     "INNER JOIN TechnicStatuses TS ON T.TechnicStatusID = TS.TechnicStatusID;";
 
                     SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
-
                     DataSet ds = new DataSet();
                     adapter.Fill(ds);
-
                     this.TechnicHandlerFormGridView.DataSource = ds.Tables[0];
                 }
             }
@@ -71,7 +72,7 @@ namespace TIckets
                 technicHandleForm.Owner = this;
 
                 string prevTechnicName = TechnicHandlerFormGridView.CurrentRow.Cells[1].Value.ToString();
-                (technicHandleForm.Controls["TechnicHandlerFormStatusNameTb"] as TextBox).Text = prevTechnicName;
+                (technicHandleForm.Controls["TechnicHandlerFormTechnicNameTb"] as TextBox).Text = prevTechnicName;
                 technicHandleForm.Tag = prevTechnicName;
 
                 SqlCommand cmd = new SqlCommand("SELECT TechnicStatusName AS Status FROM TechnicStatuses", connection);

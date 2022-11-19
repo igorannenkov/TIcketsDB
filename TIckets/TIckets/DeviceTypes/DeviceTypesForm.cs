@@ -18,7 +18,6 @@ namespace TIckets
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
                this.DeviceTypesGridView.DataSource = ds.Tables[0];
-
             }
 
         }
@@ -34,14 +33,22 @@ namespace TIckets
 
         private void DeviceTypesGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DeviceTypesHandlerForm devTypeHandlerForm = new DeviceTypesHandlerForm();
-            devTypeHandlerForm.Owner = this;
-            string prevDeviceTypeName = DeviceTypesGridView.CurrentCell.Value.ToString();
-            (devTypeHandlerForm.Controls["DeviceTypesHandlerFormTb"] as TextBox).Text = prevDeviceTypeName;
-            devTypeHandlerForm.Tag = prevDeviceTypeName;
-            devTypeHandlerForm.StartPosition = FormStartPosition.CenterScreen;
-            (devTypeHandlerForm.Controls["DeviceTypesHandlerFormAddBtn"] as Button).Enabled = false;
-            devTypeHandlerForm.ShowDialog();
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                connection.Open();
+                DeviceTypesHandlerForm devTypeHandlerForm = new DeviceTypesHandlerForm();
+                devTypeHandlerForm.Owner = this;
+                string prevDeviceTypeName = DeviceTypesGridView.CurrentCell.Value.ToString();
+                (devTypeHandlerForm.Controls["DeviceTypesHandlerFormTb"] as TextBox).Text = prevDeviceTypeName;
+
+                SqlCommand cmd = new SqlCommand("SELECT DeviceTypeID FROM DeviceTypes WHERE DeviceTypeName = @devTypeName", connection);
+                cmd.Parameters.AddWithValue("@devTypeName", prevDeviceTypeName);
+                
+                devTypeHandlerForm.Tag = cmd.ExecuteScalar();              
+                devTypeHandlerForm.StartPosition = FormStartPosition.CenterScreen;
+                (devTypeHandlerForm.Controls["DeviceTypesHandlerFormAddBtn"] as Button).Enabled = false;
+                devTypeHandlerForm.ShowDialog();
+            }
         }
 
         private void DeviceTypesGridView_KeyDown(object sender, KeyEventArgs e)
@@ -51,17 +58,14 @@ namespace TIckets
                 using (SqlConnection connection = Database.GetConnection())
                 {
                     connection.Open();
-                    string toDelete = DeviceTypesGridView.CurrentCell.Value.ToString();
-                    SqlCommand cmd = new SqlCommand("DELETE FROM DeviceTypes WHERE DeviceTypeName = N'" + toDelete + "'", connection);
+                    SqlCommand cmd = new SqlCommand("DELETE FROM DeviceTypes WHERE DeviceTypeName = @deviceTypeToDelete", connection);
+                    cmd.Parameters.AddWithValue("@deviceTypeToDelete", DeviceTypesGridView.CurrentCell.Value.ToString());
                     cmd.ExecuteNonQuery();
+
                     SqlDataAdapter adapter = new SqlDataAdapter("SELECT DeviceTypeName AS Категория FROM DeviceTypes", connection);
                     DataSet ds = new DataSet();
                     adapter.Fill(ds);
                     this.DeviceTypesGridView.DataSource = ds.Tables[0];
-
-
-
-
                 }
             }
         }

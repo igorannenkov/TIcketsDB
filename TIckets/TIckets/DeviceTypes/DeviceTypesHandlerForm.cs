@@ -17,7 +17,8 @@ namespace TIckets
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO DeviceTypes (DeviceTypeName) VALUES (N'" + DeviceTypesHandlerFormTb.Text + "')", connection);
+                SqlCommand cmd = new SqlCommand("INSERT INTO DeviceTypes (DeviceTypeName) VALUES (@newDeviceTypeName)", connection);
+                cmd.Parameters.AddWithValue("@newDeviceTypeName", DeviceTypesHandlerFormTb.Text);
                 cmd.ExecuteNonQuery();
 
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT DeviceTypeName AS Категория FROM DeviceTypes", connection);
@@ -33,8 +34,12 @@ namespace TIckets
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
-                string prevDeviceTypeName = this.Tag.ToString();
-                SqlCommand cmd = new SqlCommand("UPDATE DeviceTypes SET DeviceTypeName =  (N'" + DeviceTypesHandlerFormTb.Text + "') WHERE DeviceTypeName = N'" + prevDeviceTypeName + "'", connection);
+                int deviceTypeID = (int)this.Tag;
+                SqlCommand cmd = new SqlCommand("UPDATE DeviceTypes " +
+                                                "SET DeviceTypeName = (@newDeviceTypeName) " +
+                                                "WHERE DeviceTypeID = @deviceTypeID", connection);
+                cmd.Parameters.AddWithValue("@newDeviceTypeName", DeviceTypesHandlerFormTb.Text);
+                cmd.Parameters.AddWithValue("@deviceTypeID", deviceTypeID);
                 cmd.ExecuteNonQuery();
 
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT DeviceTypeName AS Категория FROM DeviceTypes", connection);

@@ -20,7 +20,8 @@ namespace TIckets
         private void ПользователиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UsersForm usForm = new UsersForm();
-            usForm.Show();
+            usForm.StartPosition = FormStartPosition.CenterParent;
+            usForm.ShowDialog();
         }
 
         private void ролиToolStripMenuItem_Click(object sender, EventArgs e)

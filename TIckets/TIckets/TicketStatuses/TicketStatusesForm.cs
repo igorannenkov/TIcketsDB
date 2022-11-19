@@ -19,7 +19,7 @@ namespace TIckets
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
-                SqlDataAdapter adapter = new SqlDataAdapter("SELECT TicketStatusName AS Статус FROM TicketStatuses", connection);
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT TicketStatusName AS [Статус заявки] FROM TicketStatuses", connection);
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
                 this.TicketStatusesFormGridView.DataSource = ds.Tables[0];
@@ -28,14 +28,22 @@ namespace TIckets
 
         private void TicketStatusesFormGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            TicketStatusHandlerForm TicketStatusHandleForm = new TicketStatusHandlerForm();
-            TicketStatusHandleForm.Owner = this;
-            string prevTicketStatusName = TicketStatusesFormGridView.CurrentCell.Value.ToString();
-            (TicketStatusHandleForm.Controls["TicketStatusHandlerFormStatusNameTb"] as TextBox).Text = prevTicketStatusName;
-            TicketStatusHandleForm.Tag = prevTicketStatusName;
-            TicketStatusHandleForm.StartPosition = FormStartPosition.CenterScreen;
-            (TicketStatusHandleForm.Controls["TicketStatusHandlerFormAddBtn"] as Button).Enabled = false;
-            TicketStatusHandleForm.ShowDialog();
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                connection.Open();
+                TicketStatusHandlerForm TicketStatusHandleForm = new TicketStatusHandlerForm();
+                TicketStatusHandleForm.Owner = this;
+                string prevTicketStatusName = TicketStatusesFormGridView.CurrentCell.Value.ToString();
+                (TicketStatusHandleForm.Controls["TicketStatusHandlerFormStatusNameTb"] as TextBox).Text = prevTicketStatusName;
+
+                SqlCommand cmd = new SqlCommand("SELECT TicketStatusID FROM TicketStatuses WHERE TicketStatusName = @ticketStatusName", connection);
+                cmd.Parameters.AddWithValue("@ticketStatusName", prevTicketStatusName);
+
+                TicketStatusHandleForm.Tag = cmd.ExecuteScalar();
+                TicketStatusHandleForm.StartPosition = FormStartPosition.CenterScreen;
+                (TicketStatusHandleForm.Controls["TicketStatusHandlerFormAddBtn"] as Button).Enabled = false;
+                TicketStatusHandleForm.ShowDialog();
+            }
         }
 
         private void TicketStatusesFormGridView_KeyDown(object sender, KeyEventArgs e)
@@ -45,8 +53,8 @@ namespace TIckets
                 using (SqlConnection connection = Database.GetConnection())
                 {
                     connection.Open();
-                    string toDelete = TicketStatusesFormGridView.CurrentCell.Value.ToString();
-                    SqlCommand cmd = new SqlCommand("DELETE FROM TicketStatuses WHERE TIcketStatusName = N'" + toDelete + "'", connection);
+                    SqlCommand cmd = new SqlCommand("DELETE FROM TicketStatuses WHERE TIcketStatusName = @ticketStatusToDelete", connection);
+                    cmd.Parameters.AddWithValue("@ticketStatusToDelete", TicketStatusesFormGridView.CurrentCell.Value.ToString());
                     cmd.ExecuteNonQuery();
                     SqlDataAdapter adapter = new SqlDataAdapter("SELECT TicketStatusName AS Статус FROM TicketStatuses", connection);
                     DataSet ds = new DataSet();

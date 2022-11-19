@@ -37,9 +37,10 @@ namespace TIckets
                 using (SqlConnection connection = Database.GetConnection())
                 {
                     connection.Open();
-                    string toDelete = RolesFormGridView.CurrentCell.Value.ToString();
-                    SqlCommand cmd = new SqlCommand("DELETE FROM ROLES WHERE RoleName = N'" + toDelete + "'", connection);
+                    SqlCommand cmd = new SqlCommand("DELETE FROM ROLES WHERE RoleName = @roleNameToDelete", connection);
+                    cmd.Parameters.AddWithValue("@roleNameToDelete", RolesFormGridView.CurrentCell.Value.ToString());
                     cmd.ExecuteNonQuery();
+
                     SqlDataAdapter adapter = new SqlDataAdapter("SELECT RoleName AS Роль FROM Roles", connection);
                     DataSet ds = new DataSet();
                     adapter.Fill(ds);
@@ -50,14 +51,24 @@ namespace TIckets
 
         private void RolesFormGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            RoleHandlerForm roleHandleForm = new RoleHandlerForm();
-            roleHandleForm.Owner = this;
-            string prevRoleName = RolesFormGridView.CurrentCell.Value.ToString();
-            (roleHandleForm.Controls["RoleHandlerFormRoleNameTb"] as TextBox).Text = prevRoleName;
-            roleHandleForm.Tag = prevRoleName;
-            roleHandleForm.StartPosition = FormStartPosition.CenterScreen;
-            (roleHandleForm.Controls["RoleHandlerFormAddBtn"] as Button).Enabled = false;
-            roleHandleForm.ShowDialog();
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                connection.Open();
+
+                RoleHandlerForm roleHandleForm = new RoleHandlerForm();
+                roleHandleForm.Owner = this;
+                string prevRoleName = RolesFormGridView.CurrentCell.Value.ToString();
+
+                (roleHandleForm.Controls["RoleHandlerFormRoleNameTb"] as TextBox).Text = prevRoleName;          
+
+                SqlCommand cmd = new SqlCommand("SELECT RoleID FROM Roles WHERE RoleName = @roleName", connection);
+                cmd.Parameters.AddWithValue("@roleName", prevRoleName);
+
+                roleHandleForm.Tag = cmd.ExecuteScalar();
+                roleHandleForm.StartPosition = FormStartPosition.CenterScreen;
+                (roleHandleForm.Controls["RoleHandlerFormAddBtn"] as Button).Enabled = false;
+                roleHandleForm.ShowDialog();
+            }
         }
 
         

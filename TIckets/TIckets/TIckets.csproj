@@ -146,23 +146,17 @@
     <Compile Include="Tickets\UpdTicketForm.Designer.cs">
       <DependentUpon>UpdTicketForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Users\AddUserForm.cs">
+    <Compile Include="Users\UserHandleForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Users\AddUserForm.Designer.cs">
-      <DependentUpon>AddUserForm.cs</DependentUpon>
+    <Compile Include="Users\UserHandleForm.Designer.cs">
+      <DependentUpon>UserHandleForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AdminForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Users\UpdUserForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Users\UpdUserForm.Designer.cs">
-      <DependentUpon>UpdUserForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AuthorizationForm.cs">
       <SubType>Form</SubType>
@@ -250,14 +244,11 @@
     <EmbeddedResource Include="Tickets\UpdTicketForm.resx">
       <DependentUpon>UpdTicketForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Users\AddUserForm.resx">
-      <DependentUpon>AddUserForm.cs</DependentUpon>
+    <EmbeddedResource Include="Users\UserHandleForm.resx">
+      <DependentUpon>UserHandleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Users\UpdUserForm.resx">
-      <DependentUpon>UpdUserForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AuthorizationForm.resx">
       <DependentUpon>AuthorizationForm.cs</DependentUpon>

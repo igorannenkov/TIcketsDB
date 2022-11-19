@@ -17,7 +17,8 @@ namespace TIckets
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Roles (RoleName) VALUES (N'" + RoleHandlerFormRoleNameTb.Text + "')", connection);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Roles (RoleName) VALUES (@roleName)", connection);
+                cmd.Parameters.AddWithValue("@roleName", RoleHandlerFormRoleNameTb.Text);
                 cmd.ExecuteNonQuery();
 
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT RoleName AS Роль FROM Roles", connection);
@@ -33,8 +34,12 @@ namespace TIckets
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
-                string prevRoleName = this.Tag.ToString();
-                SqlCommand cmd = new SqlCommand("UPDATE Roles SET RoleName =  (N'" + RoleHandlerFormRoleNameTb.Text + "') WHERE RoleName = N'" + prevRoleName + "'", connection);
+                int prevRoleID = (int)this.Tag;
+
+                SqlCommand cmd = new SqlCommand("UPDATE Roles SET RoleName =  @newRoleName WHERE RoleID = @prevRoleID", connection);
+                cmd.Parameters.AddWithValue("@newRoleName", RoleHandlerFormRoleNameTb.Text);
+                cmd.Parameters.AddWithValue("@prevRoleID", prevRoleID);
+                
                 cmd.ExecuteNonQuery();
 
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT RoleName AS Роль FROM Roles", connection);

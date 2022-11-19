@@ -96,6 +96,8 @@
             this.Controls.Add(this.TicketStatusHandlerFormCnlBtn);
             this.Controls.Add(this.TicketStatusHandlerFormAddBtn);
             this.Controls.Add(this.TicketStatusHandlerFormEditBtn);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "TicketStatusHandlerForm";
             this.Text = "Категория статуса";
             this.ResumeLayout(false);

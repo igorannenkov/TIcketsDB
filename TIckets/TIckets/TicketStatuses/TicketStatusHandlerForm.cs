@@ -23,11 +23,13 @@ namespace TIckets
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
-                string prevRoleName = this.Tag.ToString();
-                SqlCommand cmd = new SqlCommand("UPDATE TicketStatuses SET TicketStatusName =  (N'" + TicketStatusHandlerFormStatusNameTb.Text + "') WHERE TicketStatusName = N'" + prevRoleName + "'", connection);
+                string ticketStatusID = this.Tag.ToString();
+                SqlCommand cmd = new SqlCommand("UPDATE TicketStatuses SET TicketStatusName =  @newTicketStatusName WHERE TicketStatusID = @ticketStatusID", connection);
+                cmd.Parameters.AddWithValue("@newTicketStatusName", TicketStatusHandlerFormStatusNameTb.Text);
+                cmd.Parameters.AddWithValue("@ticketStatusID", ticketStatusID);
                 cmd.ExecuteNonQuery();
 
-                SqlDataAdapter adapter = new SqlDataAdapter("SELECT TicketStatusName AS Статус FROM TicketStatuses", connection);
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT TicketStatusName AS [Статус заявки] FROM TicketStatuses", connection);
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
                 (this.Owner.Controls["TicketStatusesFormGridView"] as DataGridView).DataSource = ds.Tables[0];
@@ -40,10 +42,11 @@ namespace TIckets
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO TicketStatuses (TicketStatusName) VALUES (N'" + TicketStatusHandlerFormStatusNameTb.Text + "')", connection);
+                SqlCommand cmd = new SqlCommand("INSERT INTO TicketStatuses (TicketStatusName) VALUES (@newTicketStatusName)", connection);
+                cmd.Parameters.AddWithValue("@newTicketStatusName", TicketStatusHandlerFormStatusNameTb.Text);
                 cmd.ExecuteNonQuery();
 
-                SqlDataAdapter adapter = new SqlDataAdapter("SELECT TicketStatusName AS Статус FROM TicketStatuses", connection);
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT TicketStatusName AS [Статус заявки] FROM TicketStatuses", connection);
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
                 (this.Owner.Controls["TicketStatusesFormGridView"] as DataGridView).DataSource = ds.Tables[0];

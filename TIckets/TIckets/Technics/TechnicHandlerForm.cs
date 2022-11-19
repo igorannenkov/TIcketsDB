@@ -28,18 +28,24 @@ namespace TIckets
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
-                string prevTechnicName = this.Tag.ToString();
 
                 SqlCommand cmd = new SqlCommand("SELECT TechnicStatusID FROM TechnicStatuses " +
-                                                "WHERE TechnicStatusName =N'" + TechnicHandlerFormStatusNameCb.Text + "'", connection);
-                int techID = (int)cmd.ExecuteScalar();
+                                                "WHERE TechnicStatusName = @technicStatusName", connection);
 
-                int toUpdateID = (int)(this.Owner.Controls["TechnicHandlerFormGridView"] as DataGridView).CurrentRow.Cells[0].Value;
+                cmd.Parameters.AddWithValue("@technicStatusName", TechnicHandlerFormStatusNameCb.Text);
+
+                int techStatusID = (int)cmd.ExecuteScalar();
+                int updateID = (int)(this.Owner.Controls["TechnicHandlerFormGridView"] as DataGridView).CurrentRow.Cells[0].Value;
 
                 cmd = new SqlCommand("UPDATE Technics SET " +
-                                                "TechnicName = N'" + TechnicHandlerFormStatusNameTb.Text + "', " +
-                                                "TechnicStatusID = " + techID +
-                                                " WHERE TechnicID =" + toUpdateID, connection);
+                                        "TechnicName = @techStatusName, " +
+                                        "TechnicStatusID = @techStatusID" +
+                                        " WHERE TechnicID = @updateID", connection);
+
+                cmd.Parameters.AddWithValue("@techStatusName", TechnicHandlerFormTechnicNameTb.Text);
+                cmd.Parameters.AddWithValue("@techStatusID", techStatusID);
+                cmd.Parameters.AddWithValue("@updateID", updateID);
+
                 cmd.ExecuteNonQuery();
 
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT TechnicID AS ID, TechnicName [ФИО техника], TechnicStatusName AS [Статус] " +
@@ -58,10 +64,16 @@ namespace TIckets
             {
                 connection.Open();
                 SqlCommand cmd = new SqlCommand("SELECT TechnicStatusID FROM TechnicStatuses " +
-                                                "WHERE TechnicStatusName =N'" + TechnicHandlerFormStatusNameCb.Text + "'", connection);
-                int techID = (int)cmd.ExecuteScalar();
+                                                "WHERE TechnicStatusName = @technicStatusName", connection);
+
+                cmd.Parameters.AddWithValue("@technicStatusName", TechnicHandlerFormStatusNameCb.Text);
+                int technicID = (int)cmd.ExecuteScalar();
+
                 cmd = new SqlCommand("INSERT INTO Technics (TechnicName, TechnicStatusID) " +
-                                                "VALUES (N'" + TechnicHandlerFormStatusNameTb.Text + "', '" + techID + "')", connection);
+                                                "VALUES (@technicName, @technicID)", connection);
+
+                cmd.Parameters.AddWithValue("@technicName", TechnicHandlerFormTechnicNameTb.Text);
+                cmd.Parameters.AddWithValue("@technicID", technicID);
 
                 cmd.ExecuteNonQuery();
 

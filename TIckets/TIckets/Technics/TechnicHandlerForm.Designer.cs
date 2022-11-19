@@ -33,7 +33,7 @@
             this.TechnicHandlerFormCnlBtn = new System.Windows.Forms.Button();
             this.TechnicHandlerFormStatusNameLblFIO = new System.Windows.Forms.Label();
             this.TechnicHandlerFormStatusNameLblSt = new System.Windows.Forms.Label();
-            this.TechnicHandlerFormStatusNameTb = new System.Windows.Forms.TextBox();
+            this.TechnicHandlerFormTechnicNameTb = new System.Windows.Forms.TextBox();
             this.TechnicHandlerFormStatusNameCb = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
@@ -90,13 +90,13 @@
             this.TechnicHandlerFormStatusNameLblSt.TabIndex = 4;
             this.TechnicHandlerFormStatusNameLblSt.Text = "Статус техника";
             // 
-            // TechnicHandlerFormStatusNameTb
+            // TechnicHandlerFormTechnicNameTb
             // 
-            this.TechnicHandlerFormStatusNameTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.TechnicHandlerFormStatusNameTb.Location = new System.Drawing.Point(9, 32);
-            this.TechnicHandlerFormStatusNameTb.Name = "TechnicHandlerFormStatusNameTb";
-            this.TechnicHandlerFormStatusNameTb.Size = new System.Drawing.Size(429, 26);
-            this.TechnicHandlerFormStatusNameTb.TabIndex = 5;
+            this.TechnicHandlerFormTechnicNameTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TechnicHandlerFormTechnicNameTb.Location = new System.Drawing.Point(9, 32);
+            this.TechnicHandlerFormTechnicNameTb.Name = "TechnicHandlerFormTechnicNameTb";
+            this.TechnicHandlerFormTechnicNameTb.Size = new System.Drawing.Size(429, 26);
+            this.TechnicHandlerFormTechnicNameTb.TabIndex = 5;
             // 
             // TechnicHandlerFormStatusNameCb
             // 
@@ -114,7 +114,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(450, 186);
             this.Controls.Add(this.TechnicHandlerFormStatusNameCb);
-            this.Controls.Add(this.TechnicHandlerFormStatusNameTb);
+            this.Controls.Add(this.TechnicHandlerFormTechnicNameTb);
             this.Controls.Add(this.TechnicHandlerFormStatusNameLblSt);
             this.Controls.Add(this.TechnicHandlerFormStatusNameLblFIO);
             this.Controls.Add(this.TechnicHandlerFormCnlBtn);
@@ -136,7 +136,7 @@
         private System.Windows.Forms.Button TechnicHandlerFormCnlBtn;
         private System.Windows.Forms.Label TechnicHandlerFormStatusNameLblFIO;
         private System.Windows.Forms.Label TechnicHandlerFormStatusNameLblSt;
-        private System.Windows.Forms.TextBox TechnicHandlerFormStatusNameTb;
+        private System.Windows.Forms.TextBox TechnicHandlerFormTechnicNameTb;
         private System.Windows.Forms.ComboBox TechnicHandlerFormStatusNameCb;
     }
 }

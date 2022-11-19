@@ -23,7 +23,8 @@ namespace TIckets.Admin.TechnicStatuses
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO TechnicStatuses (TechnicStatusName) VALUES (N'" + TechnicStatusHandlerFormStatusNameTb.Text + "')", connection);
+                SqlCommand cmd = new SqlCommand("INSERT INTO TechnicStatuses (TechnicStatusName) VALUES (@newTechStatusName)", connection);
+                cmd.Parameters.AddWithValue("@newTechStatusName", TechnicStatusHandlerFormStatusNameTb.Text);
                 cmd.ExecuteNonQuery();
 
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT TechnicStatusName AS Статус FROM TechnicStatuses", connection);
@@ -39,8 +40,10 @@ namespace TIckets.Admin.TechnicStatuses
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
-                string prevTechStatusName = this.Tag.ToString();
-                SqlCommand cmd = new SqlCommand("UPDATE TechnicStatuses SET TechnicStatusName =  (N'" + TechnicStatusHandlerFormStatusNameTb.Text + "') WHERE TechnicStatusName = N'" + prevTechStatusName + "'", connection);
+                int prevTechStatusID = (int)this.Tag;
+                SqlCommand cmd = new SqlCommand("UPDATE TechnicStatuses SET TechnicStatusName =  (@newTechStatusName) WHERE TechnicStatusID = @techStatusID", connection);
+                cmd.Parameters.AddWithValue("@newTechStatusName", TechnicStatusHandlerFormStatusNameTb.Text);
+                cmd.Parameters.AddWithValue("@techStatusID", prevTechStatusID);
                 cmd.ExecuteNonQuery();
 
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT TechnicStatusName AS Статус FROM TechnicStatuses", connection);

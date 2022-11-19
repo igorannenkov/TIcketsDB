@@ -38,8 +38,8 @@ namespace TIckets
                 using (SqlConnection connection = Database.GetConnection())
                 {
                     connection.Open();
-                    string toDelete = TechnicStatusesFormGridView.CurrentCell.Value.ToString();
-                    SqlCommand cmd = new SqlCommand("DELETE FROM TechnicStatuses WHERE TechnicStatusName = N'" + toDelete + "'", connection);
+                    SqlCommand cmd = new SqlCommand("DELETE FROM TechnicStatuses WHERE TechnicStatusName = @techStatusToDelete", connection);
+                    cmd.Parameters.AddWithValue("@techStatusToDelete", TechnicStatusesFormGridView.CurrentCell.Value.ToString());
                     cmd.ExecuteNonQuery();
                     SqlDataAdapter adapter = new SqlDataAdapter("SELECT TechnicStatusName AS Статус FROM TechnicStatuses", connection);
                     DataSet ds = new DataSet();
@@ -51,14 +51,24 @@ namespace TIckets
 
         private void TechnicStatusesFormGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            TechnicStatusHandlerForm technicStatusHandlerForm = new TechnicStatusHandlerForm();
-            technicStatusHandlerForm.Owner = this;
-            string prevTechnicStatusName = TechnicStatusesFormGridView.CurrentCell.Value.ToString();
-            (technicStatusHandlerForm.Controls["TechnicStatusHandlerFormStatusNameTb"] as TextBox).Text = prevTechnicStatusName;
-            technicStatusHandlerForm.Tag = prevTechnicStatusName;
-            technicStatusHandlerForm.StartPosition = FormStartPosition.CenterScreen;
-            (technicStatusHandlerForm.Controls["TechnicStatusHandlerFormAddBtn"] as Button).Enabled = false;
-            technicStatusHandlerForm.ShowDialog();
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                connection.Open();
+
+                TechnicStatusHandlerForm technicStatusHandlerForm = new TechnicStatusHandlerForm();
+                technicStatusHandlerForm.Owner = this;
+                string prevTechnicStatusName = TechnicStatusesFormGridView.CurrentCell.Value.ToString();
+                
+                (technicStatusHandlerForm.Controls["TechnicStatusHandlerFormStatusNameTb"] as TextBox).Text = prevTechnicStatusName;
+
+                SqlCommand cmd = new SqlCommand("SELECT TechnicStatusID FROM TechnicStatuses WHERE TechnicStatusName = @techStatusName", connection);
+                cmd.Parameters.AddWithValue("@techStatusName", prevTechnicStatusName);
+
+                technicStatusHandlerForm.Tag = cmd.ExecuteScalar();
+                technicStatusHandlerForm.StartPosition = FormStartPosition.CenterScreen;
+                (technicStatusHandlerForm.Controls["TechnicStatusHandlerFormAddBtn"] as Button).Enabled = false;
+                technicStatusHandlerForm.ShowDialog();
+            }
         }
     }
 }
