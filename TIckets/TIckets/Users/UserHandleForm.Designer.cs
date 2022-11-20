@@ -35,12 +35,15 @@
             this.UserHandlerFormUserNameTb = new System.Windows.Forms.TextBox();
             this.UserHandlerFormUserRoleLbl = new System.Windows.Forms.Label();
             this.UserHandlerFormUserRoleCb = new System.Windows.Forms.ComboBox();
+            this.UserHandlerFormLoginLbl = new System.Windows.Forms.Label();
+            this.UserHandlerFormUserLoginTb = new System.Windows.Forms.TextBox();
+            this.UserHandlerFormResetPwdChb = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // UserHandlerFormEditBtn
             // 
             this.UserHandlerFormEditBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.UserHandlerFormEditBtn.Location = new System.Drawing.Point(12, 117);
+            this.UserHandlerFormEditBtn.Location = new System.Drawing.Point(16, 199);
             this.UserHandlerFormEditBtn.Name = "UserHandlerFormEditBtn";
             this.UserHandlerFormEditBtn.Size = new System.Drawing.Size(139, 44);
             this.UserHandlerFormEditBtn.TabIndex = 0;
@@ -51,7 +54,7 @@
             // UserHandlerFormAddBtn
             // 
             this.UserHandlerFormAddBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.UserHandlerFormAddBtn.Location = new System.Drawing.Point(157, 117);
+            this.UserHandlerFormAddBtn.Location = new System.Drawing.Point(161, 199);
             this.UserHandlerFormAddBtn.Name = "UserHandlerFormAddBtn";
             this.UserHandlerFormAddBtn.Size = new System.Drawing.Size(139, 44);
             this.UserHandlerFormAddBtn.TabIndex = 1;
@@ -62,7 +65,7 @@
             // UserHandlerFormCnlBtn
             // 
             this.UserHandlerFormCnlBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.UserHandlerFormCnlBtn.Location = new System.Drawing.Point(302, 117);
+            this.UserHandlerFormCnlBtn.Location = new System.Drawing.Point(306, 199);
             this.UserHandlerFormCnlBtn.Name = "UserHandlerFormCnlBtn";
             this.UserHandlerFormCnlBtn.Size = new System.Drawing.Size(139, 44);
             this.UserHandlerFormCnlBtn.TabIndex = 2;
@@ -76,43 +79,75 @@
             this.UserHandlerFormRoleNameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.UserHandlerFormRoleNameLbl.Location = new System.Drawing.Point(12, 9);
             this.UserHandlerFormRoleNameLbl.Name = "UserHandlerFormRoleNameLbl";
-            this.UserHandlerFormRoleNameLbl.Size = new System.Drawing.Size(160, 20);
+            this.UserHandlerFormRoleNameLbl.Size = new System.Drawing.Size(47, 20);
             this.UserHandlerFormRoleNameLbl.TabIndex = 3;
-            this.UserHandlerFormRoleNameLbl.Text = "ФИО пользователя";
+            this.UserHandlerFormRoleNameLbl.Text = "ФИО";
             // 
             // UserHandlerFormUserNameTb
             // 
             this.UserHandlerFormUserNameTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.UserHandlerFormUserNameTb.Location = new System.Drawing.Point(16, 32);
             this.UserHandlerFormUserNameTb.Name = "UserHandlerFormUserNameTb";
-            this.UserHandlerFormUserNameTb.Size = new System.Drawing.Size(425, 26);
+            this.UserHandlerFormUserNameTb.Size = new System.Drawing.Size(429, 26);
             this.UserHandlerFormUserNameTb.TabIndex = 4;
             // 
             // UserHandlerFormUserRoleLbl
             // 
             this.UserHandlerFormUserRoleLbl.AutoSize = true;
             this.UserHandlerFormUserRoleLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.UserHandlerFormUserRoleLbl.Location = new System.Drawing.Point(12, 61);
+            this.UserHandlerFormUserRoleLbl.Location = new System.Drawing.Point(12, 112);
             this.UserHandlerFormUserRoleLbl.Name = "UserHandlerFormUserRoleLbl";
-            this.UserHandlerFormUserRoleLbl.Size = new System.Drawing.Size(160, 20);
+            this.UserHandlerFormUserRoleLbl.Size = new System.Drawing.Size(47, 20);
             this.UserHandlerFormUserRoleLbl.TabIndex = 5;
-            this.UserHandlerFormUserRoleLbl.Text = "Роль пользователя";
+            this.UserHandlerFormUserRoleLbl.Text = "Роль";
             // 
             // UserHandlerFormUserRoleCb
             // 
             this.UserHandlerFormUserRoleCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UserHandlerFormUserRoleCb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.UserHandlerFormUserRoleCb.FormattingEnabled = true;
-            this.UserHandlerFormUserRoleCb.Location = new System.Drawing.Point(16, 83);
+            this.UserHandlerFormUserRoleCb.Location = new System.Drawing.Point(16, 134);
             this.UserHandlerFormUserRoleCb.Name = "UserHandlerFormUserRoleCb";
-            this.UserHandlerFormUserRoleCb.Size = new System.Drawing.Size(425, 28);
+            this.UserHandlerFormUserRoleCb.Size = new System.Drawing.Size(429, 28);
             this.UserHandlerFormUserRoleCb.TabIndex = 6;
+            // 
+            // UserHandlerFormLoginLbl
+            // 
+            this.UserHandlerFormLoginLbl.AutoSize = true;
+            this.UserHandlerFormLoginLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.UserHandlerFormLoginLbl.Location = new System.Drawing.Point(12, 60);
+            this.UserHandlerFormLoginLbl.Name = "UserHandlerFormLoginLbl";
+            this.UserHandlerFormLoginLbl.Size = new System.Drawing.Size(55, 20);
+            this.UserHandlerFormLoginLbl.TabIndex = 7;
+            this.UserHandlerFormLoginLbl.Text = "Логин";
+            // 
+            // UserHandlerFormUserLoginTb
+            // 
+            this.UserHandlerFormUserLoginTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.UserHandlerFormUserLoginTb.Location = new System.Drawing.Point(16, 83);
+            this.UserHandlerFormUserLoginTb.Name = "UserHandlerFormUserLoginTb";
+            this.UserHandlerFormUserLoginTb.Size = new System.Drawing.Size(429, 26);
+            this.UserHandlerFormUserLoginTb.TabIndex = 8;
+            // 
+            // UserHandlerFormResetPwdChb
+            // 
+            this.UserHandlerFormResetPwdChb.AutoSize = true;
+            this.UserHandlerFormResetPwdChb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.UserHandlerFormResetPwdChb.Location = new System.Drawing.Point(16, 168);
+            this.UserHandlerFormResetPwdChb.Name = "UserHandlerFormResetPwdChb";
+            this.UserHandlerFormResetPwdChb.Size = new System.Drawing.Size(273, 24);
+            this.UserHandlerFormResetPwdChb.TabIndex = 9;
+            this.UserHandlerFormResetPwdChb.Text = "Сбросить пароль пользователя";
+            this.UserHandlerFormResetPwdChb.UseVisualStyleBackColor = true;
             // 
             // UserHandleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(457, 176);
+            this.ClientSize = new System.Drawing.Size(457, 255);
+            this.Controls.Add(this.UserHandlerFormResetPwdChb);
+            this.Controls.Add(this.UserHandlerFormUserLoginTb);
+            this.Controls.Add(this.UserHandlerFormLoginLbl);
             this.Controls.Add(this.UserHandlerFormUserRoleCb);
             this.Controls.Add(this.UserHandlerFormUserRoleLbl);
             this.Controls.Add(this.UserHandlerFormUserNameTb);
@@ -138,5 +173,8 @@
         private System.Windows.Forms.TextBox UserHandlerFormUserNameTb;
         private System.Windows.Forms.Label UserHandlerFormUserRoleLbl;
         private System.Windows.Forms.ComboBox UserHandlerFormUserRoleCb;
+        private System.Windows.Forms.Label UserHandlerFormLoginLbl;
+        private System.Windows.Forms.TextBox UserHandlerFormUserLoginTb;
+        private System.Windows.Forms.CheckBox UserHandlerFormResetPwdChb;
     }
 }

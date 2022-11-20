@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
+using System.Reflection;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace TIckets
 {
@@ -16,35 +13,24 @@ namespace TIckets
         {
             InitializeComponent();
         }
-
         private void ПользователиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UsersForm usForm = new UsersForm();
             usForm.StartPosition = FormStartPosition.CenterParent;
             usForm.ShowDialog();
         }
-
         private void ролиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RolesForm rf = new RolesForm();
             rf.StartPosition = FormStartPosition.CenterParent;
             rf.ShowDialog();
         }
-
         private void ТипыУстройствToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DeviceTypesForm dtf = new DeviceTypesForm();
             dtf.StartPosition = FormStartPosition.CenterParent;
             dtf.ShowDialog();
         }
-
-        private void статусыToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            TechnicStatusesForm ts = new TechnicStatusesForm();
-            ts.StartPosition = FormStartPosition.CenterParent;
-            ts.ShowDialog();
-        }
-
         private void статусыЗаявокToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TicketStatusesForm ticketStatusesForm = new TicketStatusesForm();
@@ -52,12 +38,122 @@ namespace TIckets
             ticketStatusesForm.ShowDialog();
 
         }
-
-        private void техникиToolStripMenuItem_Click(object sender, EventArgs e)
+        private void всеЗаявкиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TechnicsForm technicsForm = new TechnicsForm();
-            technicsForm.StartPosition = FormStartPosition.CenterScreen;
-            technicsForm.ShowDialog();
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                connection.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT T.TicketID AS [ID Заявки], " +
+                                                            "U.UserName AS Пользователь, " +
+                                                            "T.TicketUserComment AS [Текст обращения], " +
+                                                            "COALESCE(UN.UserName, N'Ожидает  назначения') AS [Назначенный техник], " + 
+                                                            "TS.TicketStatusName AS [Статус заявки], " +
+                                                            "T.TicketStartDateTime AS [Время регистрации], " +
+                                                            "T.TicketEndDateTime AS [Время выполнения], " +                                                          
+                                                            "T.TicketComment AS [Комментарий техника], " +
+                                                            "DT.DeviceTypeName AS [Используемые материалы] " +                                                           
+                                                            "FROM Tickets AS T " +
+                                                            "LEFT JOIN Users AS U " +
+                                                            "ON T.UserID = U.UserID " +
+                                                            "LEFT JOIN  Users AS UN " +
+                                                            "ON T.TechnicID = UN.UserID " +
+                                                            "LEFT JOIN DeviceTypes AS DT " +
+                                                            "ON T.UsedDeviceID = DT.DeviceTypeID " +
+                                                            "LEFT JOIN TicketStatuses TS " +
+                                                            "ON T.TicketStatusID = TS.TicketStatusID ", connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                admGridView.DataSource = dt;
+
+            }
+        }
+        private void новыеЗаявкиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT T.TicketID AS [ID Заявки], " +
+                                                            "U.UserName AS Пользователь, " +
+                                                            "T.TicketUserComment AS [Текст обращения], " +
+                                                            "COALESCE(UN.UserName, N'Ожидает  назначения') AS [Назначенный техник], " +
+                                                            "TS.TicketStatusName AS [Статус заявки], " +
+                                                            "T.TicketStartDateTime AS [Время регистрации], " +
+                                                            "T.TicketEndDateTime AS [Время выполнения], " +
+                                                            "T.TicketComment AS [Комментарий техника], " +
+                                                            "DT.DeviceTypeName AS [Используемые материалы] " +
+                                                            "FROM Tickets AS T " +
+                                                            "LEFT JOIN Users AS U " +
+                                                            "ON T.UserID = U.UserID " +
+                                                            "LEFT JOIN  Users AS UN " +
+                                                            "ON T.TechnicID = UN.UserID " +
+                                                            "LEFT JOIN DeviceTypes AS DT " +
+                                                            "ON T.UsedDeviceID = DT.DeviceTypeID " +
+                                                            "LEFT JOIN TicketStatuses TS " +
+                                                            "ON T.TicketStatusID = TS.TicketStatusID " +
+                                                            "WHERE UN.UserName IS NULL", connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                admGridView.DataSource = dt;
+            }
+        }
+
+        private void admGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                connection.Open();
+
+                TicketHandleForm ticketHandleForm = new TicketHandleForm();
+                (ticketHandleForm.Controls["ticketDeviceCb"] as ComboBox).Enabled = false;
+                (ticketHandleForm.Controls["ticketHandlerFormUsedDeviceLbl"] as Label).Enabled = false;
+
+                ticketHandleForm.Owner = this;
+
+                // Редактировать пользователя обращения запрещено
+
+
+                SqlCommand command = new SqlCommand("SELECT UserName as UserName FROM Users U " +
+                                                    "INNER JOIN Roles R ON U.UserRoleID = R.RoleID " +
+                                                    "WHERE R.ROleName = N'Пользователь'", connection);
+                command.ExecuteNonQuery();
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                (ticketHandleForm.Controls["ticketUserNameCb"] as ComboBox).ValueMember = "UserName";
+                (ticketHandleForm.Controls["ticketUserNameCb"] as ComboBox).DataSource = dt;
+                (ticketHandleForm.Controls["ticketUserNameCb"] as ComboBox).SelectedValue = this.admGridView.CurrentRow.Cells[1].Value.ToString();
+                (ticketHandleForm.Controls["ticketUserNameCb"] as ComboBox).Enabled = false;
+
+                command = new SqlCommand("SELECT UserName AS TechnicName FROM Users U " +
+                                                    "INNER JOIN Roles R ON U.UserRoleID = R.RoleID " +
+                                                    "WHERE R.ROleName = N'Техник'", connection);
+                command.ExecuteNonQuery();
+                adapter = new SqlDataAdapter(command);
+                dt = new DataTable();
+                adapter.Fill(dt);
+
+                (ticketHandleForm.Controls["ticketTechnicNameCb"] as ComboBox).ValueMember = "TechnicName";
+                (ticketHandleForm.Controls["ticketTechnicNameCb"] as ComboBox).DataSource = dt;
+                if (this.admGridView.CurrentRow.Cells[3].Value.ToString() != "Ожидает назначения")
+                {
+                    (ticketHandleForm.Controls["ticketTechnicNameCb"] as ComboBox).SelectedValue = this.admGridView.CurrentRow.Cells[3].Value.ToString();
+                }
+
+                command = new SqlCommand("SELECT TicketStatusName FROM TicketStatuses WHERE TicketStatusName <> N'Новая'", connection);
+                command.ExecuteNonQuery();
+                adapter = new SqlDataAdapter(command);
+                dt = new DataTable();
+                adapter.Fill(dt);
+                (ticketHandleForm.Controls["ticketTicketStatusCb"] as ComboBox).ValueMember = "TicketStatusName";
+                (ticketHandleForm.Controls["ticketTicketStatusCb"] as ComboBox).DataSource = dt;
+
+                ticketHandleForm.Tag = this.admGridView.CurrentRow.Cells[0].Value.ToString();
+
+                ticketHandleForm.StartPosition = FormStartPosition.CenterParent;
+                ticketHandleForm.ShowDialog();
+
+
+
+            }
         }
     }
 }

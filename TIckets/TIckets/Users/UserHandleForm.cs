@@ -42,18 +42,28 @@ namespace TIckets
                 int userRoleID = (int)cmd.ExecuteScalar();
                 int updateID = (int)(this.Owner.Controls["UsersFormGridView"] as DataGridView).CurrentRow.Cells[0].Value;
 
+                string newPassword = string.Empty;
+
+                if (UserHandlerFormResetPwdChb.Checked)
+                { 
+                newPassword = ", UserPassword = @password ";
+                }
+
                 cmd = new SqlCommand("UPDATE Users SET " +
                                         "UserName = @userName, " +
-                                        "UserRoleID = @userRoleID" +
+                                        "UserRoleID = @userRoleID, " +
+                                        "UserLogin = @login " + newPassword +
                                         " WHERE UserID = @updateID", connection);
 
                 cmd.Parameters.AddWithValue("@userName", UserHandlerFormUserNameTb.Text);
                 cmd.Parameters.AddWithValue("@userRoleID", userRoleID);
-                cmd.Parameters.AddWithValue("@updateID", updateID);
+                cmd.Parameters.AddWithValue("@login", UserHandlerFormUserLoginTb.Text);
+                cmd.Parameters.AddWithValue("@password", HashGenerator.GetMD5("1234567890"));
+                cmd.Parameters.AddWithValue("@updateID", updateID); 
 
                 cmd.ExecuteNonQuery();
 
-                SqlDataAdapter adapter = new SqlDataAdapter("SELECT UserID AS ID, UserName AS ФИО, RoleName AS Роль " +
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT UserID AS ID, UserName AS ФИО, RoleName AS Роль, UserLogin AS Логин, UserPassword AS [Пароль MD5] " +
                                                             "FROM Users U " +
                                                             "INNER JOIN Roles R ON U.UserRoleID = R.RoleID", connection);
                 DataSet ds = new DataSet();
@@ -65,6 +75,8 @@ namespace TIckets
 
         private void UserHandlerFormAddBtn_Click(object sender, EventArgs e)
         {
+     
+
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
@@ -74,15 +86,17 @@ namespace TIckets
                 cmd.Parameters.AddWithValue("@roleName", UserHandlerFormUserRoleCb.Text);
                 int roleID = (int)cmd.ExecuteScalar();
 
-                cmd = new SqlCommand("INSERT INTO Users (UserName, UserRoleID) " +
-                                                "VALUES (@userName, @roleID)", connection);
+                cmd = new SqlCommand("INSERT INTO Users (UserName, UserRoleID, UserLogin, UserPassword) " +
+                                                "VALUES (@userName, @roleID, @login, @password)", connection);
 
                 cmd.Parameters.AddWithValue("@userName", UserHandlerFormUserNameTb.Text);
                 cmd.Parameters.AddWithValue("@roleID", roleID);
+                cmd.Parameters.AddWithValue("@login", UserHandlerFormUserLoginTb.Text);
+                cmd.Parameters.AddWithValue("@password", HashGenerator.GetMD5("1234567890"));
 
                 cmd.ExecuteNonQuery();
 
-                string command = "SELECT UserID AS ID, UserName AS ФИО, RoleName AS Роль " +
+                string command = "SELECT UserID AS ID, UserName AS ФИО, RoleName AS Роль, UserLogin AS Логин, UserPassword AS [Пароль MD5] " +
                                  "FROM Users U " +
                                  "INNER JOIN Roles R ON U.UserRoleID = R.RoleID";
 

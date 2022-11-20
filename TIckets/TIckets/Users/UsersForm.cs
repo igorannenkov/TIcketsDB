@@ -23,7 +23,7 @@ namespace TIckets
             {
                 connection.Open();
 
-                string command = "SELECT UserID AS ID, UserName AS ФИО, RoleName AS [Роль] " +
+                string command = "SELECT UserID AS ID, UserName AS ФИО, RoleName AS [Роль], UserLogin AS Логин, UserPassword AS [Пароль MD5] " +
                                  "FROM Users U " +
                                  "INNER JOIN Roles R ON U.UserRoleID = R.RoleID";
 
@@ -41,6 +41,7 @@ namespace TIckets
             UserHandleForm userHandleForm = new UserHandleForm();
             userHandleForm.StartPosition = FormStartPosition.CenterScreen;
             (userHandleForm.Controls["UserHandlerFormEditBtn"] as Button).Enabled = false;
+            (userHandleForm.Controls["UserHandlerFormResetPwdChb"] as CheckBox).Enabled = false;
             userHandleForm.Owner = this;
             userHandleForm.ShowDialog();
         }
@@ -56,7 +57,9 @@ namespace TIckets
 
                 string prevUserName = UsersFormGridView.CurrentRow.Cells[1].Value.ToString();
                 (userHandleForm.Controls["UserHandlerFormUserNameTb"] as TextBox).Text = prevUserName;
-                userHandleForm.Tag = prevUserName;
+
+                string prevUserLogin = UsersFormGridView.CurrentRow.Cells[3].Value.ToString();
+                (userHandleForm.Controls["UserHandlerFormUserLoginTb"] as TextBox).Text = prevUserLogin;
 
                 SqlCommand cmd = new SqlCommand("SELECT RoleName AS Роль FROM Roles", connection);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -64,10 +67,11 @@ namespace TIckets
                 adapter.Fill(ds);
 
                 (userHandleForm.Controls["UserHandlerFormUserRoleCb"] as ComboBox).ValueMember = "Роль";
-                (userHandleForm.Controls["UserHandlerFormUserRoleCb"] as ComboBox).DataSource = ds.Tables[0];
+                (userHandleForm.Controls["UserHandlerFormUserRoleCb"] as ComboBox).DataSource = ds.Tables[0];         
+                (userHandleForm.Controls["UserHandlerFormUserRoleCb"] as ComboBox).SelectedValue = UsersFormGridView.CurrentRow.Cells[2].Value.ToString();             
                 (userHandleForm.Controls["UserHandlerFormAddBtn"] as Button).Enabled = false;
+                userHandleForm.StartPosition = FormStartPosition.CenterParent;
                 userHandleForm.ShowDialog();
-
             }
         }
 
@@ -85,9 +89,11 @@ namespace TIckets
                     cmd.Parameters.AddWithValue("@toDelete", toDelete);
                     cmd.ExecuteNonQuery();
 
-                    string command = "SELECT UserID AS ID, UserName AS ФИО, RoleName AS Роль " +
+                    string command = "SELECT UserID AS ID, UserName AS ФИО, RoleName AS Роль, UserLogin AS Логин, UserPassword AS [Пароль MD5] " +
                                      "FROM Users U " +
                                      "INNER JOIN Roles R ON U.UserRoleID = R.RoleID";
+
+
 
                     SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
                     DataSet ds = new DataSet();

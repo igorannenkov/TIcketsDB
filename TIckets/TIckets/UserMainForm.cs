@@ -16,5 +16,12 @@ namespace TIckets
         {
             InitializeComponent();
         }
+
+        private void новаяЗаявкаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UserAddTicketForm addTicketForm = new UserAddTicketForm();
+            addTicketForm.Owner = this;
+            addTicketForm.ShowDialog();       
+        }
     }
 }
