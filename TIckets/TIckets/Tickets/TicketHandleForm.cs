@@ -65,11 +65,11 @@ namespace TIckets
                 {
                     case "Выполнена":
                         cmd.Parameters.AddWithValue("@ticketEndDatetime", DateTime.Now);
-                        cmd.Parameters.AddWithValue("@ticketComment", "Закрыта администратором.");
+                        cmd.Parameters.AddWithValue("@ticketComment", "Закрыта администратором");
                         break;
                     case "Отклонена":
                         cmd.Parameters.AddWithValue("@ticketEndDatetime", DateTime.Now);
-                        cmd.Parameters.AddWithValue("@ticketComment", "Отклонена администратором.");
+                        cmd.Parameters.AddWithValue("@ticketComment", "Отклонена администратором");
                         break;
                     default:
                         cmd.Parameters.AddWithValue("@ticketEndDatetime", DBNull.Value);

@@ -85,12 +85,13 @@ namespace TIckets
 
                                 break;
                             case "Техник":
-                                TechnicMainForm technicMainForm = new TechnicMainForm();
+
+                                TechnicMainForm technicMainForm = new TechnicMainForm();            
                                 technicMainForm.StartPosition = FormStartPosition.CenterScreen;
                                 technicMainForm.Text = "Техник@" + authUserNameTb.Text;
                                 Observer.currentUserName = authUserNameTb.Text;
                                 technicMainForm.ShowDialog();
-                                break;
+                                break;      
                         }
                     }
                     else

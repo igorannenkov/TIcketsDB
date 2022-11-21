@@ -9,7 +9,7 @@ namespace TIckets
         {
             string homeConnectionString = "Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename = D:\\Проги\\TIcketsDB\\TIckets\\TIckets\\Tickets.mdf; Integrated Security = True";
             string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Практика\\TIcketsDB\\TIckets\\TIckets\\Tickets.mdf;Integrated Security=True";
-            return new SqlConnection(connectionString);
+            return new SqlConnection(homeConnectionString);
         }
     }
 }
