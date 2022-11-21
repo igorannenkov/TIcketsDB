@@ -24,24 +24,42 @@ namespace TIckets
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("SELECT UserID FROM USERS WHERE UserName = @technicID", connection);
-                cmd.Parameters.AddWithValue("@technicID", this.ticketTechnicNameCb.SelectedValue.ToString());
-                int technicID = (int)cmd.ExecuteScalar();
+                SqlCommand cmd = new SqlCommand();
 
-                cmd = new SqlCommand("SELECT TicketStatusID FROM TicketStatuses WHERE TicketStatusName = @ticketStatusName", connection);
-                cmd.Parameters.AddWithValue("@ticketStatusName", this.ticketTicketStatusCb.SelectedValue.ToString());
-                int ticketStatusID = (int)cmd.ExecuteScalar();
+                if (this.ticketTechnicNameCb.SelectedValue == null)
+                {
+                    cmd = new SqlCommand("SELECT TicketStatusID FROM TicketStatuses WHERE TicketStatusName = @ticketStatusName", connection);
+                    cmd.Parameters.AddWithValue("@ticketStatusName", this.ticketTicketStatusCb.SelectedValue.ToString());
+                    int ticketStatusID = (int)cmd.ExecuteScalar();
 
-                cmd = new SqlCommand("UPDATE Tickets " +
-                                     "SET TechnicID = @technicID, " +
-                                          "TicketStatusID = @ticketStatusID, "+
-                                          "TicketEndDateTime = @ticketEndDatetime, " +
-                                          "TicketComment = @ticketComment " +
-                                          "WHERE TicketID = @ticketID", connection);
+                    cmd = new SqlCommand("UPDATE Tickets " +
+                                         "SET TicketStatusID = @ticketStatusID, " +
+                                              "TicketEndDateTime = @ticketEndDatetime, " +
+                                              "TicketComment = @ticketComment " +
+                                              "WHERE TicketID = @ticketID", connection);
 
-                cmd.Parameters.AddWithValue("@technicID", technicID);
-                cmd.Parameters.AddWithValue("@ticketStatusID", ticketStatusID); 
-                cmd.Parameters.AddWithValue("@ticketID", this.Tag.ToString());
+                    cmd.Parameters.AddWithValue("@ticketStatusID", ticketStatusID);
+                    cmd.Parameters.AddWithValue("@ticketID", this.Tag.ToString());
+                }
+                else
+                {
+                    cmd = new SqlCommand("SELECT UserID FROM USERS WHERE UserName = @technicID", connection);
+                    cmd.Parameters.AddWithValue("@technicID", this.ticketTechnicNameCb.SelectedValue.ToString());
+                    int technicID = (int)cmd.ExecuteScalar();
+                    cmd = new SqlCommand("SELECT TicketStatusID FROM TicketStatuses WHERE TicketStatusName = @ticketStatusName", connection);
+                    cmd.Parameters.AddWithValue("@ticketStatusName", this.ticketTicketStatusCb.SelectedValue.ToString());
+                    int ticketStatusID = (int)cmd.ExecuteScalar();
+                    cmd = new SqlCommand("UPDATE Tickets " +
+                                         "SET TechnicID = @technicID, " +
+                                              "TicketStatusID = @ticketStatusID, " +
+                                              "TicketEndDateTime = @ticketEndDatetime, " +
+                                              "TicketComment = @ticketComment " +
+                                              "WHERE TicketID = @ticketID", connection);
+
+                    cmd.Parameters.AddWithValue("@technicID", technicID);
+                    cmd.Parameters.AddWithValue("@ticketStatusID", ticketStatusID);
+                    cmd.Parameters.AddWithValue("@ticketID", this.Tag.ToString());
+                }
 
                 switch (this.ticketTicketStatusCb.SelectedValue.ToString())
                 {
@@ -65,7 +83,7 @@ namespace TIckets
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT T.TicketID AS [ID Заявки], " +
                                                             "U.UserName AS Пользователь, " +
                                                             "T.TicketUserComment AS [Текст обращения], " +
-                                                            "COALESCE(UN.UserName, N'Ожидает  назначения') AS [Назначенный техник], " +
+                                                            "COALESCE(UN.UserName, N'Не назначен') AS [Назначенный техник], " +
                                                             "TS.TicketStatusName AS [Статус заявки], " +
                                                             "T.TicketStartDateTime AS [Время регистрации], " +
                                                             "T.TicketEndDateTime AS [Время выполнения], " +
