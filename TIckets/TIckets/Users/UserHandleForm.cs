@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TIckets
@@ -45,8 +39,8 @@ namespace TIckets
                 string newPassword = string.Empty;
 
                 if (UserHandlerFormResetPwdChb.Checked)
-                { 
-                newPassword = ", UserPassword = @password ";
+                {
+                    newPassword = ", UserPassword = @password ";
                 }
 
                 cmd = new SqlCommand("UPDATE Users SET " +
@@ -59,7 +53,7 @@ namespace TIckets
                 cmd.Parameters.AddWithValue("@userRoleID", userRoleID);
                 cmd.Parameters.AddWithValue("@login", UserHandlerFormUserLoginTb.Text);
                 cmd.Parameters.AddWithValue("@password", HashGenerator.GetMD5("1234567890"));
-                cmd.Parameters.AddWithValue("@updateID", updateID); 
+                cmd.Parameters.AddWithValue("@updateID", updateID);
 
                 cmd.ExecuteNonQuery();
 
@@ -75,7 +69,7 @@ namespace TIckets
 
         private void UserHandlerFormAddBtn_Click(object sender, EventArgs e)
         {
-     
+
 
             using (SqlConnection connection = Database.GetConnection())
             {

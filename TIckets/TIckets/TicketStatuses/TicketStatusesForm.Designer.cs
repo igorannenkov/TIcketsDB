@@ -103,7 +103,7 @@
             this.Controls.Add(this.AddTicketStatusMenuStrip);
             this.MainMenuStrip = this.AddTicketStatusMenuStrip;
             this.Name = "TicketStatusesForm";
-            this.Text = "Категории статусов";
+            this.Text = "Статусы заявок";
             ((System.ComponentModel.ISupportInitialize)(this.TicketStatusesFormGridView)).EndInit();
             this.AddTicketStatusMenuStrip.ResumeLayout(false);
             this.AddTicketStatusMenuStrip.PerformLayout();

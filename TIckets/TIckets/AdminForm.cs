@@ -161,5 +161,81 @@ namespace TIckets
         {
             ExcelReporter.GetReport(admGridView);
         }
+
+        private void выходИзСистемыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void заявкиВРазрезеТехниковToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT T.TicketID AS [ID Заявки], " +
+                                                            "U.UserName AS Пользователь, " +
+                                                            "T.TicketUserComment AS [Текст обращения], " +
+                                                            "COALESCE(UN.UserName, N'Не назначен') AS [Назначенный техник], " +
+                                                            "TS.TicketStatusName AS [Статус заявки], " +
+                                                            "T.TicketStartDateTime AS [Время регистрации], " +
+                                                            "T.TicketEndDateTime AS [Время выполнения], " +
+                                                            "T.TicketComment AS [Комментарий техника], " +
+                                                            "DT.DeviceTypeName AS [Используемые материалы] " +
+                                                            "FROM Tickets AS T " +
+                                                            "LEFT JOIN Users AS U " +
+                                                            "ON T.UserID = U.UserID " +
+                                                            "LEFT JOIN  Users AS UN " +
+                                                            "ON T.TechnicID = UN.UserID " +
+                                                            "LEFT JOIN DeviceTypes AS DT " +
+                                                            "ON T.UsedDeviceID = DT.DeviceTypeID " +
+                                                            "LEFT JOIN TicketStatuses TS " +
+                                                            "ON T.TicketStatusID = TS.TicketStatusID " +
+                                                            "WHERE T.TechnicID IS NOT NULL " +
+                                                            "AND TS.TicketStatusName <> N'Выполнена'", connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                admGridView.DataSource = dt;
+            }
+        }
+
+        private void выполненныеЗаявкиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT T.TicketID AS [ID Заявки], " +
+                                                            "U.UserName AS Пользователь, " +
+                                                            "T.TicketUserComment AS [Текст обращения], " +
+                                                            "COALESCE(UN.UserName, N'Не назначен') AS [Назначенный техник], " +
+                                                            "TS.TicketStatusName AS [Статус заявки], " +
+                                                            "T.TicketStartDateTime AS [Время регистрации], " +
+                                                            "T.TicketEndDateTime AS [Время выполнения], " +
+                                                            "T.TicketComment AS [Комментарий техника], " +
+                                                            "DT.DeviceTypeName AS [Используемые материалы] " +
+                                                            "FROM Tickets AS T " +
+                                                            "LEFT JOIN Users AS U " +
+                                                            "ON T.UserID = U.UserID " +
+                                                            "LEFT JOIN  Users AS UN " +
+                                                            "ON T.TechnicID = UN.UserID " +
+                                                            "LEFT JOIN DeviceTypes AS DT " +
+                                                            "ON T.UsedDeviceID = DT.DeviceTypeID " +
+                                                            "LEFT JOIN TicketStatuses TS " +
+                                                            "ON T.TicketStatusID = TS.TicketStatusID " +
+                                                            "WHERE TS.TicketStatusName = N'Выполнена'", connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                admGridView.DataSource = dt;
+            }
+        }
+
+        private void выходИзСистемыToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void сменаПароляToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangePasswordForm changePasswordForm = new ChangePasswordForm();
+            changePasswordForm.StartPosition = FormStartPosition.CenterScreen;
+            changePasswordForm.ShowDialog();
+        }
     }
 }

@@ -28,7 +28,7 @@ namespace TIckets
                     connection.Open();
 
                     SqlCommand command = new SqlCommand("SELECT UserID FROM Users WHERE UserLogin = @userLogin", connection);
-                    command.Parameters.AddWithValue("@userLogin", Observer.currentUserName);
+                    command.Parameters.AddWithValue("@userLogin", Observer.currentUserLogin);
                     int userID = (int)command.ExecuteScalar();
 
                     command = new SqlCommand("SELECT TicketStatusID FROM TicketStatuses WHERE TicketStatusName = N'Новая'", connection);

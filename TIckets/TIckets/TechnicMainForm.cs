@@ -35,7 +35,7 @@ namespace TIckets
                                                             "ON T.UsedDeviceID = DT.DeviceTypeID " +
                                                             "LEFT JOIN TicketStatuses TS " +
                                                             "ON T.TicketStatusID = TS.TicketStatusID " +
-                                                            "WHERE UN.UserLogin = N'" + Observer.currentUserName + "';", connection);
+                                                            "WHERE UN.UserLogin = N'" + Observer.currentUserLogin + "';", connection);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 technicGridView.DataSource = dt;
@@ -65,7 +65,7 @@ namespace TIckets
                                                             "ON T.UsedDeviceID = DT.DeviceTypeID " +
                                                             "LEFT JOIN TicketStatuses TS " +
                                                             "ON T.TicketStatusID = TS.TicketStatusID " +
-                                                            "WHERE UN.UserLogin = N'" + Observer.currentUserName + "' " +
+                                                            "WHERE UN.UserLogin = N'" + Observer.currentUserLogin + "' " +
                                                             "AND TS.TicketStatusName = N'Отклонена';", connection);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
@@ -96,7 +96,7 @@ namespace TIckets
                                                             "ON T.UsedDeviceID = DT.DeviceTypeID " +
                                                             "LEFT JOIN TicketStatuses TS " +
                                                             "ON T.TicketStatusID = TS.TicketStatusID " +
-                                                            "WHERE UN.UserLogin = N'" + Observer.currentUserName + "' " +
+                                                            "WHERE UN.UserLogin = N'" + Observer.currentUserLogin + "' " +
                                                             "AND TS.TicketStatusName = N'Отменена';", connection);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
@@ -127,7 +127,7 @@ namespace TIckets
                                                             "ON T.UsedDeviceID = DT.DeviceTypeID " +
                                                             "LEFT JOIN TicketStatuses TS " +
                                                             "ON T.TicketStatusID = TS.TicketStatusID " +
-                                                            "WHERE UN.UserLogin = N'" + Observer.currentUserName + "' " +
+                                                            "WHERE UN.UserLogin = N'" + Observer.currentUserLogin + "' " +
                                                             "AND TS.TicketStatusName = N'Выполнена';", connection);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
@@ -158,7 +158,7 @@ namespace TIckets
                                                             "ON T.UsedDeviceID = DT.DeviceTypeID " +
                                                             "LEFT JOIN TicketStatuses TS " +
                                                             "ON T.TicketStatusID = TS.TicketStatusID " +
-                                                            "WHERE UN.UserLogin = N'" + Observer.currentUserName + "' " +
+                                                            "WHERE UN.UserLogin = N'" + Observer.currentUserLogin + "' " +
                                                             "AND TS.TicketStatusName = N'Принята в работу';", connection);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
@@ -169,6 +169,25 @@ namespace TIckets
         private void выгрузкаВExcelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ExcelReporter.GetReport(technicGridView);
+        }
+
+        private void выходИзСистемыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void сменаПароляToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangePasswordForm changePasswordForm = new ChangePasswordForm();
+            changePasswordForm.StartPosition = FormStartPosition.CenterScreen;
+            changePasswordForm.ShowDialog();
+        }
+
+        private void историяЗаявокКлиентаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UserTisketHistorySearchForm historySearchForm = new UserTisketHistorySearchForm();
+            historySearchForm.StartPosition = FormStartPosition.CenterScreen;
+            historySearchForm.ShowDialog();
         }
     }
 }

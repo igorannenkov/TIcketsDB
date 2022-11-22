@@ -8,6 +8,6 @@ namespace TIckets
 {
     internal class Observer
     {
-        public static string currentUserName;
+        public static string currentUserLogin;
     }
 }
