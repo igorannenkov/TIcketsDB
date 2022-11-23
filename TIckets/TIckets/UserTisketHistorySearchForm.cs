@@ -19,11 +19,6 @@ namespace TIckets
 
         private void ticketHistorySearchBtn_Click(object sender, EventArgs e)
         {
-            if (ticketHistorySearchTb.Text == String.Empty)
-            {
-             //   return;
-            }
-
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
@@ -34,7 +29,7 @@ namespace TIckets
                                                 "TS.TicketStatusName AS [Статус заявки], " +
                                                 "T.TicketStartDateTime AS [Время регистрации], " +
                                                 "T.TicketEndDateTime AS [Время выполнения], " +
-                                                "T.TicketComment AS [Комментарий техника], " +
+                                                "T.TicketComment AS [Ответ по обращению], " +
                                                 "DT.DeviceTypeName AS [Используемые материалы] " +
                                                 "FROM Tickets AS T " +
                                                 "LEFT JOIN Users AS U " +
@@ -47,13 +42,17 @@ namespace TIckets
                                                 "ON T.TicketStatusID = TS.TicketStatusID " +
                                                 "WHERE UPPER (U.UserName) LIKE @userNamе " +
                                                 "ORDER BY U.UserName, T.TicketStartDateTime", connection);
-                // WHERE U.UserName LIKE (N'%ннен%')
                 cmd.Parameters.AddWithValue("@userNamе", "%" + ticketHistorySearchTb.Text.ToUpper() + "%");
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 historySearchGridView.DataSource = dt;
             }
+        }
+
+        private void ticketHistoryExportBtn_Click(object sender, EventArgs e)
+        {
+            ExcelReporter.GetReport(historySearchGridView);
         }
     }
 }

@@ -48,7 +48,7 @@ namespace TIckets
                                                             "TS.TicketStatusName AS [Статус заявки], " +
                                                             "T.TicketStartDateTime AS [Время регистрации], " +
                                                             "T.TicketEndDateTime AS [Время выполнения], " +
-                                                            "T.TicketComment AS [Комментарий техника], " +
+                                                            "T.TicketComment AS [Ответ по обращению], " +
                                                             "DT.DeviceTypeName AS [Используемые материалы] " +
                                                             "FROM Tickets AS T " +
                                                             "LEFT JOIN Users AS U " +
@@ -75,7 +75,7 @@ namespace TIckets
                                                             "TS.TicketStatusName AS [Статус заявки], " +
                                                             "T.TicketStartDateTime AS [Время регистрации], " +
                                                             "T.TicketEndDateTime AS [Время выполнения], " +
-                                                            "T.TicketComment AS [Комментарий техника], " +
+                                                            "T.TicketComment AS [Ответ по обращению], " +
                                                             "DT.DeviceTypeName AS [Используемые материалы] " +
                                                             "FROM Tickets AS T " +
                                                             "LEFT JOIN Users AS U " +
@@ -99,17 +99,16 @@ namespace TIckets
             {
                 connection.Open();
 
-
-
                 TicketHandleForm ticketHandleForm = new TicketHandleForm();
                 (ticketHandleForm.Controls["ticketDeviceCb"] as ComboBox).Enabled = false;
                 (ticketHandleForm.Controls["ticketHandlerFormUsedDeviceLbl"] as Label).Enabled = false;
 
+                (ticketHandleForm.Controls["ticketHandlerFormUserCommentTb"] as TextBox).Text = this.admGridView.CurrentRow.Cells[2].Value.ToString();
+                
+
                 ticketHandleForm.Owner = this;
 
                 // Редактировать пользователя обращения запрещено
-
-
                 SqlCommand command = new SqlCommand("SELECT UserName as UserName FROM Users U " +
                                                     "INNER JOIN Roles R ON U.UserRoleID = R.RoleID " +
                                                     "WHERE R.ROleName = N'Пользователь'", connection);
@@ -178,7 +177,7 @@ namespace TIckets
                                                             "TS.TicketStatusName AS [Статус заявки], " +
                                                             "T.TicketStartDateTime AS [Время регистрации], " +
                                                             "T.TicketEndDateTime AS [Время выполнения], " +
-                                                            "T.TicketComment AS [Комментарий техника], " +
+                                                            "T.TicketComment AS [Ответ по обращению], " +
                                                             "DT.DeviceTypeName AS [Используемые материалы] " +
                                                             "FROM Tickets AS T " +
                                                             "LEFT JOIN Users AS U " +
@@ -190,7 +189,9 @@ namespace TIckets
                                                             "LEFT JOIN TicketStatuses TS " +
                                                             "ON T.TicketStatusID = TS.TicketStatusID " +
                                                             "WHERE T.TechnicID IS NOT NULL " +
-                                                            "AND TS.TicketStatusName <> N'Выполнена'", connection);
+                                                            "AND TS.TicketStatusName <> N'Выполнена'" +
+                                                            "AND TS.TicketStatusName <> N'Отменена'" +
+                                                            "AND TS.TicketStatusName <> N'Отклонена'", connection);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 admGridView.DataSource = dt;
@@ -208,7 +209,7 @@ namespace TIckets
                                                             "TS.TicketStatusName AS [Статус заявки], " +
                                                             "T.TicketStartDateTime AS [Время регистрации], " +
                                                             "T.TicketEndDateTime AS [Время выполнения], " +
-                                                            "T.TicketComment AS [Комментарий техника], " +
+                                                            "T.TicketComment AS [Ответ по обращению], " +
                                                             "DT.DeviceTypeName AS [Используемые материалы] " +
                                                             "FROM Tickets AS T " +
                                                             "LEFT JOIN Users AS U " +
@@ -236,6 +237,37 @@ namespace TIckets
             ChangePasswordForm changePasswordForm = new ChangePasswordForm();
             changePasswordForm.StartPosition = FormStartPosition.CenterScreen;
             changePasswordForm.ShowDialog();
+        }
+
+        private void отклоненныеИлиОтмененныеЗаявкиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT T.TicketID AS [ID Заявки], " +
+                                                            "U.UserName AS Пользователь, " +
+                                                            "T.TicketUserComment AS [Текст обращения], " +
+                                                            "COALESCE(UN.UserName, N'Не назначен') AS [Назначенный техник], " +
+                                                            "TS.TicketStatusName AS [Статус заявки], " +
+                                                            "T.TicketStartDateTime AS [Время регистрации], " +
+                                                            "T.TicketEndDateTime AS [Время выполнения], " +
+                                                            "T.TicketComment AS [Ответ по обращению], " +
+                                                            "DT.DeviceTypeName AS [Используемые материалы] " +
+                                                            "FROM Tickets AS T " +
+                                                            "LEFT JOIN Users AS U " +
+                                                            "ON T.UserID = U.UserID " +
+                                                            "LEFT JOIN  Users AS UN " +
+                                                            "ON T.TechnicID = UN.UserID " +
+                                                            "LEFT JOIN DeviceTypes AS DT " +
+                                                            "ON T.UsedDeviceID = DT.DeviceTypeID " +
+                                                            "LEFT JOIN TicketStatuses TS " +
+                                                            "ON T.TicketStatusID = TS.TicketStatusID " +
+                                                            "WHERE T.TechnicID IS NOT NULL " +
+                                                            "AND TS.TicketStatusName = N'Отменена'" +
+                                                            "OR TS.TicketStatusName = N'Отклонена'", connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                admGridView.DataSource = dt;
+            }
         }
     }
 }

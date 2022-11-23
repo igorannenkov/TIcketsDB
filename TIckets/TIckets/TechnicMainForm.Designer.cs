@@ -57,7 +57,7 @@
             this.выгрузкаВExcelToolStripMenuItem});
             this.TechnicFormMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.TechnicFormMenuStrip.Name = "TechnicFormMenuStrip";
-            this.TechnicFormMenuStrip.Size = new System.Drawing.Size(1141, 24);
+            this.TechnicFormMenuStrip.Size = new System.Drawing.Size(1291, 24);
             this.TechnicFormMenuStrip.TabIndex = 0;
             this.TechnicFormMenuStrip.Text = "menuStrip1";
             // 
@@ -73,14 +73,14 @@
             // сменаПароляToolStripMenuItem
             // 
             this.сменаПароляToolStripMenuItem.Name = "сменаПароляToolStripMenuItem";
-            this.сменаПароляToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.сменаПароляToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.сменаПароляToolStripMenuItem.Text = "Смена пароля";
             this.сменаПароляToolStripMenuItem.Click += new System.EventHandler(this.сменаПароляToolStripMenuItem_Click);
             // 
             // выходИзСистемыToolStripMenuItem
             // 
             this.выходИзСистемыToolStripMenuItem.Name = "выходИзСистемыToolStripMenuItem";
-            this.выходИзСистемыToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.выходИзСистемыToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.выходИзСистемыToolStripMenuItem.Text = "Выход из системы";
             this.выходИзСистемыToolStripMenuItem.Click += new System.EventHandler(this.выходИзСистемыToolStripMenuItem_Click);
             // 
@@ -156,7 +156,7 @@
             // выгрузкаВExcelToolStripMenuItem
             // 
             this.выгрузкаВExcelToolStripMenuItem.Name = "выгрузкаВExcelToolStripMenuItem";
-            this.выгрузкаВExcelToolStripMenuItem.Size = new System.Drawing.Size(109, 20);
+            this.выгрузкаВExcelToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
             this.выгрузкаВExcelToolStripMenuItem.Text = "Выгрузка в Excel";
             this.выгрузкаВExcelToolStripMenuItem.Click += new System.EventHandler(this.выгрузкаВExcelToolStripMenuItem_Click);
             // 
@@ -168,6 +168,10 @@
             this.technicGridView.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.technicGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.technicGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.technicGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -177,18 +181,18 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.technicGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.technicGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.technicGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.technicGridView.Location = new System.Drawing.Point(0, 24);
             this.technicGridView.Name = "technicGridView";
             this.technicGridView.ReadOnly = true;
-            this.technicGridView.Size = new System.Drawing.Size(1141, 426);
+            this.technicGridView.Size = new System.Drawing.Size(1291, 426);
             this.technicGridView.TabIndex = 1;
+            this.technicGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.technicGridView_CellMouseDoubleClick);
             // 
             // TechnicMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1141, 450);
+            this.ClientSize = new System.Drawing.Size(1291, 450);
             this.Controls.Add(this.technicGridView);
             this.Controls.Add(this.TechnicFormMenuStrip);
             this.MainMenuStrip = this.TechnicFormMenuStrip;

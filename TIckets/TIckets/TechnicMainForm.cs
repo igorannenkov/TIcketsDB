@@ -24,7 +24,7 @@ namespace TIckets
                                                             "TS.TicketStatusName AS [Статус заявки], " +
                                                             "T.TicketStartDateTime AS [Время регистрации], " +
                                                             "T.TicketEndDateTime AS [Время выполнения], " +
-                                                            "T.TicketComment AS [Комментарий техника], " +
+                                                            "T.TicketComment AS [Ответ по обращению], " +
                                                             "DT.DeviceTypeName AS [Используемые материалы] " +
                                                             "FROM Tickets AS T " +
                                                             "LEFT JOIN Users AS U " +
@@ -54,7 +54,7 @@ namespace TIckets
                                                             "TS.TicketStatusName AS [Статус заявки], " +
                                                             "T.TicketStartDateTime AS [Время регистрации], " +
                                                             "T.TicketEndDateTime AS [Время выполнения], " +
-                                                            "T.TicketComment AS [Комментарий техника], " +
+                                                            "T.TicketComment AS [Ответ по обращению], " +
                                                             "DT.DeviceTypeName AS [Используемые материалы] " +
                                                             "FROM Tickets AS T " +
                                                             "LEFT JOIN Users AS U " +
@@ -85,7 +85,7 @@ namespace TIckets
                                                             "TS.TicketStatusName AS [Статус заявки], " +
                                                             "T.TicketStartDateTime AS [Время регистрации], " +
                                                             "T.TicketEndDateTime AS [Время выполнения], " +
-                                                            "T.TicketComment AS [Комментарий техника], " +
+                                                            "T.TicketComment AS [Ответ по обращению], " +
                                                             "DT.DeviceTypeName AS [Используемые материалы] " +
                                                             "FROM Tickets AS T " +
                                                             "LEFT JOIN Users AS U " +
@@ -116,7 +116,7 @@ namespace TIckets
                                                             "TS.TicketStatusName AS [Статус заявки], " +
                                                             "T.TicketStartDateTime AS [Время регистрации], " +
                                                             "T.TicketEndDateTime AS [Время выполнения], " +
-                                                            "T.TicketComment AS [Комментарий техника], " +
+                                                            "T.TicketComment AS [Ответ по обращению], " +
                                                             "DT.DeviceTypeName AS [Используемые материалы] " +
                                                             "FROM Tickets AS T " +
                                                             "LEFT JOIN Users AS U " +
@@ -147,7 +147,7 @@ namespace TIckets
                                                             "TS.TicketStatusName AS [Статус заявки], " +
                                                             "T.TicketStartDateTime AS [Время регистрации], " +
                                                             "T.TicketEndDateTime AS [Время выполнения], " +
-                                                            "T.TicketComment AS [Комментарий техника], " +
+                                                            "T.TicketComment AS [Ответ по обращению], " +
                                                             "DT.DeviceTypeName AS [Используемые материалы] " +
                                                             "FROM Tickets AS T " +
                                                             "LEFT JOIN Users AS U " +
@@ -188,6 +188,66 @@ namespace TIckets
             UserTisketHistorySearchForm historySearchForm = new UserTisketHistorySearchForm();
             historySearchForm.StartPosition = FormStartPosition.CenterScreen;
             historySearchForm.ShowDialog();
+        }
+
+        private void technicGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                connection.Open();
+
+                TicketHandleForm ticketHandleForm = new TicketHandleForm();
+                (ticketHandleForm.Controls["ticketDeviceCb"] as ComboBox).Enabled = false;
+                (ticketHandleForm.Controls["ticketHandlerFormUsedDeviceLbl"] as Label).Enabled = false;
+
+                ticketHandleForm.Owner = this;
+
+                // Редактировать пользователя обращения запрещено
+                (ticketHandleForm.Controls["ticketUserNameCb"] as ComboBox).Text = this.technicGridView.CurrentRow.Cells[1].Value.ToString();
+                (ticketHandleForm.Controls["ticketUserNameCb"] as ComboBox).Enabled = false;
+
+                // Нельзя менять техника
+                (ticketHandleForm.Controls["ticketTechnicNameCb"] as ComboBox).Text = this.technicGridView.CurrentRow.Cells[3].Value.ToString();
+                (ticketHandleForm.Controls["ticketTechnicNameCb"] as ComboBox).Enabled = false;
+
+                // Загружаем текст обращения
+
+                (ticketHandleForm.Controls["ticketHandlerFormUserCommentTb"] as TextBox).Text = this.technicGridView.CurrentRow.Cells[2].Value.ToString();
+
+
+                //SqlCommand command = new SqlCommand("SELECT UserName AS TechnicName FROM Users U " +
+                //                                    "INNER JOIN Roles R ON U.UserRoleID = R.RoleID " +
+                //                                    "WHERE R.ROleName = N'Техник'", connection);
+                //command.ExecuteNonQuery();
+                //SqlDataAdapter adapter = new SqlDataAdapter(command);
+                //DataTable dt = new DataTable();
+                //adapter.Fill(dt);
+
+                //(ticketHandleForm.Controls["ticketTechnicNameCb"] as ComboBox).ValueMember = "TechnicName";
+                //(ticketHandleForm.Controls["ticketTechnicNameCb"] as ComboBox).DataSource = dt;
+                if (this.technicGridView.CurrentRow.Cells[3].Value.ToString() != "Не назначен")
+                {
+                    (ticketHandleForm.Controls["ticketTechnicNameCb"] as ComboBox).SelectedValue = this.technicGridView.CurrentRow.Cells[3].Value.ToString();
+                }
+
+                SqlCommand command = new SqlCommand("SELECT TicketStatusName FROM TicketStatuses WHERE TicketStatusName <> N'Новая'", connection);
+                command.ExecuteNonQuery();
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                (ticketHandleForm.Controls["ticketTicketStatusCb"] as ComboBox).ValueMember = "TicketStatusName";
+                (ticketHandleForm.Controls["ticketTicketStatusCb"] as ComboBox).DataSource = dt;
+
+                ticketHandleForm.Tag = this.technicGridView.CurrentRow.Cells[0].Value.ToString();
+
+                if (this.technicGridView.CurrentRow.Cells[3].Value.ToString() == "Не назначен")
+                {
+                    (ticketHandleForm.Controls["ticketTechnicNameCb"] as ComboBox).SelectedIndex = -1;
+                }
+
+                ticketHandleForm.StartPosition = FormStartPosition.CenterParent;
+                ticketHandleForm.ShowDialog();
+            }
         }
     }
 }

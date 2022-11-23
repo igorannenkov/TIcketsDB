@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TIckets
@@ -61,24 +54,70 @@ namespace TIckets
                     cmd.Parameters.AddWithValue("@ticketID", this.Tag.ToString());
                 }
 
-                switch (this.ticketTicketStatusCb.SelectedValue.ToString())
+
+                SqlCommand command = new SqlCommand("SELECT RoleName FROM Roles R " +
+                                             "INNER JOIN Users U " +
+                                             "ON R.RoleID = U.UserRoleID " +
+                                             "WHERE U.UserLogin = @userLogin ", connection);
+
+                command.Parameters.AddWithValue("@userLogin", Observer.currentUserLogin);
+
+                string currentUserRole = (string)command.ExecuteScalar();
+
+                if (currentUserRole == "Администратор")
                 {
-                    case "Выполнена":
-                        cmd.Parameters.AddWithValue("@ticketEndDatetime", DateTime.Now);
-                        cmd.Parameters.AddWithValue("@ticketComment", "Закрыта администратором");
-                        break;
-                    case "Отклонена":
-                        cmd.Parameters.AddWithValue("@ticketEndDatetime", DateTime.Now);
-                        cmd.Parameters.AddWithValue("@ticketComment", "Отклонена администратором");
-                        break;
-                    default:
-                        cmd.Parameters.AddWithValue("@ticketEndDatetime", DBNull.Value);
-                        cmd.Parameters.AddWithValue("@ticketComment", DBNull.Value);
-                        break;
+                    switch (this.ticketTicketStatusCb.SelectedValue.ToString())
+                    {
+                        case "Выполнена":
+                            if (ticketCommentCb.Text == string.Empty)
+                            {
+                                cmd.Parameters.AddWithValue("@ticketEndDatetime", DateTime.Now);
+                                cmd.Parameters.AddWithValue("@ticketComment", "Закрыта администратором");
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@ticketEndDatetime", DateTime.Now);
+                                cmd.Parameters.AddWithValue("@ticketComment", ticketCommentCb.Text);
+                            }
+                            break;
+                        case "Отклонена":
+                            if (ticketCommentCb.Text == string.Empty)
+                            {
+                                cmd.Parameters.AddWithValue("@ticketEndDatetime", DateTime.Now);
+                                cmd.Parameters.AddWithValue("@ticketComment", "Отклонена администратором");
+                            }
+                            else
+                            {
+                                cmd.Parameters.AddWithValue("@ticketEndDatetime", DateTime.Now);
+                                cmd.Parameters.AddWithValue("@ticketComment", ticketCommentCb.Text);
+                            }
+                            break;
+                        default:
+                            cmd.Parameters.AddWithValue("@ticketEndDatetime", DBNull.Value);
+                            cmd.Parameters.AddWithValue("@ticketComment", DBNull.Value);
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (this.ticketTicketStatusCb.SelectedValue.ToString())
+                    {
+                        case "Выполнена":
+                            cmd.Parameters.AddWithValue("@ticketEndDatetime", DateTime.Now);
+                            cmd.Parameters.AddWithValue("@ticketComment", ticketCommentCb.Text);
+                            break;
+                        case "Отклонена":
+                            cmd.Parameters.AddWithValue("@ticketEndDatetime", DateTime.Now);
+                            cmd.Parameters.AddWithValue("@ticketComment", ticketCommentCb.Text);
+                            break;
+                        default:
+                            cmd.Parameters.AddWithValue("@ticketEndDatetime", DBNull.Value);
+                            cmd.Parameters.AddWithValue("@ticketComment", DBNull.Value);
+                            break;
+                    }
                 }
 
                 cmd.ExecuteNonQuery();
-
 
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT T.TicketID AS [ID Заявки], " +
                                                             "U.UserName AS Пользователь, " +
@@ -87,7 +126,7 @@ namespace TIckets
                                                             "TS.TicketStatusName AS [Статус заявки], " +
                                                             "T.TicketStartDateTime AS [Время регистрации], " +
                                                             "T.TicketEndDateTime AS [Время выполнения], " +
-                                                            "T.TicketComment AS [Комментарий техника], " +
+                                                            "T.TicketComment AS [Ответ по обращению], " +
                                                             "DT.DeviceTypeName AS [Используемые материалы] " +
                                                             "FROM Tickets AS T " +
                                                             "LEFT JOIN Users AS U " +
@@ -97,10 +136,19 @@ namespace TIckets
                                                             "LEFT JOIN DeviceTypes AS DT " +
                                                             "ON T.UsedDeviceID = DT.DeviceTypeID " +
                                                             "LEFT JOIN TicketStatuses TS " +
-                                                            "ON T.TicketStatusID = TS.TicketStatusID ", connection);
+                                                            "ON T.TicketStatusID = TS.TicketStatusID " +
+                                                            "WHERE UN.UserLogin = N'" + Observer.currentUserLogin + "';", connection);
+
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
-                (this.Owner.Controls["admGridView"] as DataGridView).DataSource = dt;
+                if (currentUserRole == "Администратор")
+                {
+                    (this.Owner.Controls["admGridView"] as DataGridView).DataSource = dt;
+                }
+                if (currentUserRole == "Техник")
+                {
+                    (this.Owner.Controls["technicGridView"] as DataGridView).DataSource = dt;
+                }
                 this.Close();
             }
         }
@@ -111,3 +159,4 @@ namespace TIckets
         }
     }
 }
+
