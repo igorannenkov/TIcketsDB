@@ -30,13 +30,14 @@
         {
             this.userAddTicketBtn = new System.Windows.Forms.Button();
             this.userAddTicketTb = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.userAddTicketCnlBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // userAddTicketBtn
             // 
+            this.userAddTicketBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.userAddTicketBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.userAddTicketBtn.Location = new System.Drawing.Point(339, 140);
+            this.userAddTicketBtn.Location = new System.Drawing.Point(407, 253);
             this.userAddTicketBtn.Name = "userAddTicketBtn";
             this.userAddTicketBtn.Size = new System.Drawing.Size(111, 36);
             this.userAddTicketBtn.TabIndex = 0;
@@ -46,33 +47,38 @@
             // 
             // userAddTicketTb
             // 
+            this.userAddTicketTb.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.userAddTicketTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.userAddTicketTb.Location = new System.Drawing.Point(12, 12);
             this.userAddTicketTb.Multiline = true;
             this.userAddTicketTb.Name = "userAddTicketTb";
-            this.userAddTicketTb.Size = new System.Drawing.Size(438, 122);
+            this.userAddTicketTb.Size = new System.Drawing.Size(623, 235);
             this.userAddTicketTb.TabIndex = 1;
             // 
-            // button1
+            // userAddTicketCnlBtn
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(232, 140);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(101, 36);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.userAddTicketCnlBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.userAddTicketCnlBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.userAddTicketCnlBtn.Location = new System.Drawing.Point(524, 253);
+            this.userAddTicketCnlBtn.Name = "userAddTicketCnlBtn";
+            this.userAddTicketCnlBtn.Size = new System.Drawing.Size(111, 36);
+            this.userAddTicketCnlBtn.TabIndex = 2;
+            this.userAddTicketCnlBtn.Text = "Отмена";
+            this.userAddTicketCnlBtn.UseVisualStyleBackColor = true;
+            this.userAddTicketCnlBtn.Click += new System.EventHandler(this.userAddTicketCnlBtn_Click);
             // 
             // UserAddTicketForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(462, 186);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(647, 299);
+            this.Controls.Add(this.userAddTicketCnlBtn);
             this.Controls.Add(this.userAddTicketTb);
             this.Controls.Add(this.userAddTicketBtn);
             this.Name = "UserAddTicketForm";
-            this.Text = "Новый запрос";
+            this.Text = "Новая заявка";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -82,6 +88,6 @@
 
         private System.Windows.Forms.Button userAddTicketBtn;
         private System.Windows.Forms.TextBox userAddTicketTb;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button userAddTicketCnlBtn;
     }
 }

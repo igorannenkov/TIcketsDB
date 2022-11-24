@@ -42,12 +42,14 @@
             this.ticketDeviceCb = new System.Windows.Forms.ComboBox();
             this.ticketHandlerFormUserCommentLbl = new System.Windows.Forms.Label();
             this.ticketHandlerFormUserCommentTb = new System.Windows.Forms.TextBox();
+            this.ticketHandlerFormTicketCnlBtn = new System.Windows.Forms.Button();
+            this.ticketHandlerFormTicketReopenBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ticketHandlerFormEditBtn
             // 
             this.ticketHandlerFormEditBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ticketHandlerFormEditBtn.Location = new System.Drawing.Point(166, 419);
+            this.ticketHandlerFormEditBtn.Location = new System.Drawing.Point(225, 418);
             this.ticketHandlerFormEditBtn.Name = "ticketHandlerFormEditBtn";
             this.ticketHandlerFormEditBtn.Size = new System.Drawing.Size(138, 40);
             this.ticketHandlerFormEditBtn.TabIndex = 0;
@@ -58,9 +60,9 @@
             // ticketHandlerFormCnlBtn
             // 
             this.ticketHandlerFormCnlBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ticketHandlerFormCnlBtn.Location = new System.Drawing.Point(310, 419);
+            this.ticketHandlerFormCnlBtn.Location = new System.Drawing.Point(369, 418);
             this.ticketHandlerFormCnlBtn.Name = "ticketHandlerFormCnlBtn";
-            this.ticketHandlerFormCnlBtn.Size = new System.Drawing.Size(138, 40);
+            this.ticketHandlerFormCnlBtn.Size = new System.Drawing.Size(76, 39);
             this.ticketHandlerFormCnlBtn.TabIndex = 2;
             this.ticketHandlerFormCnlBtn.Text = "Отмена";
             this.ticketHandlerFormCnlBtn.UseVisualStyleBackColor = true;
@@ -102,9 +104,9 @@
             this.ticketHandlerFormTicketCommentTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ticketHandlerFormTicketCommentTb.Location = new System.Drawing.Point(12, 296);
             this.ticketHandlerFormTicketCommentTb.Name = "ticketHandlerFormTicketCommentTb";
-            this.ticketHandlerFormTicketCommentTb.Size = new System.Drawing.Size(113, 20);
+            this.ticketHandlerFormTicketCommentTb.Size = new System.Drawing.Size(171, 20);
             this.ticketHandlerFormTicketCommentTb.TabIndex = 8;
-            this.ticketHandlerFormTicketCommentTb.Text = "Комментарий";
+            this.ticketHandlerFormTicketCommentTb.Text = "Ответ по обращению";
             // 
             // ticketHandlerFormUsedDeviceLbl
             // 
@@ -181,11 +183,35 @@
             this.ticketHandlerFormUserCommentTb.Size = new System.Drawing.Size(429, 121);
             this.ticketHandlerFormUserCommentTb.TabIndex = 18;
             // 
+            // ticketHandlerFormTicketCnlBtn
+            // 
+            this.ticketHandlerFormTicketCnlBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ticketHandlerFormTicketCnlBtn.Location = new System.Drawing.Point(124, 418);
+            this.ticketHandlerFormTicketCnlBtn.Name = "ticketHandlerFormTicketCnlBtn";
+            this.ticketHandlerFormTicketCnlBtn.Size = new System.Drawing.Size(97, 40);
+            this.ticketHandlerFormTicketCnlBtn.TabIndex = 19;
+            this.ticketHandlerFormTicketCnlBtn.Text = "Отменить обращение";
+            this.ticketHandlerFormTicketCnlBtn.UseVisualStyleBackColor = true;
+            this.ticketHandlerFormTicketCnlBtn.Click += new System.EventHandler(this.ticketHandlerFormTicketCnlBtn_Click);
+            // 
+            // ticketHandlerFormTicketReopenBtn
+            // 
+            this.ticketHandlerFormTicketReopenBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ticketHandlerFormTicketReopenBtn.Location = new System.Drawing.Point(16, 418);
+            this.ticketHandlerFormTicketReopenBtn.Name = "ticketHandlerFormTicketReopenBtn";
+            this.ticketHandlerFormTicketReopenBtn.Size = new System.Drawing.Size(103, 40);
+            this.ticketHandlerFormTicketReopenBtn.TabIndex = 20;
+            this.ticketHandlerFormTicketReopenBtn.Text = "Переоткрыть обращение";
+            this.ticketHandlerFormTicketReopenBtn.UseVisualStyleBackColor = true;
+            this.ticketHandlerFormTicketReopenBtn.Click += new System.EventHandler(this.ticketHandlerFormTicketReopenBtn_Click);
+            // 
             // TicketHandleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(460, 471);
+            this.Controls.Add(this.ticketHandlerFormTicketReopenBtn);
+            this.Controls.Add(this.ticketHandlerFormTicketCnlBtn);
             this.Controls.Add(this.ticketHandlerFormUserCommentTb);
             this.Controls.Add(this.ticketHandlerFormUserCommentLbl);
             this.Controls.Add(this.ticketDeviceCb);
@@ -225,5 +251,7 @@
         private System.Windows.Forms.ComboBox ticketDeviceCb;
         private System.Windows.Forms.Label ticketHandlerFormUserCommentLbl;
         private System.Windows.Forms.TextBox ticketHandlerFormUserCommentTb;
+        private System.Windows.Forms.Button ticketHandlerFormTicketCnlBtn;
+        private System.Windows.Forms.Button ticketHandlerFormTicketReopenBtn;
     }
 }

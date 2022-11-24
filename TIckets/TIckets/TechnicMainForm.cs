@@ -197,6 +197,13 @@ namespace TIckets
                 connection.Open();
 
                 TicketHandleForm ticketHandleForm = new TicketHandleForm();
+
+                // скрываем кнопку "Отменить обращение"
+                (ticketHandleForm.Controls["ticketHandlerFormTicketCnlBtn"] as Button).Visible = false;
+                (ticketHandleForm.Controls["ticketHandlerFormTicketReopenBtn"] as Button).Visible = false;
+
+                
+
                 (ticketHandleForm.Controls["ticketDeviceCb"] as ComboBox).Enabled = false;
                 (ticketHandleForm.Controls["ticketHandlerFormUsedDeviceLbl"] as Label).Enabled = false;
 
@@ -215,22 +222,15 @@ namespace TIckets
                 (ticketHandleForm.Controls["ticketHandlerFormUserCommentTb"] as TextBox).Text = this.technicGridView.CurrentRow.Cells[2].Value.ToString();
 
 
-                //SqlCommand command = new SqlCommand("SELECT UserName AS TechnicName FROM Users U " +
-                //                                    "INNER JOIN Roles R ON U.UserRoleID = R.RoleID " +
-                //                                    "WHERE R.ROleName = N'Техник'", connection);
-                //command.ExecuteNonQuery();
-                //SqlDataAdapter adapter = new SqlDataAdapter(command);
-                //DataTable dt = new DataTable();
-                //adapter.Fill(dt);
-
-                //(ticketHandleForm.Controls["ticketTechnicNameCb"] as ComboBox).ValueMember = "TechnicName";
-                //(ticketHandleForm.Controls["ticketTechnicNameCb"] as ComboBox).DataSource = dt;
                 if (this.technicGridView.CurrentRow.Cells[3].Value.ToString() != "Не назначен")
                 {
                     (ticketHandleForm.Controls["ticketTechnicNameCb"] as ComboBox).SelectedValue = this.technicGridView.CurrentRow.Cells[3].Value.ToString();
                 }
 
-                SqlCommand command = new SqlCommand("SELECT TicketStatusName FROM TicketStatuses WHERE TicketStatusName <> N'Новая'", connection);
+                SqlCommand command = new SqlCommand("SELECT TicketStatusName FROM TicketStatuses " +
+                                                    "WHERE TicketStatusName <> N'Новая' " +
+                                                    "AND TicketStatusName <> N'Переоткрыта' " +
+                                                    "AND TicketStatusName <> N'Отменена' ", connection);
                 command.ExecuteNonQuery();
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 DataTable dt = new DataTable();
@@ -247,6 +247,37 @@ namespace TIckets
 
                 ticketHandleForm.StartPosition = FormStartPosition.CenterParent;
                 ticketHandleForm.ShowDialog();
+            }
+        }
+
+        private void возобновленныеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                connection.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT T.TicketID AS [ID Заявки], " +
+                                                            "U.UserName AS Пользователь, " +
+                                                            "T.TicketUserComment AS [Текст обращения], " +
+                                                            "COALESCE(UN.UserName, N'Не назначен') AS [Назначенный техник], " +
+                                                            "TS.TicketStatusName AS [Статус заявки], " +
+                                                            "T.TicketStartDateTime AS [Время регистрации], " +
+                                                            "T.TicketEndDateTime AS [Время выполнения], " +
+                                                            "T.TicketComment AS [Ответ по обращению], " +
+                                                            "DT.DeviceTypeName AS [Используемые материалы] " +
+                                                            "FROM Tickets AS T " +
+                                                            "LEFT JOIN Users AS U " +
+                                                            "ON T.UserID = U.UserID " +
+                                                            "LEFT JOIN  Users AS UN " +
+                                                            "ON T.TechnicID = UN.UserID " +
+                                                            "LEFT JOIN DeviceTypes AS DT " +
+                                                            "ON T.UsedDeviceID = DT.DeviceTypeID " +
+                                                            "LEFT JOIN TicketStatuses TS " +
+                                                            "ON T.TicketStatusID = TS.TicketStatusID " +
+                                                            "WHERE UN.UserLogin = N'" + Observer.currentUserLogin + "' " +
+                                                            "AND TS.TicketStatusName = N'Переоткрыта';", connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                technicGridView.DataSource = dt;
             }
         }
     }

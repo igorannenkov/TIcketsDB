@@ -99,7 +99,16 @@ namespace TIckets
             {
                 connection.Open();
 
+               
+                
+
+
                 TicketHandleForm ticketHandleForm = new TicketHandleForm();
+
+                // скрываем кнопку "Отменить обращение"
+                (ticketHandleForm.Controls["ticketHandlerFormTicketCnlBtn"] as Button).Visible = false;
+                (ticketHandleForm.Controls["ticketHandlerFormTicketReopenBtn"] as Button).Visible = false;
+
                 (ticketHandleForm.Controls["ticketDeviceCb"] as ComboBox).Enabled = false;
                 (ticketHandleForm.Controls["ticketHandlerFormUsedDeviceLbl"] as Label).Enabled = false;
 
@@ -136,7 +145,10 @@ namespace TIckets
                     (ticketHandleForm.Controls["ticketTechnicNameCb"] as ComboBox).SelectedValue = this.admGridView.CurrentRow.Cells[3].Value.ToString();
                 }
 
-                command = new SqlCommand("SELECT TicketStatusName FROM TicketStatuses WHERE TicketStatusName <> N'Новая'", connection);
+                command = new SqlCommand("SELECT TicketStatusName FROM TicketStatuses " +
+                                         "WHERE TicketStatusName <> N'Новая' " +
+                                         "AND TicketStatusName <> N'Переоткрыта' " +
+                                         "AND TicketStatusName <> N'Отменена'" , connection);
                 command.ExecuteNonQuery();
                 adapter = new SqlDataAdapter(command);
                 dt = new DataTable();
@@ -188,10 +200,8 @@ namespace TIckets
                                                             "ON T.UsedDeviceID = DT.DeviceTypeID " +
                                                             "LEFT JOIN TicketStatuses TS " +
                                                             "ON T.TicketStatusID = TS.TicketStatusID " +
-                                                            "WHERE T.TechnicID IS NOT NULL " +
-                                                            "AND TS.TicketStatusName <> N'Выполнена'" +
-                                                            "AND TS.TicketStatusName <> N'Отменена'" +
-                                                            "AND TS.TicketStatusName <> N'Отклонена'", connection);
+                                                            "WHERE TS.TicketStatusName = (N'Принята в работу') " +
+                                                            "ORDER BY TS.TicketStatusName", connection);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 admGridView.DataSource = dt;

@@ -112,7 +112,7 @@
             this.ticketHistoryExportBtn.Name = "ticketHistoryExportBtn";
             this.ticketHistoryExportBtn.Size = new System.Drawing.Size(145, 30);
             this.ticketHistoryExportBtn.TabIndex = 4;
-            this.ticketHistoryExportBtn.Text = "Экспорт в Excel";
+            this.ticketHistoryExportBtn.Text = "Выгрузка в Excel";
             this.ticketHistoryExportBtn.UseVisualStyleBackColor = true;
             this.ticketHistoryExportBtn.Click += new System.EventHandler(this.ticketHistoryExportBtn_Click);
             // 
