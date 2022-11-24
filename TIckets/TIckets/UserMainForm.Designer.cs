@@ -31,6 +31,11 @@
             this.userMainFormGridView = new System.Windows.Forms.DataGridView();
             this.userMainFormMenuStrip = new System.Windows.Forms.MenuStrip();
             this.новаяЗаявкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.выгрузкаВExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.моиЗаявкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сменаПароляToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.выходИзСистемыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.userMainFormGridView)).BeginInit();
             this.userMainFormMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -49,7 +54,10 @@
             // userMainFormMenuStrip
             // 
             this.userMainFormMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.новаяЗаявкаToolStripMenuItem});
+            this.менюToolStripMenuItem,
+            this.новаяЗаявкаToolStripMenuItem,
+            this.моиЗаявкиToolStripMenuItem,
+            this.выгрузкаВExcelToolStripMenuItem});
             this.userMainFormMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.userMainFormMenuStrip.Name = "userMainFormMenuStrip";
             this.userMainFormMenuStrip.Size = new System.Drawing.Size(800, 24);
@@ -63,6 +71,42 @@
             this.новаяЗаявкаToolStripMenuItem.Text = "Новая заявка";
             this.новаяЗаявкаToolStripMenuItem.Click += new System.EventHandler(this.новаяЗаявкаToolStripMenuItem_Click);
             // 
+            // выгрузкаВExcelToolStripMenuItem
+            // 
+            this.выгрузкаВExcelToolStripMenuItem.Name = "выгрузкаВExcelToolStripMenuItem";
+            this.выгрузкаВExcelToolStripMenuItem.Size = new System.Drawing.Size(109, 20);
+            this.выгрузкаВExcelToolStripMenuItem.Text = "Выгрузка в Excel";
+            this.выгрузкаВExcelToolStripMenuItem.Click += new System.EventHandler(this.выгрузкаВExcelToolStripMenuItem_Click);
+            // 
+            // моиЗаявкиToolStripMenuItem
+            // 
+            this.моиЗаявкиToolStripMenuItem.Name = "моиЗаявкиToolStripMenuItem";
+            this.моиЗаявкиToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
+            this.моиЗаявкиToolStripMenuItem.Text = "Мои заявки";
+            // 
+            // менюToolStripMenuItem
+            // 
+            this.менюToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.сменаПароляToolStripMenuItem,
+            this.выходИзСистемыToolStripMenuItem});
+            this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
+            this.менюToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.менюToolStripMenuItem.Text = "Меню";
+            // 
+            // сменаПароляToolStripMenuItem
+            // 
+            this.сменаПароляToolStripMenuItem.Name = "сменаПароляToolStripMenuItem";
+            this.сменаПароляToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.сменаПароляToolStripMenuItem.Text = "Смена пароля";
+            this.сменаПароляToolStripMenuItem.Click += new System.EventHandler(this.сменаПароляToolStripMenuItem_Click);
+            // 
+            // выходИзСистемыToolStripMenuItem
+            // 
+            this.выходИзСистемыToolStripMenuItem.Name = "выходИзСистемыToolStripMenuItem";
+            this.выходИзСистемыToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.выходИзСистемыToolStripMenuItem.Text = "Выход из системы";
+            this.выходИзСистемыToolStripMenuItem.Click += new System.EventHandler(this.выходИзСистемыToolStripMenuItem_Click);
+            // 
             // UserMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -72,7 +116,7 @@
             this.Controls.Add(this.userMainFormMenuStrip);
             this.MainMenuStrip = this.userMainFormMenuStrip;
             this.Name = "UserMainForm";
-            this.Text = "UserMainForm";
+            this.Text = "Пользователь";
             ((System.ComponentModel.ISupportInitialize)(this.userMainFormGridView)).EndInit();
             this.userMainFormMenuStrip.ResumeLayout(false);
             this.userMainFormMenuStrip.PerformLayout();
@@ -86,5 +130,10 @@
         private System.Windows.Forms.DataGridView userMainFormGridView;
         private System.Windows.Forms.MenuStrip userMainFormMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem новаяЗаявкаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem менюToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сменаПароляToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem выходИзСистемыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem моиЗаявкиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem выгрузкаВExcelToolStripMenuItem;
     }
 }
