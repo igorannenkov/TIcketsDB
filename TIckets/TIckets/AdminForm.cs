@@ -112,7 +112,7 @@ namespace TIckets
                 (ticketHandleForm.Controls["ticketDeviceCb"] as ComboBox).Enabled = false;
                 (ticketHandleForm.Controls["ticketHandlerFormUsedDeviceLbl"] as Label).Enabled = false;
 
-                (ticketHandleForm.Controls["ticketHandlerFormUserCommentTb"] as TextBox).Text = this.admGridView.CurrentRow.Cells[2].Value.ToString();
+                (ticketHandleForm.Controls["ticketUserCommentTb"] as TextBox).Text = this.admGridView.CurrentRow.Cells[2].Value.ToString();
                 
 
                 ticketHandleForm.Owner = this;

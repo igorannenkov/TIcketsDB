@@ -93,11 +93,11 @@ namespace TIckets
 
                 TicketHandleForm ticketHandleForm = new TicketHandleForm();
                 (ticketHandleForm.Controls["ticketDeviceCb"] as ComboBox).Enabled = false;
-                (ticketHandleForm.Controls["ticketHandlerFormUserCommentTb"] as TextBox).Text = this.userMainFormGridView.CurrentRow.Cells[2].Value.ToString();
-                (ticketHandleForm.Controls["ticketHandlerFormUserCommentTb"] as TextBox).Enabled = true;
-                (ticketHandleForm.Controls["ticketHandlerFormUserCommentTb"] as TextBox).ReadOnly = false;
+                (ticketHandleForm.Controls["ticketUserCommentTb"] as TextBox).Text = this.userMainFormGridView.CurrentRow.Cells[2].Value.ToString();
+                (ticketHandleForm.Controls["ticketUserCommentTb"] as TextBox).Enabled = true;
+                (ticketHandleForm.Controls["ticketUserCommentTb"] as TextBox).ReadOnly = false;
 
-                // ticketHandlerFormUserCommentTb
+                // ticketUserCommentTb
 
                 ticketHandleForm.Owner = this;
 

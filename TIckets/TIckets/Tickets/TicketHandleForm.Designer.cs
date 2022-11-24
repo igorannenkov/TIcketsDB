@@ -38,10 +38,10 @@
             this.ticketUserNameCb = new System.Windows.Forms.ComboBox();
             this.ticketTechnicNameCb = new System.Windows.Forms.ComboBox();
             this.ticketTicketStatusCb = new System.Windows.Forms.ComboBox();
-            this.ticketCommentCb = new System.Windows.Forms.TextBox();
+            this.ticketCommentTb = new System.Windows.Forms.TextBox();
             this.ticketDeviceCb = new System.Windows.Forms.ComboBox();
             this.ticketHandlerFormUserCommentLbl = new System.Windows.Forms.Label();
-            this.ticketHandlerFormUserCommentTb = new System.Windows.Forms.TextBox();
+            this.ticketUserCommentTb = new System.Windows.Forms.TextBox();
             this.ticketHandlerFormTicketCnlBtn = new System.Windows.Forms.Button();
             this.ticketHandlerFormTicketReopenBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -145,14 +145,14 @@
             this.ticketTicketStatusCb.Size = new System.Drawing.Size(203, 28);
             this.ticketTicketStatusCb.TabIndex = 12;
             // 
-            // ticketCommentCb
+            // ticketCommentTb
             // 
-            this.ticketCommentCb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ticketCommentCb.Location = new System.Drawing.Point(16, 319);
-            this.ticketCommentCb.Multiline = true;
-            this.ticketCommentCb.Name = "ticketCommentCb";
-            this.ticketCommentCb.Size = new System.Drawing.Size(429, 94);
-            this.ticketCommentCb.TabIndex = 15;
+            this.ticketCommentTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ticketCommentTb.Location = new System.Drawing.Point(16, 319);
+            this.ticketCommentTb.Multiline = true;
+            this.ticketCommentTb.Name = "ticketCommentTb";
+            this.ticketCommentTb.Size = new System.Drawing.Size(429, 94);
+            this.ticketCommentTb.TabIndex = 15;
             // 
             // ticketDeviceCb
             // 
@@ -173,15 +173,15 @@
             this.ticketHandlerFormUserCommentLbl.TabIndex = 17;
             this.ticketHandlerFormUserCommentLbl.Text = "Текст обращения";
             // 
-            // ticketHandlerFormUserCommentTb
+            // ticketUserCommentTb
             // 
-            this.ticketHandlerFormUserCommentTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ticketHandlerFormUserCommentTb.Location = new System.Drawing.Point(16, 162);
-            this.ticketHandlerFormUserCommentTb.Multiline = true;
-            this.ticketHandlerFormUserCommentTb.Name = "ticketHandlerFormUserCommentTb";
-            this.ticketHandlerFormUserCommentTb.ReadOnly = true;
-            this.ticketHandlerFormUserCommentTb.Size = new System.Drawing.Size(429, 121);
-            this.ticketHandlerFormUserCommentTb.TabIndex = 18;
+            this.ticketUserCommentTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ticketUserCommentTb.Location = new System.Drawing.Point(16, 162);
+            this.ticketUserCommentTb.Multiline = true;
+            this.ticketUserCommentTb.Name = "ticketUserCommentTb";
+            this.ticketUserCommentTb.ReadOnly = true;
+            this.ticketUserCommentTb.Size = new System.Drawing.Size(429, 121);
+            this.ticketUserCommentTb.TabIndex = 18;
             // 
             // ticketHandlerFormTicketCnlBtn
             // 
@@ -212,10 +212,10 @@
             this.ClientSize = new System.Drawing.Size(460, 471);
             this.Controls.Add(this.ticketHandlerFormTicketReopenBtn);
             this.Controls.Add(this.ticketHandlerFormTicketCnlBtn);
-            this.Controls.Add(this.ticketHandlerFormUserCommentTb);
+            this.Controls.Add(this.ticketUserCommentTb);
             this.Controls.Add(this.ticketHandlerFormUserCommentLbl);
             this.Controls.Add(this.ticketDeviceCb);
-            this.Controls.Add(this.ticketCommentCb);
+            this.Controls.Add(this.ticketCommentTb);
             this.Controls.Add(this.ticketTicketStatusCb);
             this.Controls.Add(this.ticketTechnicNameCb);
             this.Controls.Add(this.ticketUserNameCb);
@@ -247,10 +247,10 @@
         private System.Windows.Forms.ComboBox ticketUserNameCb;
         private System.Windows.Forms.ComboBox ticketTechnicNameCb;
         private System.Windows.Forms.ComboBox ticketTicketStatusCb;
-        private System.Windows.Forms.TextBox ticketCommentCb;
+        private System.Windows.Forms.TextBox ticketCommentTb;
         private System.Windows.Forms.ComboBox ticketDeviceCb;
         private System.Windows.Forms.Label ticketHandlerFormUserCommentLbl;
-        private System.Windows.Forms.TextBox ticketHandlerFormUserCommentTb;
+        private System.Windows.Forms.TextBox ticketUserCommentTb;
         private System.Windows.Forms.Button ticketHandlerFormTicketCnlBtn;
         private System.Windows.Forms.Button ticketHandlerFormTicketReopenBtn;
     }
