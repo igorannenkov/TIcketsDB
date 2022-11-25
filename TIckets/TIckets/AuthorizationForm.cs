@@ -70,8 +70,7 @@ namespace TIckets
                             case "Администратор":
                                 AdminForm admForm = new AdminForm();
                                 admForm.StartPosition = FormStartPosition.CenterScreen;
-                                admForm.Text = "Администратор@"+ authUserNameTb.Text;
-                                
+                                admForm.Text = "Администратор@"+ authUserNameTb.Text;                            
                                 Observer.currentUserLogin = authUserNameTb.Text;
                                 admForm.ShowDialog();
                                 break;
@@ -82,7 +81,6 @@ namespace TIckets
                                 userMainForm.Text = "Пользователь@" + authUserNameTb.Text;                               
                                 Observer.currentUserLogin = authUserNameTb.Text;
                                 userMainForm.ShowDialog();
-
                                 break;
                             case "Техник":
 

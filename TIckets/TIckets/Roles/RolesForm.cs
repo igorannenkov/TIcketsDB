@@ -60,7 +60,6 @@ namespace TIckets
                 string prevRoleName = RolesFormGridView.CurrentCell.Value.ToString();
 
                 (roleHandleForm.Controls["RoleHandlerFormRoleNameTb"] as TextBox).Text = prevRoleName;          
-
                 SqlCommand cmd = new SqlCommand("SELECT RoleID FROM Roles WHERE RoleName = @roleName", connection);
                 cmd.Parameters.AddWithValue("@roleName", prevRoleName);
 
@@ -69,8 +68,6 @@ namespace TIckets
                 (roleHandleForm.Controls["RoleHandlerFormAddBtn"] as Button).Enabled = false;
                 roleHandleForm.ShowDialog();
             }
-        }
-
-        
+        }      
     }
 }

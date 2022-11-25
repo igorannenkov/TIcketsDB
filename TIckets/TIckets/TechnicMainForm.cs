@@ -11,7 +11,6 @@ namespace TIckets
         {
             InitializeComponent();
         }
-
         private void моиЗаявкиToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             using (SqlConnection connection = Database.GetConnection())
@@ -41,10 +40,6 @@ namespace TIckets
                 technicGridView.DataSource = dt;
             }
         }
-
-       
-
-       
 
         private void выполненныеЗаявкиToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -143,9 +138,6 @@ namespace TIckets
                 // скрываем кнопку "Отменить обращение"
                 (ticketHandleForm.Controls["ticketHandlerFormTicketCnlBtn"] as Button).Visible = false;
                 (ticketHandleForm.Controls["ticketHandlerFormTicketReopenBtn"] as Button).Visible = false;
-
-                
-
                 (ticketHandleForm.Controls["ticketDeviceCb"] as ComboBox).Enabled = false;
                 (ticketHandleForm.Controls["ticketHandlerFormUsedDeviceLbl"] as Label).Enabled = false;
 
@@ -160,9 +152,7 @@ namespace TIckets
                 (ticketHandleForm.Controls["ticketTechnicNameCb"] as ComboBox).Enabled = false;
 
                 // Загружаем текст обращения
-
                 (ticketHandleForm.Controls["ticketUserCommentTb"] as TextBox).Text = this.technicGridView.CurrentRow.Cells[2].Value.ToString();
-
 
                 if (this.technicGridView.CurrentRow.Cells[3].Value.ToString() != "Не назначен")
                 {
@@ -188,6 +178,8 @@ namespace TIckets
                 }
 
                 ticketHandleForm.StartPosition = FormStartPosition.CenterParent;
+                (ticketHandleForm.Controls["ticketTicketStatusCb"] as ComboBox).Text = technicGridView.CurrentRow.Cells[4].Value.ToString();
+
                 ticketHandleForm.ShowDialog();
             }
         }

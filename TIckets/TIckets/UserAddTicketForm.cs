@@ -18,7 +18,6 @@ namespace TIckets
         {
             InitializeComponent();
         }
-
         private void userAddTicketBtn_Click(object sender, EventArgs e)
         {
             if (userAddTicketTb.Text != String.Empty)
@@ -75,8 +74,6 @@ namespace TIckets
                         DataTable dt = new DataTable();
                         adapter.Fill(dt);
                         (this.Owner.Controls["userMainFormGridView"] as DataGridView).DataSource = dt;
-
-
                         this.Close();
                 }
             }

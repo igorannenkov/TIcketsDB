@@ -19,7 +19,6 @@ namespace TIckets
                 adapter.Fill(ds);
                this.DeviceTypesGridView.DataSource = ds.Tables[0];
             }
-
         }
 
         private void добавитьКатегориюToolStripMenuItem_Click(object sender, EventArgs e)

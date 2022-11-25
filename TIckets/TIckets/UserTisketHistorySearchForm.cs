@@ -11,7 +11,6 @@ namespace TIckets
         {
             InitializeComponent();
         }
-
         private void ticketHistoryCnlBtn_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -42,6 +41,7 @@ namespace TIckets
                                                 "ON T.TicketStatusID = TS.TicketStatusID " +
                                                 "WHERE UPPER (U.UserName) LIKE @userNamе " +
                                                 "ORDER BY U.UserName, T.TicketStartDateTime", connection);
+
                 cmd.Parameters.AddWithValue("@userNamе", "%" + ticketHistorySearchTb.Text.ToUpper() + "%");
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -49,7 +49,6 @@ namespace TIckets
                 historySearchGridView.DataSource = dt;
             }
         }
-
         private void ticketHistoryExportBtn_Click(object sender, EventArgs e)
         {
             ExcelReporter.GetReport(historySearchGridView);

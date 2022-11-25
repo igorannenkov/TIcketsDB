@@ -17,7 +17,6 @@ namespace TIckets
         {
             InitializeComponent();
         }
-
         private void новаяЗаявкаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UserAddTicketForm addTicketForm = new UserAddTicketForm();
@@ -48,8 +47,6 @@ namespace TIckets
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
-
-
                 SqlCommand cmd = new SqlCommand("SELECT T.TicketID AS [ID Заявки], " +
                                                 "U.UserName AS Пользователь, " +
                                                 "T.TicketUserComment AS [Текст обращения], " +
@@ -86,19 +83,14 @@ namespace TIckets
                 return;
             }
 
-
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
-
-                TicketHandleForm ticketHandleForm = new TicketHandleForm();
+                TicketHandleForm ticketHandleForm = new TicketHandleForm();          
                 (ticketHandleForm.Controls["ticketDeviceCb"] as ComboBox).Enabled = false;
                 (ticketHandleForm.Controls["ticketUserCommentTb"] as TextBox).Text = this.userMainFormGridView.CurrentRow.Cells[2].Value.ToString();
                 (ticketHandleForm.Controls["ticketUserCommentTb"] as TextBox).Enabled = true;
                 (ticketHandleForm.Controls["ticketUserCommentTb"] as TextBox).ReadOnly = false;
-
-                // ticketUserCommentTb
-
                 ticketHandleForm.Owner = this;
 
                 // Редактировать пользователя обращения запрещено
@@ -113,22 +105,18 @@ namespace TIckets
                 (ticketHandleForm.Controls["ticketUserNameCb"] as ComboBox).DataSource = dt;
                 (ticketHandleForm.Controls["ticketUserNameCb"] as ComboBox).SelectedValue = this.userMainFormGridView.CurrentRow.Cells[1].Value.ToString();
                 (ticketHandleForm.Controls["ticketUserNameCb"] as ComboBox).Enabled = false;
-
-
+               
                 // Имя техника пользователю редактировать запрещено
                 (ticketHandleForm.Controls["ticketTechnicNameCb"] as ComboBox).Text = this.userMainFormGridView.CurrentRow.Cells[3].Value.ToString();
                 (ticketHandleForm.Controls["ticketTechnicNameCb"] as ComboBox).Enabled = false;
 
                 // Статус обращения пользователю редактировать запрещено кроме закрытых заявок
-
                 (ticketHandleForm.Controls["ticketTicketStatusCb"] as ComboBox).Text = this.userMainFormGridView.CurrentRow.Cells[4].Value.ToString();
                 (ticketHandleForm.Controls["ticketTicketStatusCb"] as ComboBox).Enabled = false;
 
                 // Комментарий можно только посмотреть
-                (ticketHandleForm.Controls["ticketCommentCb"] as TextBox).ReadOnly = true;
-                
-
-
+                (ticketHandleForm.Controls["ticketCommentTb"] as TextBox).ReadOnly = true;
+                (ticketHandleForm.Controls["ticketUserCommentTb"] as TextBox).ReadOnly = true;
 
                 ticketHandleForm.Tag = this.userMainFormGridView.CurrentRow.Cells[0].Value.ToString();
 
@@ -137,6 +125,7 @@ namespace TIckets
                     (ticketHandleForm.Controls["ticketTechnicNameCb"] as ComboBox).SelectedIndex = -1;
                 }
 
+                (ticketHandleForm.Controls["ticketCommentTb"] as TextBox).Text = userMainFormGridView.CurrentRow.Cells[7].Value.ToString();
                 ticketHandleForm.StartPosition = FormStartPosition.CenterParent;
                 ticketHandleForm.ShowDialog();
             }

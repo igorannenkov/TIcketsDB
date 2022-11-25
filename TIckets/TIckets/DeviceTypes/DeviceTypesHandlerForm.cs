@@ -11,7 +11,6 @@ namespace TIckets
         {
             InitializeComponent();
         }
-
         private void DeviceTypesHandlerFormAddBtn_Click(object sender, EventArgs e)
         {
             using (SqlConnection connection = Database.GetConnection())

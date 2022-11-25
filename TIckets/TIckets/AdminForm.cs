@@ -98,23 +98,15 @@ namespace TIckets
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
-
-               
-                
-
-
+                             
                 TicketHandleForm ticketHandleForm = new TicketHandleForm();
 
                 // скрываем кнопку "Отменить обращение"
                 (ticketHandleForm.Controls["ticketHandlerFormTicketCnlBtn"] as Button).Visible = false;
                 (ticketHandleForm.Controls["ticketHandlerFormTicketReopenBtn"] as Button).Visible = false;
-
                 (ticketHandleForm.Controls["ticketDeviceCb"] as ComboBox).Enabled = false;
                 (ticketHandleForm.Controls["ticketHandlerFormUsedDeviceLbl"] as Label).Enabled = false;
-
-                (ticketHandleForm.Controls["ticketUserCommentTb"] as TextBox).Text = this.admGridView.CurrentRow.Cells[2].Value.ToString();
-                
-
+                (ticketHandleForm.Controls["ticketUserCommentTb"] as TextBox).Text = this.admGridView.CurrentRow.Cells[2].Value.ToString();                
                 ticketHandleForm.Owner = this;
 
                 // Редактировать пользователя обращения запрещено
@@ -163,7 +155,8 @@ namespace TIckets
                     (ticketHandleForm.Controls["ticketTechnicNameCb"] as ComboBox).SelectedIndex = -1;
                 }
 
-                ticketHandleForm.StartPosition = FormStartPosition.CenterParent;
+                ticketHandleForm.StartPosition = FormStartPosition.CenterParent;              
+                (ticketHandleForm.Controls["ticketTicketStatusCb"] as ComboBox).Text = admGridView.CurrentRow.Cells[4].Value.ToString();               
                 ticketHandleForm.ShowDialog();
             }
         }

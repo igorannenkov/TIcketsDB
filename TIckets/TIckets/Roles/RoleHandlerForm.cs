@@ -11,7 +11,6 @@ namespace TIckets
         {
             InitializeComponent();
         }
-
         private void RoleHandleFormAddBtn_Click(object sender, EventArgs e)
         {
             using (SqlConnection connection = Database.GetConnection())
@@ -38,8 +37,7 @@ namespace TIckets
 
                 SqlCommand cmd = new SqlCommand("UPDATE Roles SET RoleName =  @newRoleName WHERE RoleID = @prevRoleID", connection);
                 cmd.Parameters.AddWithValue("@newRoleName", RoleHandlerFormRoleNameTb.Text);
-                cmd.Parameters.AddWithValue("@prevRoleID", prevRoleID);
-                
+                cmd.Parameters.AddWithValue("@prevRoleID", prevRoleID);               
                 cmd.ExecuteNonQuery();
 
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT RoleName AS Роль FROM Roles", connection);
