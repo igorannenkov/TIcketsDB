@@ -272,5 +272,13 @@ namespace TIckets
                 admGridView.DataSource = dt;
             }
         }
+
+        private void складУстройствToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeviceForm deviceForm = new DeviceForm();
+            deviceForm.StartPosition = FormStartPosition.CenterParent;
+            deviceForm.Owner = this;
+            deviceForm.ShowDialog();
+        }
     }
 }

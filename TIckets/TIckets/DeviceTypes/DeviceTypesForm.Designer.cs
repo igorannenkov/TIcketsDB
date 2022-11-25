@@ -53,8 +53,8 @@
             // добавитьКатегориюToolStripMenuItem
             // 
             this.добавитьКатегориюToolStripMenuItem.Name = "добавитьКатегориюToolStripMenuItem";
-            this.добавитьКатегориюToolStripMenuItem.Size = new System.Drawing.Size(133, 20);
-            this.добавитьКатегориюToolStripMenuItem.Text = "Добавить категорию";
+            this.добавитьКатегориюToolStripMenuItem.Size = new System.Drawing.Size(119, 20);
+            this.добавитьКатегориюToolStripMenuItem.Text = "Новое устройство";
             this.добавитьКатегориюToolStripMenuItem.Click += new System.EventHandler(this.добавитьКатегориюToolStripMenuItem_Click);
             // 
             // DeviceTypesGridView
@@ -115,7 +115,7 @@
             this.Controls.Add(this.AddTypeMenuStrip);
             this.MainMenuStrip = this.AddTypeMenuStrip;
             this.Name = "DeviceTypesForm";
-            this.Text = "Категории комплектующих";
+            this.Text = "Техника и устройства";
             this.AddTypeMenuStrip.ResumeLayout(false);
             this.AddTypeMenuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DeviceTypesGridView)).EndInit();

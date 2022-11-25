@@ -68,23 +68,17 @@
       <DependentUpon>ChangePasswordForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Database.cs" />
-    <Compile Include="Devices\AddDeviceForm.cs">
+    <Compile Include="Devices\DeviceHandlerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Devices\AddDeviceForm.Designer.cs">
-      <DependentUpon>AddDeviceForm.cs</DependentUpon>
+    <Compile Include="Devices\DeviceHandlerForm.Designer.cs">
+      <DependentUpon>DeviceHandlerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Devices\DeviceForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Devices\DeviceForm.Designer.cs">
       <DependentUpon>DeviceForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Devices\UpdDeviceForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Devices\UpdDeviceForm.Designer.cs">
-      <DependentUpon>UpdDeviceForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DeviceTypes\DeviceTypesHandlerForm.cs">
       <SubType>Form</SubType>
@@ -196,11 +190,11 @@
     <EmbeddedResource Include="ChangePasswordForm.resx">
       <DependentUpon>ChangePasswordForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Devices\AddDeviceForm.resx">
-      <DependentUpon>AddDeviceForm.cs</DependentUpon>
+    <EmbeddedResource Include="Devices\DeviceForm.resx">
+      <DependentUpon>DeviceForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Devices\UpdDeviceForm.resx">
-      <DependentUpon>UpdDeviceForm.cs</DependentUpon>
+    <EmbeddedResource Include="Devices\DeviceHandlerForm.resx">
+      <DependentUpon>DeviceHandlerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DeviceTypes\DeviceTypesHandlerForm.resx">
       <DependentUpon>DeviceTypesHandlerForm.cs</DependentUpon>

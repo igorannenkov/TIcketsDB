@@ -135,10 +135,19 @@ namespace TIckets
 
                 TicketHandleForm ticketHandleForm = new TicketHandleForm();
 
+                //заполняем комбобокс со списком устройств
+                SqlCommand cmd = new SqlCommand("SELECT DeviceTypeName FROM DeviceTypes ORDER BY DeviceTypeName", connection);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
+                (ticketHandleForm.Controls["ticketDeviceCb"] as ComboBox).DataSource = ds.Tables[0];
+                (ticketHandleForm.Controls["ticketDeviceCb"] as ComboBox).ValueMember = "DeviceTypeName";
+                (ticketHandleForm.Controls["ticketDeviceCb"] as ComboBox).Enabled = true;
+
+
                 // скрываем кнопку "Отменить обращение"
                 (ticketHandleForm.Controls["ticketHandlerFormTicketCnlBtn"] as Button).Visible = false;
                 (ticketHandleForm.Controls["ticketHandlerFormTicketReopenBtn"] as Button).Visible = false;
-                (ticketHandleForm.Controls["ticketDeviceCb"] as ComboBox).Enabled = false;
                 (ticketHandleForm.Controls["ticketHandlerFormUsedDeviceLbl"] as Label).Enabled = false;
 
                 ticketHandleForm.Owner = this;
@@ -164,7 +173,7 @@ namespace TIckets
                                                     "AND TicketStatusName <> N'Переоткрыта' " +
                                                     "AND TicketStatusName <> N'Отменена' ", connection);
                 command.ExecuteNonQuery();
-                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter = new SqlDataAdapter(command);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 (ticketHandleForm.Controls["ticketTicketStatusCb"] as ComboBox).ValueMember = "TicketStatusName";

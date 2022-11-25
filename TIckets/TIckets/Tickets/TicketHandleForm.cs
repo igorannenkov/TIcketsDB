@@ -146,6 +146,7 @@ namespace TIckets
                             this.Close();
                             return;
                         }
+                        // 
                         if (ticketTicketStatusCb.Text == "Выполнена" || ticketTicketStatusCb.Text == "Отклонена")
                         {
                             updateCommand.Parameters.AddWithValue("@ticketEndDatetime", DateTime.Now);

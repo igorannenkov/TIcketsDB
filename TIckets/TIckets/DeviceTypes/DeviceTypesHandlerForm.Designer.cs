@@ -74,9 +74,9 @@
             this.DeviceTypesHandlerFormLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.DeviceTypesHandlerFormLbl.Location = new System.Drawing.Point(12, 9);
             this.DeviceTypesHandlerFormLbl.Name = "DeviceTypesHandlerFormLbl";
-            this.DeviceTypesHandlerFormLbl.Size = new System.Drawing.Size(329, 20);
+            this.DeviceTypesHandlerFormLbl.Size = new System.Drawing.Size(212, 20);
             this.DeviceTypesHandlerFormLbl.TabIndex = 3;
-            this.DeviceTypesHandlerFormLbl.Text = "Наименование категории комплектующих";
+            this.DeviceTypesHandlerFormLbl.Text = "Наименование устройства";
             // 
             // DeviceTypesHandlerFormTb
             // 
@@ -99,7 +99,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "DeviceTypesHandlerForm";
-            this.Text = "Категория комплектующих";
+            this.Text = "Устройство";
             this.ResumeLayout(false);
             this.PerformLayout();
 
