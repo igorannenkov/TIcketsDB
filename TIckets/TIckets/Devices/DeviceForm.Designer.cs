@@ -32,7 +32,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.deviceFormGridView = new System.Windows.Forms.DataGridView();
+            this.DeviceFormMenuStrip = new System.Windows.Forms.MenuStrip();
+            this.выгрузкаВExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.deviceFormGridView)).BeginInit();
+            this.DeviceFormMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // deviceFormGridView
@@ -63,12 +66,29 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.deviceFormGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.deviceFormGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.deviceFormGridView.Location = new System.Drawing.Point(0, 0);
+            this.deviceFormGridView.Location = new System.Drawing.Point(0, 24);
             this.deviceFormGridView.Name = "deviceFormGridView";
             this.deviceFormGridView.ReadOnly = true;
-            this.deviceFormGridView.Size = new System.Drawing.Size(484, 599);
+            this.deviceFormGridView.Size = new System.Drawing.Size(484, 575);
             this.deviceFormGridView.TabIndex = 0;
             this.deviceFormGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.deviceFormGridView_CellMouseDoubleClick);
+            // 
+            // DeviceFormMenuStrip
+            // 
+            this.DeviceFormMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.выгрузкаВExcelToolStripMenuItem});
+            this.DeviceFormMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.DeviceFormMenuStrip.Name = "DeviceFormMenuStrip";
+            this.DeviceFormMenuStrip.Size = new System.Drawing.Size(484, 24);
+            this.DeviceFormMenuStrip.TabIndex = 1;
+            this.DeviceFormMenuStrip.Text = "menuStrip1";
+            // 
+            // выгрузкаВExcelToolStripMenuItem
+            // 
+            this.выгрузкаВExcelToolStripMenuItem.Name = "выгрузкаВExcelToolStripMenuItem";
+            this.выгрузкаВExcelToolStripMenuItem.Size = new System.Drawing.Size(109, 20);
+            this.выгрузкаВExcelToolStripMenuItem.Text = "Выгрузка в Excel";
+            this.выгрузкаВExcelToolStripMenuItem.Click += new System.EventHandler(this.выгрузкаВExcelToolStripMenuItem_Click);
             // 
             // DeviceForm
             // 
@@ -76,17 +96,24 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 599);
             this.Controls.Add(this.deviceFormGridView);
+            this.Controls.Add(this.DeviceFormMenuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MainMenuStrip = this.DeviceFormMenuStrip;
             this.MaximizeBox = false;
             this.Name = "DeviceForm";
             this.Text = "Оборудование на складе";
             ((System.ComponentModel.ISupportInitialize)(this.deviceFormGridView)).EndInit();
+            this.DeviceFormMenuStrip.ResumeLayout(false);
+            this.DeviceFormMenuStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.DataGridView deviceFormGridView;
+        private System.Windows.Forms.MenuStrip DeviceFormMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem выгрузкаВExcelToolStripMenuItem;
     }
 }

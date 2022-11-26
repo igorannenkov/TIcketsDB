@@ -20,6 +20,15 @@ namespace TIckets
                 cmd.Parameters.AddWithValue("@newDeviceTypeName", DeviceTypesHandlerFormTb.Text);
                 cmd.ExecuteNonQuery();
 
+                // Добавим попутно на склад новое устройство с кол-вом = 0. Определяем ИД и вставляем в таблицу.
+                cmd = new SqlCommand("SELECT DeviceTypeID FROM DeviceTypes WHERE DeviceTypeName = @devTypeName", connection);
+                cmd.Parameters.AddWithValue("@devTypeName", DeviceTypesHandlerFormTb.Text);
+                int devTypeID = (int)cmd.ExecuteScalar();
+
+                cmd = new SqlCommand("INSERT INTO Devices (DeviceType, DeviceAmount) Values (@DeviceType, 0)", connection);
+                cmd.Parameters.AddWithValue("@DeviceType", devTypeID);
+                cmd.ExecuteNonQuery();
+
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT DeviceTypeName AS Категория FROM DeviceTypes", connection);
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
