@@ -32,10 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.deviceFormGridView = new System.Windows.Forms.DataGridView();
-            this.deviceFormMenuStrip = new System.Windows.Forms.MenuStrip();
-            this.добавитьУстройствоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.deviceFormGridView)).BeginInit();
-            this.deviceFormMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // deviceFormGridView
@@ -66,29 +63,12 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.deviceFormGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.deviceFormGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.deviceFormGridView.Location = new System.Drawing.Point(0, 24);
+            this.deviceFormGridView.Location = new System.Drawing.Point(0, 0);
             this.deviceFormGridView.Name = "deviceFormGridView";
             this.deviceFormGridView.ReadOnly = true;
-            this.deviceFormGridView.Size = new System.Drawing.Size(484, 575);
+            this.deviceFormGridView.Size = new System.Drawing.Size(484, 599);
             this.deviceFormGridView.TabIndex = 0;
             this.deviceFormGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.deviceFormGridView_CellMouseDoubleClick);
-            // 
-            // deviceFormMenuStrip
-            // 
-            this.deviceFormMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.добавитьУстройствоToolStripMenuItem});
-            this.deviceFormMenuStrip.Location = new System.Drawing.Point(0, 0);
-            this.deviceFormMenuStrip.Name = "deviceFormMenuStrip";
-            this.deviceFormMenuStrip.Size = new System.Drawing.Size(484, 24);
-            this.deviceFormMenuStrip.TabIndex = 1;
-            this.deviceFormMenuStrip.Text = "menuStrip1";
-            // 
-            // добавитьУстройствоToolStripMenuItem
-            // 
-            this.добавитьУстройствоToolStripMenuItem.Name = "добавитьУстройствоToolStripMenuItem";
-            this.добавитьУстройствоToolStripMenuItem.Size = new System.Drawing.Size(136, 20);
-            this.добавитьУстройствоToolStripMenuItem.Text = "Добавить устройство";
-            this.добавитьУстройствоToolStripMenuItem.Click += new System.EventHandler(this.добавитьУстройствоToolStripMenuItem_Click);
             // 
             // DeviceForm
             // 
@@ -96,24 +76,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 599);
             this.Controls.Add(this.deviceFormGridView);
-            this.Controls.Add(this.deviceFormMenuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MainMenuStrip = this.deviceFormMenuStrip;
             this.MaximizeBox = false;
             this.Name = "DeviceForm";
-            this.Text = "Склад";
+            this.Text = "Оборудование на складе";
             ((System.ComponentModel.ISupportInitialize)(this.deviceFormGridView)).EndInit();
-            this.deviceFormMenuStrip.ResumeLayout(false);
-            this.deviceFormMenuStrip.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.DataGridView deviceFormGridView;
-        private System.Windows.Forms.MenuStrip deviceFormMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem добавитьУстройствоToolStripMenuItem;
     }
 }

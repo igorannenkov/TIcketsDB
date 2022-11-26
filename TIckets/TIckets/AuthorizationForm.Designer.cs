@@ -40,7 +40,7 @@
             // 
             this.authUserNameLbl.AutoSize = true;
             this.authUserNameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.authUserNameLbl.Location = new System.Drawing.Point(103, 4);
+            this.authUserNameLbl.Location = new System.Drawing.Point(110, 4);
             this.authUserNameLbl.Name = "authUserNameLbl";
             this.authUserNameLbl.Size = new System.Drawing.Size(55, 20);
             this.authUserNameLbl.TabIndex = 4;
@@ -50,7 +50,7 @@
             // 
             this.authUserPwdLbl.AutoSize = true;
             this.authUserPwdLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.authUserPwdLbl.Location = new System.Drawing.Point(103, 56);
+            this.authUserPwdLbl.Location = new System.Drawing.Point(110, 62);
             this.authUserPwdLbl.Name = "authUserPwdLbl";
             this.authUserPwdLbl.Size = new System.Drawing.Size(67, 20);
             this.authUserPwdLbl.TabIndex = 5;
@@ -59,27 +59,26 @@
             // authUserNameTb
             // 
             this.authUserNameTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.authUserNameTb.Location = new System.Drawing.Point(64, 27);
+            this.authUserNameTb.Location = new System.Drawing.Point(39, 27);
             this.authUserNameTb.Name = "authUserNameTb";
-            this.authUserNameTb.Size = new System.Drawing.Size(149, 26);
+            this.authUserNameTb.Size = new System.Drawing.Size(201, 26);
             this.authUserNameTb.TabIndex = 6;
             this.authUserNameTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // authUserPwdTb
             // 
             this.authUserPwdTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.authUserPwdTb.Location = new System.Drawing.Point(64, 80);
+            this.authUserPwdTb.Location = new System.Drawing.Point(39, 85);
             this.authUserPwdTb.Name = "authUserPwdTb";
             this.authUserPwdTb.PasswordChar = '*';
-            this.authUserPwdTb.Size = new System.Drawing.Size(149, 26);
+            this.authUserPwdTb.Size = new System.Drawing.Size(201, 26);
             this.authUserPwdTb.TabIndex = 7;
-            this.authUserPwdTb.Text = "1234567890";
             this.authUserPwdTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // authEnterBtn
             // 
             this.authEnterBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.authEnterBtn.Location = new System.Drawing.Point(64, 122);
+            this.authEnterBtn.Location = new System.Drawing.Point(63, 128);
             this.authEnterBtn.Name = "authEnterBtn";
             this.authEnterBtn.Size = new System.Drawing.Size(149, 36);
             this.authEnterBtn.TabIndex = 8;
@@ -91,7 +90,7 @@
             // 
             this.authLinkedLabel.AutoSize = true;
             this.authLinkedLabel.LinkColor = System.Drawing.Color.Gray;
-            this.authLinkedLabel.Location = new System.Drawing.Point(77, 170);
+            this.authLinkedLabel.Location = new System.Drawing.Point(76, 176);
             this.authLinkedLabel.Name = "authLinkedLabel";
             this.authLinkedLabel.Size = new System.Drawing.Size(127, 26);
             this.authLinkedLabel.TabIndex = 9;

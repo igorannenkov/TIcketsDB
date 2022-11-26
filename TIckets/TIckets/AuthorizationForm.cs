@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TIckets
@@ -15,12 +8,12 @@ namespace TIckets
     {
         public AuthorizationForm()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         private void ShowAdmBtn_Click(object sender, EventArgs e)
-        {        
-            AdminForm admForm = new AdminForm(); 
+        {
+            AdminForm admForm = new AdminForm();
             admForm.StartPosition = FormStartPosition.CenterScreen;
             admForm.Show();
         }
@@ -63,33 +56,44 @@ namespace TIckets
 
                         cmd.Parameters.AddWithValue("@userLogin", authUserNameTb.Text);
 
-                        string currentUserRole = (string) cmd.ExecuteScalar();
+                        string currentUserRole = (string)cmd.ExecuteScalar();
 
                         switch (currentUserRole)
                         {
+                            case "Заблокирован":
+                                if (authUserNameTb.Text == "administrator")
+                                {
+                                    goto case "Администратор";
+                                }
+                                MessageBox.Show("Учетная запись пользователя " + authUserNameTb.Text + " отключена. Для активации обратитесь к администратору системы.",
+                                        "Ошибка авторизации", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                break;
+
                             case "Администратор":
+                                authUserPwdTb.Text = String.Empty;
                                 AdminForm admForm = new AdminForm();
                                 admForm.StartPosition = FormStartPosition.CenterScreen;
-                                admForm.Text = "Администратор@"+ authUserNameTb.Text;                            
+                                admForm.Text = "Администратор@" + authUserNameTb.Text;
                                 Observer.currentUserLogin = authUserNameTb.Text;
                                 admForm.ShowDialog();
                                 break;
 
-                            case "Пользователь": 
+                            case "Пользователь":
+                                authUserPwdTb.Text = String.Empty;
                                 UserMainForm userMainForm = new UserMainForm();
                                 userMainForm.StartPosition = FormStartPosition.CenterScreen;
-                                userMainForm.Text = "Пользователь@" + authUserNameTb.Text;                               
+                                userMainForm.Text = "Пользователь@" + authUserNameTb.Text;
                                 Observer.currentUserLogin = authUserNameTb.Text;
                                 userMainForm.ShowDialog();
                                 break;
                             case "Техник":
-
-                                TechnicMainForm technicMainForm = new TechnicMainForm();            
+                                authUserPwdTb.Text = String.Empty;
+                                TechnicMainForm technicMainForm = new TechnicMainForm();
                                 technicMainForm.StartPosition = FormStartPosition.CenterScreen;
                                 technicMainForm.Text = "Техник@" + authUserNameTb.Text;
                                 Observer.currentUserLogin = authUserNameTb.Text;
                                 technicMainForm.ShowDialog();
-                                break;      
+                                break;
                         }
                     }
                     else
@@ -103,7 +107,7 @@ namespace TIckets
 
         private void authLinkedLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show("Для выполнения сброса пароля или регистрации новой учетной записи необходимо обратиться к Администратору системы.", 
+            MessageBox.Show("Для выполнения сброса пароля или регистрации новой учетной записи необходимо обратиться к Администратору системы.",
                 "Регистрация / сброс пароля", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }

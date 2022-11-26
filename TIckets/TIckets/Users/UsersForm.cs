@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using TIckets.Admin;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace TIckets
 {
@@ -33,7 +25,6 @@ namespace TIckets
                 adapter.Fill(ds);
                 this.UsersFormGridView.DataSource = ds.Tables[0];
             }
-
         }
 
         private void добавитьПользователяToolStripMenuItem_Click(object sender, EventArgs e)
@@ -67,8 +58,8 @@ namespace TIckets
                 adapter.Fill(ds);
 
                 (userHandleForm.Controls["UserHandlerFormUserRoleCb"] as ComboBox).ValueMember = "Роль";
-                (userHandleForm.Controls["UserHandlerFormUserRoleCb"] as ComboBox).DataSource = ds.Tables[0];         
-                (userHandleForm.Controls["UserHandlerFormUserRoleCb"] as ComboBox).SelectedValue = UsersFormGridView.CurrentRow.Cells[2].Value.ToString();             
+                (userHandleForm.Controls["UserHandlerFormUserRoleCb"] as ComboBox).DataSource = ds.Tables[0];
+                (userHandleForm.Controls["UserHandlerFormUserRoleCb"] as ComboBox).SelectedValue = UsersFormGridView.CurrentRow.Cells[2].Value.ToString();
                 (userHandleForm.Controls["UserHandlerFormAddBtn"] as Button).Enabled = false;
                 userHandleForm.StartPosition = FormStartPosition.CenterParent;
                 userHandleForm.ShowDialog();
@@ -92,8 +83,6 @@ namespace TIckets
                     string command = "SELECT UserID AS ID, UserName AS ФИО, RoleName AS Роль, UserLogin AS Логин, UserPassword AS [Пароль MD5] " +
                                      "FROM Users U " +
                                      "INNER JOIN Roles R ON U.UserRoleID = R.RoleID";
-
-
 
                     SqlDataAdapter adapter = new SqlDataAdapter(command, connection);
                     DataSet ds = new DataSet();

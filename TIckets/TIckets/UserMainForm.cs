@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TIckets
@@ -19,10 +13,10 @@ namespace TIckets
         }
         private void новаяЗаявкаToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UserAddTicketForm addTicketForm = new UserAddTicketForm();
+            TicketAddForm addTicketForm = new TicketAddForm();
             addTicketForm.Owner = this;
             addTicketForm.StartPosition = FormStartPosition.CenterParent;
-            addTicketForm.ShowDialog();       
+            addTicketForm.ShowDialog();
         }
 
         private void сменаПароляToolStripMenuItem_Click(object sender, EventArgs e)
@@ -47,25 +41,30 @@ namespace TIckets
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
+
                 SqlCommand cmd = new SqlCommand("SELECT T.TicketID AS [ID Заявки], " +
-                                                "U.UserName AS Пользователь, " +
-                                                "T.TicketUserComment AS [Текст обращения], " +
-                                                "COALESCE(UN.UserName, N'Не назначен') AS [Назначенный техник], " +
-                                                "TS.TicketStatusName AS [Статус заявки], " +
-                                                "T.TicketStartDateTime AS [Время регистрации], " +
-                                                "T.TicketEndDateTime AS [Время выполнения], " +
-                                                "T.TicketComment AS [Ответ по обращению], " +
-                                                "DT.DeviceTypeName AS [Используемые материалы] " +
-                                                "FROM Tickets AS T " +
-                                                "LEFT JOIN Users AS U " +
-                                                "ON T.UserID = U.UserID " +
-                                                "LEFT JOIN  Users AS UN " +
-                                                "ON T.TechnicID = UN.UserID " +
-                                                "LEFT JOIN DeviceTypes AS DT " +
-                                                "ON T.UsedDeviceID = DT.DeviceTypeID " +
-                                                "LEFT JOIN TicketStatuses TS " +
-                                                "ON T.TicketStatusID = TS.TicketStatusID " +
-                                                "WHERE U.UserLogin = @userLogin", connection);
+                                                                   "U.UserName AS Пользователь, " +
+                                                                   "T.TicketUserComment AS [Текст обращения], " +
+                                                                   "COALESCE(UN.UserName, N'Не назначен') AS [Назначенный техник], " +
+                                                                   "TS.TicketStatusName AS [Статус заявки], " +
+                                                                   "T.TicketStartDateTime AS [Время регистрации], " +
+                                                                   "T.TicketEndDateTime AS [Время выполнения], " +
+                                                                   "T.TicketComment AS [Ответ по обращению], " +
+                                                                   "DT.DeviceTypeName AS [Используемые материалы] " +
+                                                                   "FROM Tickets AS T " +
+                                                                   "LEFT JOIN Users AS U " +
+                                                                   "ON T.UserID = U.UserID " +
+                                                                   "LEFT JOIN  Users AS UN " +
+                                                                   "ON T.TechnicID = UN.UserID " +
+                                                                   "LEFT JOIN Devices AS D " +
+                                                                   "ON T.UsedDeviceID = D.DeviceID " +
+                                                                   "LEFT JOIN TicketStatuses TS " +
+                                                                   "ON T.TicketStatusID = TS.TicketStatusID " +
+                                                                   "LEFT JOIN DeviceTypes AS DT " +
+                                                                   "ON D.DeviceType = DT.DeviceTypeID " +
+                                                                   "WHERE U.UserLogin = @userLogin", connection);
+
+
                 cmd.Parameters.AddWithValue("@userLogin", Observer.currentUserLogin);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -79,14 +78,14 @@ namespace TIckets
             if ((this.Controls["userMainFormGridView"] as DataGridView).CurrentRow.Cells[4].Value.ToString() == "Отменена"
                 || (this.Controls["userMainFormGridView"] as DataGridView).CurrentRow.Cells[4].Value.ToString() == "Отклонена")
             {
-                MessageBox.Show("Отмененные и отклоненные заявки не подлежат редактированию.", "Невозможность редактирования заявки", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Отмененные и отклоненные заявки не подлежат редактированию.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
-                TicketHandleForm ticketHandleForm = new TicketHandleForm();          
+                TicketHandleForm ticketHandleForm = new TicketHandleForm();
                 (ticketHandleForm.Controls["ticketDeviceCb"] as ComboBox).Enabled = false;
                 (ticketHandleForm.Controls["ticketUserCommentTb"] as TextBox).Text = this.userMainFormGridView.CurrentRow.Cells[2].Value.ToString();
                 (ticketHandleForm.Controls["ticketUserCommentTb"] as TextBox).Enabled = true;
@@ -105,7 +104,7 @@ namespace TIckets
                 (ticketHandleForm.Controls["ticketUserNameCb"] as ComboBox).DataSource = dt;
                 (ticketHandleForm.Controls["ticketUserNameCb"] as ComboBox).SelectedValue = this.userMainFormGridView.CurrentRow.Cells[1].Value.ToString();
                 (ticketHandleForm.Controls["ticketUserNameCb"] as ComboBox).Enabled = false;
-               
+
                 // Имя техника пользователю редактировать запрещено
                 (ticketHandleForm.Controls["ticketTechnicNameCb"] as ComboBox).Text = this.userMainFormGridView.CurrentRow.Cells[3].Value.ToString();
                 (ticketHandleForm.Controls["ticketTechnicNameCb"] as ComboBox).Enabled = false;
@@ -126,6 +125,8 @@ namespace TIckets
                 }
 
                 (ticketHandleForm.Controls["ticketCommentTb"] as TextBox).Text = userMainFormGridView.CurrentRow.Cells[7].Value.ToString();
+                (ticketHandleForm.Controls["sparePartChekBox"] as CheckBox).Enabled = false;
+                ticketHandleForm.Text = "Заявка № " + this.userMainFormGridView.CurrentRow.Cells[0].Value.ToString();
                 ticketHandleForm.StartPosition = FormStartPosition.CenterParent;
                 ticketHandleForm.ShowDialog();
             }

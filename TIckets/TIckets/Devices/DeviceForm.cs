@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TIckets
@@ -20,7 +14,7 @@ namespace TIckets
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("SELECT DeviceTypeName AS Устройство, DeviceAmount AS [Колич.] " +
+                SqlCommand cmd = new SqlCommand("SELECT DeviceTypeName AS Устройство, DeviceAmount AS [На складе] " +
                                                 "FROM Devices D " +
                                                 "INNER JOIN DeviceTypes DT " +
                                                 "ON D.DeviceType = DT.DeviceTypeID  ORDER BY DeviceTypeName", connection);
@@ -60,7 +54,6 @@ namespace TIckets
                 adapter.Fill(ds);
 
                 DeviceHandlerForm devHandlerForm = new DeviceHandlerForm();
-                (devHandlerForm.Controls["DeviceHandlerFormAddBtn"] as Button).Enabled = false;
                 (devHandlerForm.Controls["DeviceHandlerFormCb"] as ComboBox).DataSource = ds.Tables[0];
                 (devHandlerForm.Controls["DeviceHandlerFormCb"] as ComboBox).ValueMember = "DeviceTypeName";
 

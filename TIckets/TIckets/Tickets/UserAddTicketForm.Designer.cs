@@ -1,6 +1,6 @@
 ﻿namespace TIckets
 {
-    partial class UserAddTicketForm
+    partial class TicketAddForm
     {
         /// <summary>
         /// Required designer variable.
@@ -69,7 +69,7 @@
             this.userAddTicketCnlBtn.UseVisualStyleBackColor = true;
             this.userAddTicketCnlBtn.Click += new System.EventHandler(this.userAddTicketCnlBtn_Click);
             // 
-            // UserAddTicketForm
+            // TicketAddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -77,7 +77,7 @@
             this.Controls.Add(this.userAddTicketCnlBtn);
             this.Controls.Add(this.userAddTicketTb);
             this.Controls.Add(this.userAddTicketBtn);
-            this.Name = "UserAddTicketForm";
+            this.Name = "TicketAddForm";
             this.Text = "Новая заявка";
             this.ResumeLayout(false);
             this.PerformLayout();

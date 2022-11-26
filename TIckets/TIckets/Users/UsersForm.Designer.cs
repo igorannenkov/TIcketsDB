@@ -46,9 +46,6 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.UsersFormGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.UsersFormGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.UsersFormGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
@@ -59,12 +56,13 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.UsersFormGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.UsersFormGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.UsersFormGridView.Location = new System.Drawing.Point(12, 27);
+            this.UsersFormGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UsersFormGridView.Location = new System.Drawing.Point(0, 24);
             this.UsersFormGridView.Name = "UsersFormGridView";
             this.UsersFormGridView.ReadOnly = true;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.UsersFormGridView.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.UsersFormGridView.Size = new System.Drawing.Size(872, 411);
+            this.UsersFormGridView.Size = new System.Drawing.Size(896, 426);
             this.UsersFormGridView.TabIndex = 0;
             this.UsersFormGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.UsersFormGridView_CellMouseDoubleClick);
             this.UsersFormGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UsersFormGridView_KeyDown);

@@ -34,7 +34,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.ticketHandlerFormTicketCommentTb = new System.Windows.Forms.Label();
-            this.ticketHandlerFormUsedDeviceLbl = new System.Windows.Forms.Label();
             this.ticketUserNameCb = new System.Windows.Forms.ComboBox();
             this.ticketTechnicNameCb = new System.Windows.Forms.ComboBox();
             this.ticketTicketStatusCb = new System.Windows.Forms.ComboBox();
@@ -44,6 +43,7 @@
             this.ticketUserCommentTb = new System.Windows.Forms.TextBox();
             this.ticketHandlerFormTicketCnlBtn = new System.Windows.Forms.Button();
             this.ticketHandlerFormTicketReopenBtn = new System.Windows.Forms.Button();
+            this.sparePartChekBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // ticketHandlerFormEditBtn
@@ -108,16 +108,6 @@
             this.ticketHandlerFormTicketCommentTb.TabIndex = 8;
             this.ticketHandlerFormTicketCommentTb.Text = "Ответ по обращению";
             // 
-            // ticketHandlerFormUsedDeviceLbl
-            // 
-            this.ticketHandlerFormUsedDeviceLbl.AutoSize = true;
-            this.ticketHandlerFormUsedDeviceLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ticketHandlerFormUsedDeviceLbl.Location = new System.Drawing.Point(224, 73);
-            this.ticketHandlerFormUsedDeviceLbl.Name = "ticketHandlerFormUsedDeviceLbl";
-            this.ticketHandlerFormUsedDeviceLbl.Size = new System.Drawing.Size(210, 20);
-            this.ticketHandlerFormUsedDeviceLbl.TabIndex = 9;
-            this.ticketHandlerFormUsedDeviceLbl.Text = "Используемые материалы";
-            // 
             // ticketUserNameCb
             // 
             this.ticketUserNameCb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -144,6 +134,7 @@
             this.ticketTicketStatusCb.Name = "ticketTicketStatusCb";
             this.ticketTicketStatusCb.Size = new System.Drawing.Size(203, 28);
             this.ticketTicketStatusCb.TabIndex = 12;
+            this.ticketTicketStatusCb.SelectedIndexChanged += new System.EventHandler(this.ticketTicketStatusCb_SelectedIndexChanged);
             // 
             // ticketCommentTb
             // 
@@ -205,11 +196,25 @@
             this.ticketHandlerFormTicketReopenBtn.UseVisualStyleBackColor = true;
             this.ticketHandlerFormTicketReopenBtn.Click += new System.EventHandler(this.ticketHandlerFormTicketReopenBtn_Click);
             // 
+            // sparePartChekBox
+            // 
+            this.sparePartChekBox.AutoSize = true;
+            this.sparePartChekBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.sparePartChekBox.Location = new System.Drawing.Point(229, 70);
+            this.sparePartChekBox.Name = "sparePartChekBox";
+            this.sparePartChekBox.Size = new System.Drawing.Size(187, 24);
+            this.sparePartChekBox.TabIndex = 21;
+            this.sparePartChekBox.Text = "Использовать склад";
+            this.sparePartChekBox.UseVisualStyleBackColor = true;
+            this.sparePartChekBox.CheckedChanged += new System.EventHandler(this.sparePartChekBox_CheckedChanged);
+            this.sparePartChekBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.sparePartChekBox_MouseClick);
+            // 
             // TicketHandleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(460, 471);
+            this.Controls.Add(this.sparePartChekBox);
             this.Controls.Add(this.ticketHandlerFormTicketReopenBtn);
             this.Controls.Add(this.ticketHandlerFormTicketCnlBtn);
             this.Controls.Add(this.ticketUserCommentTb);
@@ -219,7 +224,6 @@
             this.Controls.Add(this.ticketTicketStatusCb);
             this.Controls.Add(this.ticketTechnicNameCb);
             this.Controls.Add(this.ticketUserNameCb);
-            this.Controls.Add(this.ticketHandlerFormUsedDeviceLbl);
             this.Controls.Add(this.ticketHandlerFormTicketCommentTb);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -243,7 +247,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label ticketHandlerFormTicketCommentTb;
-        private System.Windows.Forms.Label ticketHandlerFormUsedDeviceLbl;
         private System.Windows.Forms.ComboBox ticketUserNameCb;
         private System.Windows.Forms.ComboBox ticketTechnicNameCb;
         private System.Windows.Forms.ComboBox ticketTicketStatusCb;
@@ -253,5 +256,6 @@
         private System.Windows.Forms.TextBox ticketUserCommentTb;
         private System.Windows.Forms.Button ticketHandlerFormTicketCnlBtn;
         private System.Windows.Forms.Button ticketHandlerFormTicketReopenBtn;
+        private System.Windows.Forms.CheckBox sparePartChekBox;
     }
 }

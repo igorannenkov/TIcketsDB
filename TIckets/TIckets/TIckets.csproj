@@ -89,6 +89,7 @@
     <Compile Include="ExcelReporter.cs" />
     <Compile Include="HashGenerator.cs" />
     <Compile Include="Observer.cs" />
+    <Compile Include="PlaceHolder.cs" />
     <Compile Include="Roles\RoleHandlerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,22 +108,16 @@
     <Compile Include="Tickets\TicketHandleForm.Designer.cs">
       <DependentUpon>TicketHandleForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tickets\TicketForm.cs">
+    <Compile Include="Tickets\UserReopenTicketForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tickets\TicketForm.Designer.cs">
-      <DependentUpon>TicketForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserReopenTicketForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UserReopenTicketForm.Designer.cs">
+    <Compile Include="Tickets\UserReopenTicketForm.Designer.cs">
       <DependentUpon>UserReopenTicketForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserAddTicketForm.cs">
+    <Compile Include="Tickets\UserAddTicketForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserAddTicketForm.Designer.cs">
+    <Compile Include="Tickets\UserAddTicketForm.Designer.cs">
       <DependentUpon>UserAddTicketForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UserMainForm.cs">
@@ -217,13 +212,10 @@
     <EmbeddedResource Include="Tickets\TicketHandleForm.resx">
       <DependentUpon>TicketHandleForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tickets\TicketForm.resx">
-      <DependentUpon>TicketForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserReopenTicketForm.resx">
+    <EmbeddedResource Include="Tickets\UserReopenTicketForm.resx">
       <DependentUpon>UserReopenTicketForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserAddTicketForm.resx">
+    <EmbeddedResource Include="Tickets\UserAddTicketForm.resx">
       <DependentUpon>UserAddTicketForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserMainForm.resx">

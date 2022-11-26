@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TechnicFormMenuStrip = new System.Windows.Forms.MenuStrip();
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.складToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сменаПароляToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выходИзСистемыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.моиЗаявкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,8 +41,6 @@
             this.выполненныеЗаявкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.возобновленныеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.историяЗаявокКлиентаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.складЗапчастейToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выгрузкаВExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.technicGridView = new System.Windows.Forms.DataGridView();
             this.TechnicFormMenuStrip.SuspendLayout();
@@ -63,23 +62,31 @@
             // менюToolStripMenuItem
             // 
             this.менюToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.складToolStripMenuItem,
             this.сменаПароляToolStripMenuItem,
             this.выходИзСистемыToolStripMenuItem});
             this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
             this.менюToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.менюToolStripMenuItem.Text = "Меню";
             // 
+            // складToolStripMenuItem
+            // 
+            this.складToolStripMenuItem.Name = "складToolStripMenuItem";
+            this.складToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.складToolStripMenuItem.Text = "Оборудование на складе";
+            this.складToolStripMenuItem.Click += new System.EventHandler(this.складToolStripMenuItem_Click);
+            // 
             // сменаПароляToolStripMenuItem
             // 
             this.сменаПароляToolStripMenuItem.Name = "сменаПароляToolStripMenuItem";
-            this.сменаПароляToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.сменаПароляToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
             this.сменаПароляToolStripMenuItem.Text = "Смена пароля";
             this.сменаПароляToolStripMenuItem.Click += new System.EventHandler(this.сменаПароляToolStripMenuItem_Click);
             // 
             // выходИзСистемыToolStripMenuItem
             // 
             this.выходИзСистемыToolStripMenuItem.Name = "выходИзСистемыToolStripMenuItem";
-            this.выходИзСистемыToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.выходИзСистемыToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
             this.выходИзСистемыToolStripMenuItem.Text = "Выход из системы";
             this.выходИзСистемыToolStripMenuItem.Click += new System.EventHandler(this.выходИзСистемыToolStripMenuItem_Click);
             // 
@@ -90,9 +97,7 @@
             this.новыеЗаявкиToolStripMenuItem,
             this.выполненныеЗаявкиToolStripMenuItem,
             this.возобновленныеToolStripMenuItem,
-            this.историяЗаявокКлиентаToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.складЗапчастейToolStripMenuItem});
+            this.историяЗаявокКлиентаToolStripMenuItem});
             this.моиЗаявкиToolStripMenuItem.Name = "моиЗаявкиToolStripMenuItem";
             this.моиЗаявкиToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.моиЗаявкиToolStripMenuItem.Text = "Заявки";
@@ -132,18 +137,6 @@
             this.историяЗаявокКлиентаToolStripMenuItem.Text = "История заявок клиента";
             this.историяЗаявокКлиентаToolStripMenuItem.Click += new System.EventHandler(this.историяЗаявокКлиентаToolStripMenuItem_Click);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(204, 6);
-            // 
-            // складЗапчастейToolStripMenuItem
-            // 
-            this.складЗапчастейToolStripMenuItem.Enabled = false;
-            this.складЗапчастейToolStripMenuItem.Name = "складЗапчастейToolStripMenuItem";
-            this.складЗапчастейToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.складЗапчастейToolStripMenuItem.Text = "Склад запчастей";
-            // 
             // выгрузкаВExcelToolStripMenuItem
             // 
             this.выгрузкаВExcelToolStripMenuItem.Name = "выгрузкаВExcelToolStripMenuItem";
@@ -157,20 +150,20 @@
             this.technicGridView.AllowUserToDeleteRows = false;
             this.technicGridView.AllowUserToResizeColumns = false;
             this.technicGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.technicGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.technicGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.technicGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.technicGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.technicGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.technicGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.technicGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.technicGridView.Location = new System.Drawing.Point(0, 24);
             this.technicGridView.Name = "technicGridView";
@@ -189,6 +182,7 @@
             this.MainMenuStrip = this.TechnicFormMenuStrip;
             this.Name = "TechnicMainForm";
             this.Text = "Техник";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.TechnicFormMenuStrip.ResumeLayout(false);
             this.TechnicFormMenuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.technicGridView)).EndInit();
@@ -205,13 +199,12 @@
         private System.Windows.Forms.ToolStripMenuItem новыеЗаявкиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem выполненныеЗаявкиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem историяЗаявокКлиентаToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem складЗапчастейToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem выгрузкаВExcelToolStripMenuItem;
         private System.Windows.Forms.DataGridView technicGridView;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem менюToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сменаПароляToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem выходИзСистемыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem возобновленныеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem складToolStripMenuItem;
     }
 }

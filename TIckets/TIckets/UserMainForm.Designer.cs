@@ -93,14 +93,14 @@
             // сменаПароляToolStripMenuItem
             // 
             this.сменаПароляToolStripMenuItem.Name = "сменаПароляToolStripMenuItem";
-            this.сменаПароляToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.сменаПароляToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.сменаПароляToolStripMenuItem.Text = "Смена пароля";
             this.сменаПароляToolStripMenuItem.Click += new System.EventHandler(this.сменаПароляToolStripMenuItem_Click);
             // 
             // выходИзСистемыToolStripMenuItem
             // 
             this.выходИзСистемыToolStripMenuItem.Name = "выходИзСистемыToolStripMenuItem";
-            this.выходИзСистемыToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.выходИзСистемыToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.выходИзСистемыToolStripMenuItem.Text = "Выход из системы";
             this.выходИзСистемыToolStripMenuItem.Click += new System.EventHandler(this.выходИзСистемыToolStripMenuItem_Click);
             // 
@@ -121,7 +121,7 @@
             // выгрузкаВExcelToolStripMenuItem
             // 
             this.выгрузкаВExcelToolStripMenuItem.Name = "выгрузкаВExcelToolStripMenuItem";
-            this.выгрузкаВExcelToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
+            this.выгрузкаВExcelToolStripMenuItem.Size = new System.Drawing.Size(109, 20);
             this.выгрузкаВExcelToolStripMenuItem.Text = "Выгрузка в Excel";
             this.выгрузкаВExcelToolStripMenuItem.Click += new System.EventHandler(this.выгрузкаВExcelToolStripMenuItem_Click);
             // 
@@ -135,6 +135,7 @@
             this.MainMenuStrip = this.userMainFormMenuStrip;
             this.Name = "UserMainForm";
             this.Text = "Пользователь";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.userMainFormGridView)).EndInit();
             this.userMainFormMenuStrip.ResumeLayout(false);
             this.userMainFormMenuStrip.PerformLayout();

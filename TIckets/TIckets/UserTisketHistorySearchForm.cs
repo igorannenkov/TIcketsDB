@@ -21,6 +21,7 @@ namespace TIckets
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
+
                 SqlCommand cmd = new SqlCommand("SELECT T.TicketID AS [ID Заявки], " +
                                                 "U.UserName AS Пользователь, " +
                                                 "T.TicketUserComment AS [Текст обращения], " +
@@ -35,10 +36,12 @@ namespace TIckets
                                                 "ON T.UserID = U.UserID " +
                                                 "LEFT JOIN  Users AS UN " +
                                                 "ON T.TechnicID = UN.UserID " +
-                                                "LEFT JOIN DeviceTypes AS DT " +
-                                                "ON T.UsedDeviceID = DT.DeviceTypeID " +
+                                                "LEFT JOIN Devices AS D " +
+                                                "ON T.UsedDeviceID = D.DeviceID " +
                                                 "LEFT JOIN TicketStatuses TS " +
                                                 "ON T.TicketStatusID = TS.TicketStatusID " +
+                                                "LEFT JOIN DeviceTypes AS DT " +
+                                                "ON D.DeviceType = DT.DeviceTypeID " +
                                                 "WHERE UPPER (U.UserName) LIKE @userNamе " +
                                                 "ORDER BY U.UserName, T.TicketStartDateTime", connection);
 

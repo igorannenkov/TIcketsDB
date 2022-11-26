@@ -31,7 +31,7 @@ namespace TIckets
                     MessageBox.Show("Пароль и его подтверждение не совпадают. Повторите ввод.",
                        "Ошибка смены пароля", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
-                }               
+                }
 
                 cmd = new SqlCommand("UPDATE Users SET " +
                                         "UserPassword = @userPassword " +

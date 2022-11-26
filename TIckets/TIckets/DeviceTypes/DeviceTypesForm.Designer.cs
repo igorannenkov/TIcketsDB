@@ -67,9 +67,6 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.DeviceTypesGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.DeviceTypesGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.DeviceTypesGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
@@ -88,7 +85,8 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DeviceTypesGridView.DefaultCellStyle = dataGridViewCellStyle3;
-            this.DeviceTypesGridView.Location = new System.Drawing.Point(12, 27);
+            this.DeviceTypesGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DeviceTypesGridView.Location = new System.Drawing.Point(0, 24);
             this.DeviceTypesGridView.Name = "DeviceTypesGridView";
             this.DeviceTypesGridView.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -101,7 +99,7 @@
             this.DeviceTypesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.DeviceTypesGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.DeviceTypesGridView.Size = new System.Drawing.Size(336, 429);
+            this.DeviceTypesGridView.Size = new System.Drawing.Size(360, 444);
             this.DeviceTypesGridView.TabIndex = 1;
             this.DeviceTypesGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DeviceTypesGridView_CellMouseDoubleClick);
             this.DeviceTypesGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DeviceTypesGridView_KeyDown);

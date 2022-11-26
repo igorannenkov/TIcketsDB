@@ -17,24 +17,26 @@ namespace TIckets
             {
                 connection.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT T.TicketID AS [ID Заявки], " +
-                                                            "U.UserName AS Пользователь, " +
-                                                            "T.TicketUserComment AS [Текст обращения], " +
-                                                            "COALESCE(UN.UserName, N'Не назначен') AS [Назначенный техник], " +
-                                                            "TS.TicketStatusName AS [Статус заявки], " +
-                                                            "T.TicketStartDateTime AS [Время регистрации], " +
-                                                            "T.TicketEndDateTime AS [Время выполнения], " +
-                                                            "T.TicketComment AS [Ответ по обращению], " +
-                                                            "DT.DeviceTypeName AS [Используемые материалы] " +
-                                                            "FROM Tickets AS T " +
-                                                            "LEFT JOIN Users AS U " +
-                                                            "ON T.UserID = U.UserID " +
-                                                            "LEFT JOIN  Users AS UN " +
-                                                            "ON T.TechnicID = UN.UserID " +
-                                                            "LEFT JOIN DeviceTypes AS DT " +
-                                                            "ON T.UsedDeviceID = DT.DeviceTypeID " +
-                                                            "LEFT JOIN TicketStatuses TS " +
-                                                            "ON T.TicketStatusID = TS.TicketStatusID " +
-                                                            "WHERE UN.UserLogin = N'" + Observer.currentUserLogin + "';", connection);
+                                                                    "U.UserName AS Пользователь, " +
+                                                                    "T.TicketUserComment AS [Текст обращения], " +
+                                                                    "COALESCE(UN.UserName, N'Не назначен') AS [Назначенный техник], " +
+                                                                    "TS.TicketStatusName AS [Статус заявки], " +
+                                                                    "T.TicketStartDateTime AS [Время регистрации], " +
+                                                                    "T.TicketEndDateTime AS [Время выполнения], " +
+                                                                    "T.TicketComment AS [Ответ по обращению], " +
+                                                                    "DT.DeviceTypeName AS [Используемые материалы] " +
+                                                                    "FROM Tickets AS T " +
+                                                                    "LEFT JOIN Users AS U " +
+                                                                    "ON T.UserID = U.UserID " +
+                                                                    "LEFT JOIN  Users AS UN " +
+                                                                    "ON T.TechnicID = UN.UserID " +
+                                                                    "LEFT JOIN Devices AS D " +
+                                                                    "ON T.UsedDeviceID = D.DeviceID " +
+                                                                    "LEFT JOIN TicketStatuses TS " +
+                                                                    "ON T.TicketStatusID = TS.TicketStatusID " +
+                                                                    "LEFT JOIN DeviceTypes AS DT " +
+                                                                    "ON D.DeviceType = DT.DeviceTypeID " +
+                                                                    "WHERE UN.UserLogin = N'" + Observer.currentUserLogin + "';", connection);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 technicGridView.DataSource = dt;
@@ -47,25 +49,27 @@ namespace TIckets
             {
                 connection.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT T.TicketID AS [ID Заявки], " +
-                                                            "U.UserName AS Пользователь, " +
-                                                            "T.TicketUserComment AS [Текст обращения], " +
-                                                            "COALESCE(UN.UserName, N'Не назначен') AS [Назначенный техник], " +
-                                                            "TS.TicketStatusName AS [Статус заявки], " +
-                                                            "T.TicketStartDateTime AS [Время регистрации], " +
-                                                            "T.TicketEndDateTime AS [Время выполнения], " +
-                                                            "T.TicketComment AS [Ответ по обращению], " +
-                                                            "DT.DeviceTypeName AS [Используемые материалы] " +
-                                                            "FROM Tickets AS T " +
-                                                            "LEFT JOIN Users AS U " +
-                                                            "ON T.UserID = U.UserID " +
-                                                            "LEFT JOIN  Users AS UN " +
-                                                            "ON T.TechnicID = UN.UserID " +
-                                                            "LEFT JOIN DeviceTypes AS DT " +
-                                                            "ON T.UsedDeviceID = DT.DeviceTypeID " +
-                                                            "LEFT JOIN TicketStatuses TS " +
-                                                            "ON T.TicketStatusID = TS.TicketStatusID " +
-                                                            "WHERE UN.UserLogin = N'" + Observer.currentUserLogin + "' " +
-                                                            "AND TS.TicketStatusName = N'Выполнена';", connection);
+                                                                     "U.UserName AS Пользователь, " +
+                                                                     "T.TicketUserComment AS [Текст обращения], " +
+                                                                     "COALESCE(UN.UserName, N'Не назначен') AS [Назначенный техник], " +
+                                                                     "TS.TicketStatusName AS [Статус заявки], " +
+                                                                     "T.TicketStartDateTime AS [Время регистрации], " +
+                                                                     "T.TicketEndDateTime AS [Время выполнения], " +
+                                                                     "T.TicketComment AS [Ответ по обращению], " +
+                                                                     "DT.DeviceTypeName AS [Используемые материалы] " +
+                                                                     "FROM Tickets AS T " +
+                                                                     "LEFT JOIN Users AS U " +
+                                                                     "ON T.UserID = U.UserID " +
+                                                                     "LEFT JOIN  Users AS UN " +
+                                                                     "ON T.TechnicID = UN.UserID " +
+                                                                     "LEFT JOIN Devices AS D " +
+                                                                     "ON T.UsedDeviceID = D.DeviceID " +
+                                                                     "LEFT JOIN TicketStatuses TS " +
+                                                                     "ON T.TicketStatusID = TS.TicketStatusID " +
+                                                                     "LEFT JOIN DeviceTypes AS DT " +
+                                                                     "ON D.DeviceType = DT.DeviceTypeID " +
+                                                                     "WHERE UN.UserLogin = N'" + Observer.currentUserLogin + "' " +
+                                                                     "AND TS.TicketStatusName = N'Выполнена';", connection);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 technicGridView.DataSource = dt;
@@ -78,25 +82,27 @@ namespace TIckets
             {
                 connection.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter("SELECT T.TicketID AS [ID Заявки], " +
-                                                            "U.UserName AS Пользователь, " +
-                                                            "T.TicketUserComment AS [Текст обращения], " +
-                                                            "COALESCE(UN.UserName, N'Не назначен') AS [Назначенный техник], " +
-                                                            "TS.TicketStatusName AS [Статус заявки], " +
-                                                            "T.TicketStartDateTime AS [Время регистрации], " +
-                                                            "T.TicketEndDateTime AS [Время выполнения], " +
-                                                            "T.TicketComment AS [Ответ по обращению], " +
-                                                            "DT.DeviceTypeName AS [Используемые материалы] " +
-                                                            "FROM Tickets AS T " +
-                                                            "LEFT JOIN Users AS U " +
-                                                            "ON T.UserID = U.UserID " +
-                                                            "LEFT JOIN  Users AS UN " +
-                                                            "ON T.TechnicID = UN.UserID " +
-                                                            "LEFT JOIN DeviceTypes AS DT " +
-                                                            "ON T.UsedDeviceID = DT.DeviceTypeID " +
-                                                            "LEFT JOIN TicketStatuses TS " +
-                                                            "ON T.TicketStatusID = TS.TicketStatusID " +
-                                                            "WHERE UN.UserLogin = N'" + Observer.currentUserLogin + "' " +
-                                                            "AND TS.TicketStatusName = N'Принята в работу';", connection);
+                                                                     "U.UserName AS Пользователь, " +
+                                                                     "T.TicketUserComment AS [Текст обращения], " +
+                                                                     "COALESCE(UN.UserName, N'Не назначен') AS [Назначенный техник], " +
+                                                                     "TS.TicketStatusName AS [Статус заявки], " +
+                                                                     "T.TicketStartDateTime AS [Время регистрации], " +
+                                                                     "T.TicketEndDateTime AS [Время выполнения], " +
+                                                                     "T.TicketComment AS [Ответ по обращению], " +
+                                                                     "DT.DeviceTypeName AS [Используемые материалы] " +
+                                                                     "FROM Tickets AS T " +
+                                                                     "LEFT JOIN Users AS U " +
+                                                                     "ON T.UserID = U.UserID " +
+                                                                     "LEFT JOIN  Users AS UN " +
+                                                                     "ON T.TechnicID = UN.UserID " +
+                                                                     "LEFT JOIN Devices AS D " +
+                                                                     "ON T.UsedDeviceID = D.DeviceID " +
+                                                                     "LEFT JOIN TicketStatuses TS " +
+                                                                     "ON T.TicketStatusID = TS.TicketStatusID " +
+                                                                     "LEFT JOIN DeviceTypes AS DT " +
+                                                                     "ON D.DeviceType = DT.DeviceTypeID " +
+                                                                     "WHERE UN.UserLogin = N'" + Observer.currentUserLogin + "' " +
+                                                                     "AND TS.TicketStatusName = N'Принята в работу';", connection);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 technicGridView.DataSource = dt;
@@ -123,6 +129,7 @@ namespace TIckets
         private void историяЗаявокКлиентаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UserTisketHistorySearchForm historySearchForm = new UserTisketHistorySearchForm();
+            (historySearchForm.Controls["ticketHistorySearchTb"] as TextBox).AddPlaceHolder("Пользователь");
             historySearchForm.StartPosition = FormStartPosition.CenterScreen;
             historySearchForm.ShowDialog();
         }
@@ -148,7 +155,6 @@ namespace TIckets
                 // скрываем кнопку "Отменить обращение"
                 (ticketHandleForm.Controls["ticketHandlerFormTicketCnlBtn"] as Button).Visible = false;
                 (ticketHandleForm.Controls["ticketHandlerFormTicketReopenBtn"] as Button).Visible = false;
-                (ticketHandleForm.Controls["ticketHandlerFormUsedDeviceLbl"] as Label).Enabled = false;
 
                 ticketHandleForm.Owner = this;
 
@@ -186,9 +192,15 @@ namespace TIckets
                     (ticketHandleForm.Controls["ticketTechnicNameCb"] as ComboBox).SelectedIndex = -1;
                 }
 
-                ticketHandleForm.StartPosition = FormStartPosition.CenterParent;
+                
                 (ticketHandleForm.Controls["ticketTicketStatusCb"] as ComboBox).Text = technicGridView.CurrentRow.Cells[4].Value.ToString();
 
+                (ticketHandleForm.Controls["sparePartChekBox"] as CheckBox).Checked = false;
+                (ticketHandleForm.Controls["ticketDeviceCb"] as ComboBox).Enabled = false;
+                
+                ticketHandleForm.Text = "Заявка № " + this.technicGridView.CurrentRow.Cells[0].Value.ToString();
+
+                ticketHandleForm.StartPosition = FormStartPosition.CenterParent;
                 ticketHandleForm.ShowDialog();
             }
         }
@@ -222,6 +234,14 @@ namespace TIckets
                 adapter.Fill(dt);
                 technicGridView.DataSource = dt;
             }
+        }
+
+        private void складToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeviceForm deviceForm = new DeviceForm();
+            deviceForm.StartPosition = FormStartPosition.CenterParent;
+            deviceForm.Owner = this;
+            deviceForm.ShowDialog();
         }
     }
 }

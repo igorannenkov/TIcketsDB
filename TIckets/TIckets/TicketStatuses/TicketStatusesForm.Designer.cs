@@ -67,12 +67,13 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.TicketStatusesFormGridView.DefaultCellStyle = dataGridViewCellStyle3;
-            this.TicketStatusesFormGridView.Location = new System.Drawing.Point(12, 27);
+            this.TicketStatusesFormGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TicketStatusesFormGridView.Location = new System.Drawing.Point(0, 24);
             this.TicketStatusesFormGridView.Name = "TicketStatusesFormGridView";
             this.TicketStatusesFormGridView.ReadOnly = true;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.TicketStatusesFormGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.TicketStatusesFormGridView.Size = new System.Drawing.Size(282, 411);
+            this.TicketStatusesFormGridView.Size = new System.Drawing.Size(305, 426);
             this.TicketStatusesFormGridView.TabIndex = 0;
             this.TicketStatusesFormGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.TicketStatusesFormGridView_CellMouseDoubleClick);
             this.TicketStatusesFormGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TicketStatusesFormGridView_KeyDown);

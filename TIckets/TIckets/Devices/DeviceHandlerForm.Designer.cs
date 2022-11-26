@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.DeviceHandlerFormCnlBtn = new System.Windows.Forms.Button();
-            this.DeviceHandlerFormAddBtn = new System.Windows.Forms.Button();
             this.DeviceHandlerFormEditBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,7 +40,7 @@
             // DeviceHandlerFormCnlBtn
             // 
             this.DeviceHandlerFormCnlBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DeviceHandlerFormCnlBtn.Location = new System.Drawing.Point(280, 64);
+            this.DeviceHandlerFormCnlBtn.Location = new System.Drawing.Point(280, 77);
             this.DeviceHandlerFormCnlBtn.Name = "DeviceHandlerFormCnlBtn";
             this.DeviceHandlerFormCnlBtn.Size = new System.Drawing.Size(125, 40);
             this.DeviceHandlerFormCnlBtn.TabIndex = 0;
@@ -49,25 +48,14 @@
             this.DeviceHandlerFormCnlBtn.UseVisualStyleBackColor = true;
             this.DeviceHandlerFormCnlBtn.Click += new System.EventHandler(this.DeviceHandlerFormCnlBtn_Click);
             // 
-            // DeviceHandlerFormAddBtn
-            // 
-            this.DeviceHandlerFormAddBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DeviceHandlerFormAddBtn.Location = new System.Drawing.Point(160, 64);
-            this.DeviceHandlerFormAddBtn.Name = "DeviceHandlerFormAddBtn";
-            this.DeviceHandlerFormAddBtn.Size = new System.Drawing.Size(114, 40);
-            this.DeviceHandlerFormAddBtn.TabIndex = 1;
-            this.DeviceHandlerFormAddBtn.Text = "Добавить";
-            this.DeviceHandlerFormAddBtn.UseVisualStyleBackColor = true;
-            this.DeviceHandlerFormAddBtn.Click += new System.EventHandler(this.DeviceHandlerFormAddBtn_Click);
-            // 
             // DeviceHandlerFormEditBtn
             // 
             this.DeviceHandlerFormEditBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DeviceHandlerFormEditBtn.Location = new System.Drawing.Point(16, 64);
+            this.DeviceHandlerFormEditBtn.Location = new System.Drawing.Point(136, 77);
             this.DeviceHandlerFormEditBtn.Name = "DeviceHandlerFormEditBtn";
             this.DeviceHandlerFormEditBtn.Size = new System.Drawing.Size(138, 40);
             this.DeviceHandlerFormEditBtn.TabIndex = 3;
-            this.DeviceHandlerFormEditBtn.Text = "Редактировать";
+            this.DeviceHandlerFormEditBtn.Text = "Закупить";
             this.DeviceHandlerFormEditBtn.UseVisualStyleBackColor = true;
             this.DeviceHandlerFormEditBtn.Click += new System.EventHandler(this.DeviceHandlerFormEditBtn_Click);
             // 
@@ -77,9 +65,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(212, 20);
+            this.label1.Size = new System.Drawing.Size(122, 20);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Наименование устройства";
+            this.label1.Text = "Наименование";
             // 
             // label2
             // 
@@ -119,18 +107,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(420, 116);
+            this.ClientSize = new System.Drawing.Size(420, 127);
             this.Controls.Add(this.DeviceHandlerFormCb);
             this.Controls.Add(this.DeviceHandlerFormNud);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DeviceHandlerFormEditBtn);
-            this.Controls.Add(this.DeviceHandlerFormAddBtn);
             this.Controls.Add(this.DeviceHandlerFormCnlBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "DeviceHandlerForm";
-            this.Text = "Редактирование склада";
+            this.Text = "Закупка оборудования";
             ((System.ComponentModel.ISupportInitialize)(this.DeviceHandlerFormNud)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -140,7 +127,6 @@
         #endregion
 
         private System.Windows.Forms.Button DeviceHandlerFormCnlBtn;
-        private System.Windows.Forms.Button DeviceHandlerFormAddBtn;
         private System.Windows.Forms.Button DeviceHandlerFormEditBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
