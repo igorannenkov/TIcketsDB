@@ -91,5 +91,10 @@ namespace TIckets
                 }
             }
         }
+
+        private void выгрузкаВExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ExcelReporter.GetReport(UsersFormGridView);
+        }
     }
 }

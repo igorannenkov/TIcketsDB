@@ -65,7 +65,7 @@ namespace TIckets
                                 {
                                     goto case "Администратор";
                                 }
-                                MessageBox.Show("Учетная запись пользователя " + authUserNameTb.Text + " отключена. Для активации обратитесь к администратору системы.",
+                                MessageBox.Show("Учетная запись пользователя " + authUserNameTb.Text + " заблокирована. Для разблокировки обратитесь к администратору системы.",
                                         "Ошибка авторизации", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 break;
 

@@ -34,6 +34,7 @@
             this.UsersFormGridView = new System.Windows.Forms.DataGridView();
             this.AddUserMenuStrip = new System.Windows.Forms.MenuStrip();
             this.добавитьПользователяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.выгрузкаВExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.UsersFormGridView)).BeginInit();
             this.AddUserMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -70,7 +71,8 @@
             // AddUserMenuStrip
             // 
             this.AddUserMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.добавитьПользователяToolStripMenuItem});
+            this.добавитьПользователяToolStripMenuItem,
+            this.выгрузкаВExcelToolStripMenuItem});
             this.AddUserMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.AddUserMenuStrip.Name = "AddUserMenuStrip";
             this.AddUserMenuStrip.Size = new System.Drawing.Size(896, 24);
@@ -83,6 +85,13 @@
             this.добавитьПользователяToolStripMenuItem.Size = new System.Drawing.Size(149, 20);
             this.добавитьПользователяToolStripMenuItem.Text = "Добавить пользователя";
             this.добавитьПользователяToolStripMenuItem.Click += new System.EventHandler(this.добавитьПользователяToolStripMenuItem_Click);
+            // 
+            // выгрузкаВExcelToolStripMenuItem
+            // 
+            this.выгрузкаВExcelToolStripMenuItem.Name = "выгрузкаВExcelToolStripMenuItem";
+            this.выгрузкаВExcelToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
+            this.выгрузкаВExcelToolStripMenuItem.Text = "Выгрузка в Excel";
+            this.выгрузкаВExcelToolStripMenuItem.Click += new System.EventHandler(this.выгрузкаВExcelToolStripMenuItem_Click);
             // 
             // UsersForm
             // 
@@ -107,5 +116,6 @@
         private System.Windows.Forms.DataGridView UsersFormGridView;
         private System.Windows.Forms.MenuStrip AddUserMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem добавитьПользователяToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem выгрузкаВExcelToolStripMenuItem;
     }
 }
