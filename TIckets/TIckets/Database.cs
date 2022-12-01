@@ -1,5 +1,7 @@
 ﻿using System.Data.SqlClient;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
+using System.Configuration;
+using System.Data;
+using System;
 
 namespace TIckets
 {
@@ -7,9 +9,29 @@ namespace TIckets
     {
         public static SqlConnection GetConnection()
         {
-            string homeConnectionString = "Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename = D:\\Проги\\TIcketsDB\\TIckets\\TIckets\\Tickets.mdf; Integrated Security = True";
-            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Практика\\TIcketsDB\\TIckets\\TIckets\\Tickets.mdf;Integrated Security=True";
-            return new SqlConnection(connectionString);
+            string connString = ConfigurationManager.ConnectionStrings["TicketsDB"].ConnectionString;
+            return new SqlConnection(connString);
+        }
+
+        public static bool TestConnection()
+        {
+            try
+            {
+                using (SqlConnection connection = GetConnection())
+                {
+                    connection.Open();
+                    if (connection.State == ConnectionState.Open)
+                    {
+                        return true;
+                    }
+                    else return false;
+                }
+            }
+            catch (Exception)
+            {
+                //MessageBox.Show(ex.Message);
+                return false;
+            }
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace TIckets
 {
@@ -289,6 +290,35 @@ namespace TIckets
             deviceForm.StartPosition = FormStartPosition.CenterParent;
             deviceForm.Owner = this;
             deviceForm.ShowDialog();
+        }
+
+        private void файлБазыДанныхToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Master Data Files(*.mdf)|*.mdf|All files(*.*)|*.*";
+            if (openFileDialog.ShowDialog() == DialogResult.Cancel)
+            { return; }
+            string filePath = openFileDialog.FileName;
+            string connectionString = "Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename =" + filePath +"; Integrated Security = True";
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.ConnectionStrings.ConnectionStrings.Remove("TicketsDB");
+            config.ConnectionStrings.ConnectionStrings.Add(new ConnectionStringSettings("TicketsDB", connectionString));
+
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("connectionStrings");
+
+            MessageBox.Show("Параметры соединения изменены. Проверьте подключение к БД.",
+                               "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void проверкаСоединенияСБДToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Database.TestConnection())
+            {
+                MessageBox.Show("Соединение установлено.", "Проверка соединения с БД", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            MessageBox.Show("Ошибка подключения к БД. Проверьте строку подключения.", "Ошибка");
         }
     }
 }
