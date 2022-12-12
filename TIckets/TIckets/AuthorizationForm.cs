@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -109,6 +110,25 @@ namespace TIckets
         {
             MessageBox.Show("Для выполнения сброса пароля или регистрации новой учетной записи необходимо обратиться к Администратору системы.",
                 "Регистрация / сброс пароля", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void dbPathLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Master Data Files(*.mdf)|*.mdf|All files(*.*)|*.*";
+            if (openFileDialog.ShowDialog() == DialogResult.Cancel)
+            { return; }
+            string filePath = openFileDialog.FileName;
+            string connectionString = "Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename =" + filePath + "; Integrated Security = True";
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.ConnectionStrings.ConnectionStrings.Remove("TicketsDB");
+            config.ConnectionStrings.ConnectionStrings.Add(new ConnectionStringSettings("TicketsDB", connectionString));
+
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("connectionStrings");
+
+            MessageBox.Show("Параметры соединения изменены. Проверьте подключение к БД.",
+                               "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
