@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.AdmFormMenuStrip = new System.Windows.Forms.MenuStrip();
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сменаПароляToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.файлБазыДанныхToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.проверкаСоединенияСБДToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выходИзСистемыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.СправочникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ПользователиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,8 +50,6 @@
             this.отклоненныеИлиОтмененныеЗаявкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выгрузкаВExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.admGridView = new System.Windows.Forms.DataGridView();
-            this.файлБазыДанныхToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.проверкаСоединенияСБДToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.AdmFormMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.admGridView)).BeginInit();
@@ -77,7 +77,7 @@
             this.выходИзСистемыToolStripMenuItem});
             this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
             this.менюToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.менюToolStripMenuItem.Text = "Меню";
+            this.менюToolStripMenuItem.Text = "&Меню";
             // 
             // сменаПароляToolStripMenuItem
             // 
@@ -86,11 +86,25 @@
             this.сменаПароляToolStripMenuItem.Text = "Смена пароля";
             this.сменаПароляToolStripMenuItem.Click += new System.EventHandler(this.сменаПароляToolStripMenuItem_Click);
             // 
+            // файлБазыДанныхToolStripMenuItem
+            // 
+            this.файлБазыДанныхToolStripMenuItem.Name = "файлБазыДанныхToolStripMenuItem";
+            this.файлБазыДанныхToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.файлБазыДанныхToolStripMenuItem.Text = "Файл базы данных...";
+            this.файлБазыДанныхToolStripMenuItem.Click += new System.EventHandler(this.файлБазыДанныхToolStripMenuItem_Click);
+            // 
+            // проверкаСоединенияСБДToolStripMenuItem
+            // 
+            this.проверкаСоединенияСБДToolStripMenuItem.Name = "проверкаСоединенияСБДToolStripMenuItem";
+            this.проверкаСоединенияСБДToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.проверкаСоединенияСБДToolStripMenuItem.Text = "Проверка соединения с БД";
+            this.проверкаСоединенияСБДToolStripMenuItem.Click += new System.EventHandler(this.проверкаСоединенияСБДToolStripMenuItem_Click);
+            // 
             // выходИзСистемыToolStripMenuItem
             // 
             this.выходИзСистемыToolStripMenuItem.Name = "выходИзСистемыToolStripMenuItem";
             this.выходИзСистемыToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.выходИзСистемыToolStripMenuItem.Text = "Выход из системы";
+            this.выходИзСистемыToolStripMenuItem.Text = "Вы&ход из системы";
             this.выходИзСистемыToolStripMenuItem.Click += new System.EventHandler(this.выходИзСистемыToolStripMenuItem_Click_1);
             // 
             // СправочникиToolStripMenuItem
@@ -103,7 +117,7 @@
             this.складУстройствToolStripMenuItem});
             this.СправочникиToolStripMenuItem.Name = "СправочникиToolStripMenuItem";
             this.СправочникиToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
-            this.СправочникиToolStripMenuItem.Text = "Справочники";
+            this.СправочникиToolStripMenuItem.Text = "&Справочники";
             // 
             // ПользователиToolStripMenuItem
             // 
@@ -150,7 +164,7 @@
             this.отклоненныеИлиОтмененныеЗаявкиToolStripMenuItem});
             this.запросыToolStripMenuItem.Name = "запросыToolStripMenuItem";
             this.запросыToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
-            this.запросыToolStripMenuItem.Text = "Заявки";
+            this.запросыToolStripMenuItem.Text = "&Заявки";
             // 
             // новыеЗаявкиToolStripMenuItem
             // 
@@ -170,7 +184,7 @@
             // 
             this.выполненныеЗаявкиToolStripMenuItem.Name = "выполненныеЗаявкиToolStripMenuItem";
             this.выполненныеЗаявкиToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
-            this.выполненныеЗаявкиToolStripMenuItem.Text = "Выполненные";
+            this.выполненныеЗаявкиToolStripMenuItem.Text = "Вы&полненные";
             this.выполненныеЗаявкиToolStripMenuItem.Click += new System.EventHandler(this.выполненныеЗаявкиToolStripMenuItem_Click);
             // 
             // всеЗаявкиToolStripMenuItem
@@ -190,8 +204,8 @@
             // выгрузкаВExcelToolStripMenuItem
             // 
             this.выгрузкаВExcelToolStripMenuItem.Name = "выгрузкаВExcelToolStripMenuItem";
-            this.выгрузкаВExcelToolStripMenuItem.Size = new System.Drawing.Size(109, 20);
-            this.выгрузкаВExcelToolStripMenuItem.Text = "Выгрузка в Excel";
+            this.выгрузкаВExcelToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
+            this.выгрузкаВExcelToolStripMenuItem.Text = "&Выгрузка в Excel";
             this.выгрузкаВExcelToolStripMenuItem.Click += new System.EventHandler(this.выгрузкаВExcelToolStripMenuItem_Click);
             // 
             // admGridView
@@ -200,18 +214,18 @@
             this.admGridView.AllowUserToDeleteRows = false;
             this.admGridView.AllowUserToResizeColumns = false;
             this.admGridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.admGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.admGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.admGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.admGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.admGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.admGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.admGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.admGridView.Location = new System.Drawing.Point(0, 24);
@@ -220,20 +234,6 @@
             this.admGridView.Size = new System.Drawing.Size(1222, 426);
             this.admGridView.TabIndex = 1;
             this.admGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.admGridView_CellMouseDoubleClick);
-            // 
-            // файлБазыДанныхToolStripMenuItem
-            // 
-            this.файлБазыДанныхToolStripMenuItem.Name = "файлБазыДанныхToolStripMenuItem";
-            this.файлБазыДанныхToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.файлБазыДанныхToolStripMenuItem.Text = "Файл базы данных...";
-            this.файлБазыДанныхToolStripMenuItem.Click += new System.EventHandler(this.файлБазыДанныхToolStripMenuItem_Click);
-            // 
-            // проверкаСоединенияСБДToolStripMenuItem
-            // 
-            this.проверкаСоединенияСБДToolStripMenuItem.Name = "проверкаСоединенияСБДToolStripMenuItem";
-            this.проверкаСоединенияСБДToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.проверкаСоединенияСБДToolStripMenuItem.Text = "Проверка соединения с БД";
-            this.проверкаСоединенияСБДToolStripMenuItem.Click += new System.EventHandler(this.проверкаСоединенияСБДToolStripMenuItem_Click);
             // 
             // openFileDialog
             // 

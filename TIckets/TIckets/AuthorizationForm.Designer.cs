@@ -75,6 +75,7 @@
             this.authUserPwdTb.Size = new System.Drawing.Size(201, 26);
             this.authUserPwdTb.TabIndex = 7;
             this.authUserPwdTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.authUserPwdTb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.authUserPwdTb_KeyDown);
             // 
             // authEnterBtn
             // 

@@ -130,5 +130,13 @@ namespace TIckets
             MessageBox.Show("Параметры соединения изменены. Проверьте подключение к БД.",
                                "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void authUserPwdTb_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.authEnterBtn_Click(sender, e);
+            }
+        }
     }
 }

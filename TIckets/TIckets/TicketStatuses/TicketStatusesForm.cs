@@ -49,7 +49,19 @@ namespace TIckets
                     connection.Open();
                     SqlCommand cmd = new SqlCommand("DELETE FROM TicketStatuses WHERE TIcketStatusName = @ticketStatusToDelete", connection);
                     cmd.Parameters.AddWithValue("@ticketStatusToDelete", TicketStatusesFormGridView.CurrentCell.Value.ToString());
-                    cmd.ExecuteNonQuery();
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException)
+                    {
+                        MessageBox.Show("Удаление данных невозможно, поскольку статус \"" + TicketStatusesFormGridView.CurrentCell.Value.ToString() + "\" используется в текущих обращениях. Для удаления данного статуса " +
+                            "необходимо удалить все заявки, использующие данный статус.", "Ошибка удаления данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        connection.Close();
+                        return;
+                    }
+
                     SqlDataAdapter adapter = new SqlDataAdapter("SELECT TicketStatusName AS Статус FROM TicketStatuses", connection);
                     DataSet ds = new DataSet();
                     adapter.Fill(ds);
