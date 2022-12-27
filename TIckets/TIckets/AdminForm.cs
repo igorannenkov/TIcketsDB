@@ -320,5 +320,54 @@ namespace TIckets
             }
             MessageBox.Show("Ошибка подключения к БД. Проверьте строку подключения.", "Ошибка");
         }
+
+        private void количествоЗаявокПоТехникамToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT Coalesce(U.UserName, N'Не назначен') AS \"Техник\", COUNT(*) AS [Количество заявок] FROM Tickets T" +
+                                                            " LEFT JOIN Users U ON T.TechnicID = U.UserID" +
+                                                            " GROUP BY U.UserName; ", connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                admGridView.DataSource = dt;
+            }
+        }
+
+        private void количествоЗаявокПоТипамToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT TicketStatusName AS[Тип заявки], COUNT(*) AS[Количество заявок] FROM Tickets T" +
+                                                            " LEFT JOIN TicketStatuses TS ON T.TicketStatusID = TS.TicketStatusID" +
+                                                            " GROUP BY TicketStatusName" +
+                                                            " ORDER BY TicketStatusName", connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                admGridView.DataSource = dt;
+            }
+        }
+
+        private void техникСМаксимальнымОбъемомЗаявокToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT R1.* FROM " +
+                                                            " (SELECT Coalesce(U.UserName, N'Не назначен') AS \"Техник\", COUNT(*) AS [Количество заявок] " +
+                                                            " FROM Tickets T " +
+                                                            " JOIN Users U ON T.TechnicID = U.UserID " +
+                                                            " GROUP BY U.UserName) AS R1 " +
+                                                            "  LEFT JOIN " +
+                                                            "  (SELECT Coalesce(U.UserName, N'Не назначен') AS \"Техник\", COUNT(*) AS [Количество заявок] " +
+                                                            "     FROM Tickets T " +
+                                                            "    JOIN Users U ON T.TechnicID = U.UserID " +
+                                                            "    GROUP BY U.UserName) AS R2 " +
+                                                            " ON R1.[Количество заявок] < R2.[Количество заявок] " +
+                                                            " WHERE R2.Техник is NULL", connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                admGridView.DataSource = dt;
+            }
+        }
     }
 }
