@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace TIckets
@@ -80,8 +81,15 @@ namespace TIckets
 
         private void UserHandlerFormAddBtn_Click(object sender, EventArgs e)
         {
-
-
+            // Проверка на наличие недопустимых символов
+            if (UserHandlerFormUserNameTb.Text.Any(ch => !char.IsLetterOrDigit(ch)) ||
+                UserHandlerFormUserLoginTb.Text.Any(ch => !char.IsLetterOrDigit(ch)))
+                {
+                MessageBox.Show("В ФИО пользователя или логине содержатся недопустимые символы. Проверьте ввод и попробуйте снова.", 
+                    "Ошибка ввода данных", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
@@ -121,7 +129,7 @@ namespace TIckets
                 adapter.Fill(ds);
                 (this.Owner.Controls["UsersFormGridView"] as DataGridView).DataSource = ds.Tables[0];
                 this.Close();
-            }
+            }   
         }
 
         private void UserHandlerFormCnlBtn_Click(object sender, EventArgs e)

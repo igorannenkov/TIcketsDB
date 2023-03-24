@@ -13,28 +13,46 @@ namespace TIckets
         }
         private void DeviceTypesHandlerFormAddBtn_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = Database.GetConnection())
-            {
-                connection.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO DeviceTypes (DeviceTypeName) VALUES (@newDeviceTypeName)", connection);
-                cmd.Parameters.AddWithValue("@newDeviceTypeName", DeviceTypesHandlerFormTb.Text);
-                cmd.ExecuteNonQuery();
+            
 
-                // Добавим попутно на склад новое устройство с кол-вом = 0. Определяем ИД и вставляем в таблицу.
-                cmd = new SqlCommand("SELECT DeviceTypeID FROM DeviceTypes WHERE DeviceTypeName = @devTypeName", connection);
-                cmd.Parameters.AddWithValue("@devTypeName", DeviceTypesHandlerFormTb.Text);
-                int devTypeID = (int)cmd.ExecuteScalar();
+                using (SqlConnection connection = Database.GetConnection())
+                {
+                    connection.Open();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO DeviceTypes (DeviceTypeName) VALUES (@newDeviceTypeName)", connection);
+                    cmd.Parameters.AddWithValue("@newDeviceTypeName", DeviceTypesHandlerFormTb.Text);
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 2627)
+                    {
+                        MessageBox.Show($"Запись с наименованием \"{DeviceTypesHandlerFormTb.Text}\" уже имеется в таблице. Проверьте ввод данных.", 
+                            "Некорректный ввод данных", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    if (connection.State == ConnectionState.Open)
+                    {
+                        connection.Close();
+                    }
+                    return;
+                }
+                    // Добавим попутно на склад новое устройство с кол-вом = 0. Определяем ИД и вставляем в таблицу.
+                    cmd = new SqlCommand("SELECT DeviceTypeID FROM DeviceTypes WHERE DeviceTypeName = @devTypeName", connection);
+                    cmd.Parameters.AddWithValue("@devTypeName", DeviceTypesHandlerFormTb.Text);
+                    int devTypeID = (int)cmd.ExecuteScalar();
 
-                cmd = new SqlCommand("INSERT INTO Devices (DeviceType, DeviceAmount) Values (@DeviceType, 0)", connection);
-                cmd.Parameters.AddWithValue("@DeviceType", devTypeID);
-                cmd.ExecuteNonQuery();
+                    cmd = new SqlCommand("INSERT INTO Devices (DeviceType, DeviceAmount) Values (@DeviceType, 0)", connection);
+                    cmd.Parameters.AddWithValue("@DeviceType", devTypeID);
+                    cmd.ExecuteNonQuery();
 
-                SqlDataAdapter adapter = new SqlDataAdapter("SELECT DeviceTypeName AS Категория FROM DeviceTypes", connection);
-                DataSet ds = new DataSet();
-                adapter.Fill(ds);
-                (this.Owner.Controls["DeviceTypesGridView"] as DataGridView).DataSource = ds.Tables[0];
-                this.Close();
-            }
+                    SqlDataAdapter adapter = new SqlDataAdapter("SELECT DeviceTypeName AS Категория FROM DeviceTypes", connection);
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                    (this.Owner.Controls["DeviceTypesGridView"] as DataGridView).DataSource = ds.Tables[0];
+                    this.Close();
+                }
+
         }
 
         private void DeviceTypesHandlerFormEditBtn_Click(object sender, EventArgs e)

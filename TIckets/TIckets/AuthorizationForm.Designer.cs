@@ -34,7 +34,6 @@
             this.authUserPwdTb = new System.Windows.Forms.TextBox();
             this.authEnterBtn = new System.Windows.Forms.Button();
             this.authLinkedLabel = new System.Windows.Forms.LinkLabel();
-            this.dbPathLinkLabel = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // authUserNameLbl
@@ -101,24 +100,11 @@
             this.authLinkedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.authLinkedLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.authLinkedLabel_LinkClicked);
             // 
-            // dbPathLinkLabel
-            // 
-            this.dbPathLinkLabel.AutoSize = true;
-            this.dbPathLinkLabel.LinkColor = System.Drawing.Color.Gray;
-            this.dbPathLinkLabel.Location = new System.Drawing.Point(81, 221);
-            this.dbPathLinkLabel.Name = "dbPathLinkLabel";
-            this.dbPathLinkLabel.Size = new System.Drawing.Size(114, 13);
-            this.dbPathLinkLabel.TabIndex = 10;
-            this.dbPathLinkLabel.TabStop = true;
-            this.dbPathLinkLabel.Text = "Файл базы данных...";
-            this.dbPathLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.dbPathLinkLabel_LinkClicked);
-            // 
             // AuthorizationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(276, 251);
-            this.Controls.Add(this.dbPathLinkLabel);
+            this.ClientSize = new System.Drawing.Size(276, 219);
             this.Controls.Add(this.authLinkedLabel);
             this.Controls.Add(this.authEnterBtn);
             this.Controls.Add(this.authUserPwdTb);
@@ -142,7 +128,6 @@
         private System.Windows.Forms.TextBox authUserPwdTb;
         private System.Windows.Forms.Button authEnterBtn;
         private System.Windows.Forms.LinkLabel authLinkedLabel;
-        private System.Windows.Forms.LinkLabel dbPathLinkLabel;
     }
 }
 
