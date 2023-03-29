@@ -280,10 +280,10 @@ namespace TIckets
 
             if (acceptedTicketsCount > 0)
             {
-                TechnicNotificationForm tnf = new TechnicNotificationForm();               
+                NotificationForm tnf = new NotificationForm();               
                 tnf.Owner = this;
-                this.StartPosition = FormStartPosition.CenterParent;
-                (tnf.Controls["TechnicNotificationLbl"] as Label).Text = $"Вам назначено заявок: {acceptedTicketsCount}";
+                tnf.StartPosition = FormStartPosition.CenterParent;
+                (tnf.Controls["NotificationLbl"] as Label).Text = $"Вам назначено заявок: {acceptedTicketsCount}";
                 tnf.ShowDialog();
             }
         }

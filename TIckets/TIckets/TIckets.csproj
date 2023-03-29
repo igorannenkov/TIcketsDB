@@ -99,11 +99,11 @@
     <Compile Include="Roles\RoleHandlerForm.Designer.cs">
       <DependentUpon>RoleHandlerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TechnicNotification.cs">
+    <Compile Include="Notification.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TechnicNotification.Designer.cs">
-      <DependentUpon>TechnicNotification.cs</DependentUpon>
+    <Compile Include="Notification.Designer.cs">
+      <DependentUpon>Notification.cs</DependentUpon>
     </Compile>
     <Compile Include="TicketStatuses\TicketStatusHandlerForm.cs">
       <SubType>Form</SubType>
@@ -135,6 +135,7 @@
     <Compile Include="UserMainForm.Designer.cs">
       <DependentUpon>UserMainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="StringExtensions.cs" />
     <Compile Include="Users\UserHandleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,8 +213,8 @@
     <EmbeddedResource Include="Roles\RolesForm.resx">
       <DependentUpon>RolesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TechnicNotification.resx">
-      <DependentUpon>TechnicNotification.cs</DependentUpon>
+    <EmbeddedResource Include="Notification.resx">
+      <DependentUpon>Notification.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TicketStatuses\TicketStatusHandlerForm.resx">
       <DependentUpon>TicketStatusHandlerForm.cs</DependentUpon>

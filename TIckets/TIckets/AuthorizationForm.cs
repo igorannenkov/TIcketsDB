@@ -7,6 +7,7 @@ namespace TIckets
 {
     public partial class AuthorizationForm : Form
     {
+        public static string currentUserRole;
         public AuthorizationForm()
         {
             InitializeComponent();            
@@ -57,7 +58,7 @@ namespace TIckets
 
                         cmd.Parameters.AddWithValue("@userLogin", authUserNameTb.Text);
 
-                        string currentUserRole = (string)cmd.ExecuteScalar();
+                        currentUserRole = (string)cmd.ExecuteScalar();
 
                         switch (currentUserRole)
                         {

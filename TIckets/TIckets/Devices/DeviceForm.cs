@@ -14,10 +14,15 @@ namespace TIckets
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
-                SqlCommand cmd = new SqlCommand("SELECT DeviceTypeName AS Устройство, DeviceAmount AS [На складе] " +
+                SqlCommand cmd = new SqlCommand("SELECT DeviceTypeName AS Устройство, " +
+                                                "CASE DeviceAmount " +
+                                                "WHEN 0 THEN N'Нет в наличии' " +
+                                                "ELSE Convert(nvarchar, DeviceAmount) " +
+                                                "END AS [На складе] " +
                                                 "FROM Devices D " +
                                                 "INNER JOIN DeviceTypes DT " +
                                                 "ON D.DeviceType = DT.DeviceTypeID  ORDER BY DeviceTypeName", connection);
+
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
@@ -58,8 +63,18 @@ namespace TIckets
                 (devHandlerForm.Controls["DeviceHandlerFormCb"] as ComboBox).ValueMember = "DeviceTypeName";
 
                 (devHandlerForm.Controls["DeviceHandlerFormCb"] as ComboBox).Text = this.deviceFormGridView.CurrentRow.Cells[0].Value.ToString();
-                (devHandlerForm.Controls["DeviceHandlerFormNud"] as NumericUpDown).Value = (int)this.deviceFormGridView.CurrentRow.Cells[1].Value;
+                int deviceAmount;
 
+                if (this.deviceFormGridView.CurrentRow.Cells[1].Value.ToString() == "Нет в наличии")
+                {
+                    deviceAmount = 0;
+                }
+                else
+                { 
+                    deviceAmount = Convert.ToInt32(this.deviceFormGridView.CurrentRow.Cells[1].Value); 
+                }
+
+                (devHandlerForm.Controls["DeviceHandlerFormNud"] as NumericUpDown).Value = deviceAmount;               
                 (devHandlerForm.Controls["DeviceHandlerFormCb"] as ComboBox).Enabled = false;
                 devHandlerForm.Owner = this;
                 devHandlerForm.StartPosition = FormStartPosition.CenterParent;

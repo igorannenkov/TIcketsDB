@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
+using TIckets.Users;
 
 namespace TIckets
 {
@@ -82,8 +83,8 @@ namespace TIckets
         private void UserHandlerFormAddBtn_Click(object sender, EventArgs e)
         {
             // Проверка на наличие недопустимых символов
-            if (UserHandlerFormUserNameTb.Text.Any(ch => !char.IsLetterOrDigit(ch)) ||
-                UserHandlerFormUserLoginTb.Text.Any(ch => !char.IsLetterOrDigit(ch)))
+            if (!UserHandlerFormUserNameTb.Text.IsValid()  ||
+                !UserHandlerFormUserLoginTb.Text.IsValid() )
                 {
                 MessageBox.Show("В ФИО пользователя или логине содержатся недопустимые символы. Проверьте ввод и попробуйте снова.", 
                     "Ошибка ввода данных", MessageBoxButtons.OK, MessageBoxIcon.Warning);

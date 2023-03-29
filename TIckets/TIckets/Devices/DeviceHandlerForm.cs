@@ -31,11 +31,15 @@ namespace TIckets
                 cmd.Parameters.AddWithValue("@amount", amount);
                 cmd.Parameters.AddWithValue("@devType", devTypeID);
                 cmd.ExecuteNonQuery();
-
-                cmd = new SqlCommand("SELECT DeviceTypeName AS Устройство, DeviceAmount AS [На складе] " +
-                                    "FROM Devices D " +
-                                    "INNER JOIN DeviceTypes DT " +
-                                    "ON D.DeviceType = DT.DeviceTypeID ORDER BY DeviceTypeName", connection);
+       
+                cmd = new SqlCommand("SELECT DeviceTypeName AS Устройство, " +
+                                                "CASE DeviceAmount " +
+                                                "WHEN 0 THEN N'Нет в наличии' " +
+                                                "ELSE Convert(nvarchar, DeviceAmount) " +
+                                                "END AS [На складе] " +
+                                                "FROM Devices D " +
+                                                "INNER JOIN DeviceTypes DT " +
+                                                "ON D.DeviceType = DT.DeviceTypeID  ORDER BY DeviceTypeName", connection);
 
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();

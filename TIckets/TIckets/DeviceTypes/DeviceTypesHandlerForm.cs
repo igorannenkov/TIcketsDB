@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using TIckets.Users;
 
 namespace TIckets
 {
@@ -13,9 +14,14 @@ namespace TIckets
         }
         private void DeviceTypesHandlerFormAddBtn_Click(object sender, EventArgs e)
         {
-            
+            if (!DeviceTypesHandlerFormTb.Text.IsValid())
+            {
+                MessageBox.Show("В наименовании устройства содержатся недопустимые символы. Проверьте ввод и попробуйте снова.",
+                    "Ошибка ввода данных", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                using (SqlConnection connection = Database.GetConnection())
+            using (SqlConnection connection = Database.GetConnection())
                 {
                     connection.Open();
                     SqlCommand cmd = new SqlCommand("INSERT INTO DeviceTypes (DeviceTypeName) VALUES (@newDeviceTypeName)", connection);
