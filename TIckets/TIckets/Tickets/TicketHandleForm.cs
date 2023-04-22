@@ -388,11 +388,19 @@ namespace TIckets
 
         private void ticketTicketStatusCb_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ticketTechnicNameCb.Enabled = true;
+
             if (ticketTicketStatusCb.Text != "Выполнена" && sparePartChekBox.Checked)
             {
                 MessageBox.Show("Пользоваться складом можно в случае указания статуса заявки \"Выполнена\".", "Ошибка",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 sparePartChekBox.Checked = false;
+            }
+
+            if (ticketTicketStatusCb.Text == "Отклонена")
+            {
+                ticketTechnicNameCb.Text = string.Empty;
+                ticketTechnicNameCb.Enabled = false;
             }
         }
     }

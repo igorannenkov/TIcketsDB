@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TicketAddForm));
             this.userAddTicketBtn = new System.Windows.Forms.Button();
             this.userAddTicketTb = new System.Windows.Forms.TextBox();
             this.userAddTicketCnlBtn = new System.Windows.Forms.Button();
@@ -77,6 +78,7 @@
             this.Controls.Add(this.userAddTicketCnlBtn);
             this.Controls.Add(this.userAddTicketTb);
             this.Controls.Add(this.userAddTicketBtn);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TicketAddForm";
             this.Text = "Новая заявка";
             this.ResumeLayout(false);

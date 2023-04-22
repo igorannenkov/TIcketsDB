@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TicketStatusesForm));
             this.TicketStatusesFormGridView = new System.Windows.Forms.DataGridView();
             this.AddTicketStatusMenuStrip = new System.Windows.Forms.MenuStrip();
             this.добавитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,6 +103,7 @@
             this.ClientSize = new System.Drawing.Size(305, 450);
             this.Controls.Add(this.TicketStatusesFormGridView);
             this.Controls.Add(this.AddTicketStatusMenuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.AddTicketStatusMenuStrip;
             this.Name = "TicketStatusesForm";
             this.Text = "Статусы заявок";

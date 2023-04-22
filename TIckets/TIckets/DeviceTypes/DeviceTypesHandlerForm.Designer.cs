@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeviceTypesHandlerForm));
             this.DeviceTypesHandlerFormEditBtn = new System.Windows.Forms.Button();
             this.DeviceTypesHandlerFormAddBtn = new System.Windows.Forms.Button();
             this.DeviceTypesHandlerFormCnlBtn = new System.Windows.Forms.Button();
@@ -97,6 +98,7 @@
             this.Controls.Add(this.DeviceTypesHandlerFormAddBtn);
             this.Controls.Add(this.DeviceTypesHandlerFormEditBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "DeviceTypesHandlerForm";
             this.Text = "Устройство";

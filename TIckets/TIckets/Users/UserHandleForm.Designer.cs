@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserHandleForm));
             this.UserHandlerFormEditBtn = new System.Windows.Forms.Button();
             this.UserHandlerFormAddBtn = new System.Windows.Forms.Button();
             this.UserHandlerFormCnlBtn = new System.Windows.Forms.Button();
@@ -156,6 +157,7 @@
             this.Controls.Add(this.UserHandlerFormAddBtn);
             this.Controls.Add(this.UserHandlerFormEditBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "UserHandleForm";
             this.Text = "Пользователь";

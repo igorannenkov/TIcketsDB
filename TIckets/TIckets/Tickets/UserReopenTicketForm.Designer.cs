@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TicketReopenForm));
             this.TicketReopenFormBtn = new System.Windows.Forms.Button();
             this.TicketReopenFormCnlBtn = new System.Windows.Forms.Button();
             this.userReopenTicketTb = new System.Windows.Forms.TextBox();
@@ -77,6 +78,7 @@
             this.Controls.Add(this.userReopenTicketTb);
             this.Controls.Add(this.TicketReopenFormCnlBtn);
             this.Controls.Add(this.TicketReopenFormBtn);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TicketReopenForm";
             this.Text = "Переоткрытие заявки";
             this.ResumeLayout(false);

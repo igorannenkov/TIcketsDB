@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserTisketHistorySearchForm));
             this.historySearchGridView = new System.Windows.Forms.DataGridView();
             this.ticketHistorySearchTb = new System.Windows.Forms.TextBox();
             this.ticketHistorySearchBtn = new System.Windows.Forms.Button();
@@ -126,6 +127,7 @@
             this.Controls.Add(this.ticketHistorySearchBtn);
             this.Controls.Add(this.ticketHistorySearchTb);
             this.Controls.Add(this.historySearchGridView);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UserTisketHistorySearchForm";
             this.Text = "История заявок пользователя";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

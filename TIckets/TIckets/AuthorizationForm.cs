@@ -8,6 +8,7 @@ namespace TIckets
     public partial class AuthorizationForm : Form
     {
         public static string currentUserRole;
+        public static int passwordAttemptsCount = 3;
         public AuthorizationForm()
         {
             InitializeComponent();            
@@ -49,8 +50,73 @@ namespace TIckets
                     cmd.Parameters.AddWithValue("@userLogin", authUserNameTb.Text);
                     cmd.Parameters.AddWithValue("@userPassword", HashGenerator.GetMD5(authUserPwdTb.Text));
                     int result = (int)cmd.ExecuteScalar();
+                    //если логин и пароль одновременно неверны
+                    if (result == 0)
+                    {
+                        //проверяем, есть ли вообще такой логин?
+                        SqlCommand getUsersCount = new SqlCommand("SELECT COUNT(*) FROM Users WHERE UserLogin = @userLogin", connection);
+                        getUsersCount.Parameters.AddWithValue("@userLogin", authUserNameTb.Text);
+                        int usersCount = (int)getUsersCount.ExecuteScalar();
+                        //логин есть
+                        if (usersCount > 0)
+                        {
+                            SqlCommand getUserPasswordsAttempts = new SqlCommand("SELECT UserPasswordAttemptsCount FROM Users where UserLogin = @userLogin", connection);
+                            getUserPasswordsAttempts.Parameters.AddWithValue("@userLogin", authUserNameTb.Text);
+                            int userAttempsCount = (int)getUserPasswordsAttempts.ExecuteScalar();
+                            // если логин правильный, а пароль - нет то уменьшаем счетчик на 1
+                            if (userAttempsCount > 0)
+                            {
+                                SqlCommand decrementPasswordAttempt = new SqlCommand("UPDATE Users SET UserPasswordAttemptsCount = UserPasswordAttemptsCount -1 WHERE UserLogin = @userLogin", connection);
+                                decrementPasswordAttempt.Parameters.AddWithValue("@userLogin", authUserNameTb.Text);
+                                decrementPasswordAttempt.ExecuteNonQuery();
+
+
+                                //уменьшим на 1
+                                //не пустим и скажем что неправильно
+                            }
+                            else if (userAttempsCount == 0)
+                            {
+                                SqlCommand getRoleID = new SqlCommand("SELECT RoleID FROM Roles " +
+                                                    "WHERE RoleName = N\'Заблокирован\'", connection);
+
+                                int userRoleID = (int)getRoleID.ExecuteScalar();
+
+                                SqlCommand banUser = new SqlCommand($"UPDATE Users SET UserRoleID = {userRoleID} WHERE UserLogin = @userLogin", connection);
+                                banUser.Parameters.AddWithValue("@userLogin", authUserNameTb.Text);
+                                banUser.ExecuteNonQuery();
+                                MessageBox.Show("Учетная запись пользователя " + authUserNameTb.Text + " заблокирована. Для разблокировки обратитесь к администратору системы.",
+                                          "Ошибка авторизации", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+
+                            }
+                        }
+                        //логина нет, ничего не делаем, просто говорим отвали
+                        else if(usersCount == 0)
+                        {
+
+                            
+                            MessageBox.Show("Неверное имя пользователя или пароль. Проверьте правильность введенных данных.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            authUserPwdTb.Text = string.Empty;
+                            return;
+
+           
+                        }
+                    }
+
+
                     if (result > 0)
                     {
+
+                        // если логин и пароль правильный, обновляем кол-во попыток ввода до стандартного значения
+
+                        SqlCommand setPasswordAttemptsByDefault = new SqlCommand($"UPDATE Users SET UserPasswordAttemptsCount = {passwordAttemptsCount} WHERE UserLogin = @userLogin", connection);
+                        setPasswordAttemptsByDefault.Parameters.AddWithValue("@userLogin", authUserNameTb.Text);
+                        setPasswordAttemptsByDefault.ExecuteNonQuery();
+
+
+
+
+
                         cmd = new SqlCommand("SELECT RoleName FROM Roles R " +
                                              "INNER JOIN Users U " +
                                              "ON R.RoleID = U.UserRoleID " +
@@ -88,6 +154,7 @@ namespace TIckets
                                 Observer.currentUserLogin = authUserNameTb.Text;
                                 userMainForm.ShowDialog();
                                 break;
+
                             case "Техник":
                                 authUserPwdTb.Text = String.Empty;
                                 TechnicMainForm technicMainForm = new TechnicMainForm();
@@ -137,6 +204,28 @@ namespace TIckets
             if (e.KeyCode == Keys.Enter)
             {
                 this.authEnterBtn_Click(sender, e);
+            }
+        }
+
+        private void AuthorizationForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.D && Control.ModifierKeys == Keys.Control)
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Master Data Files(*.mdf)|*.mdf|All files(*.*)|*.*";
+                if (openFileDialog.ShowDialog() == DialogResult.Cancel)
+                { return; }
+                string filePath = openFileDialog.FileName;
+                string connectionString = "Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename =" + filePath + "; Integrated Security = True";
+                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                config.ConnectionStrings.ConnectionStrings.Remove("TicketsDB");
+                config.ConnectionStrings.ConnectionStrings.Add(new ConnectionStringSettings("TicketsDB", connectionString));
+
+                config.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection("connectionStrings");
+
+                MessageBox.Show("Параметры соединения изменены. Проверьте подключение к БД.",
+                                   "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeviceTypesForm));
             this.AddTypeMenuStrip = new System.Windows.Forms.MenuStrip();
             this.добавитьКатегориюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DeviceTypesGridView = new System.Windows.Forms.DataGridView();
@@ -111,6 +112,7 @@
             this.ClientSize = new System.Drawing.Size(360, 468);
             this.Controls.Add(this.DeviceTypesGridView);
             this.Controls.Add(this.AddTypeMenuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.AddTypeMenuStrip;
             this.Name = "DeviceTypesForm";
             this.Text = "Техника и устройства";

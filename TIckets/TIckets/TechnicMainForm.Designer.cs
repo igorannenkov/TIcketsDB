@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TechnicMainForm));
             this.TechnicFormMenuStrip = new System.Windows.Forms.MenuStrip();
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.складToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -179,6 +180,7 @@
             this.ClientSize = new System.Drawing.Size(1291, 450);
             this.Controls.Add(this.technicGridView);
             this.Controls.Add(this.TechnicFormMenuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.TechnicFormMenuStrip;
             this.Name = "TechnicMainForm";
             this.Text = "Техник";

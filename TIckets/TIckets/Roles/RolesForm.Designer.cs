@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RolesForm));
             this.AddRoleMenuStrip = new System.Windows.Forms.MenuStrip();
             this.добавитьРольToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RolesFormGridView = new System.Windows.Forms.DataGridView();
@@ -98,6 +99,7 @@
             this.ClientSize = new System.Drawing.Size(348, 450);
             this.Controls.Add(this.RolesFormGridView);
             this.Controls.Add(this.AddRoleMenuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.AddRoleMenuStrip;
             this.MaximizeBox = false;
             this.Name = "RolesForm";

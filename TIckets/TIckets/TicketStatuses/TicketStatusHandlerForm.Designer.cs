@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TicketStatusHandlerForm));
             this.TicketStatusHandlerFormEditBtn = new System.Windows.Forms.Button();
             this.TicketStatusHandlerFormAddBtn = new System.Windows.Forms.Button();
             this.TicketStatusHandlerFormCnlBtn = new System.Windows.Forms.Button();
@@ -97,6 +98,7 @@
             this.Controls.Add(this.TicketStatusHandlerFormAddBtn);
             this.Controls.Add(this.TicketStatusHandlerFormEditBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "TicketStatusHandlerForm";
             this.Text = "Категория статуса";

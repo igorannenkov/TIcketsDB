@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace TIckets
@@ -24,6 +26,17 @@ namespace TIckets
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
                 this.UsersFormGridView.DataSource = ds.Tables[0];
+
+                SqlCommand getUserRoles = new SqlCommand("SELECT RoleName FROM Roles", connection);
+                getUserRoles.ExecuteNonQuery();
+                SqlDataAdapter rolesAdapter = new SqlDataAdapter(getUserRoles);
+                DataTable dt = new DataTable();
+                rolesAdapter.Fill(dt);
+
+                var list = dt.Rows.OfType<DataRow>().Select(dr => dr.Field<string>("RoleName")).ToList();
+                list.Add("Все роли");
+                (this.Controls["UsersFormSearchСb"] as ComboBox).DataSource = list;
+                (this.Controls["UsersFormSearchСb"] as ComboBox).Text = "Все роли";
             }
         }
 
@@ -95,6 +108,75 @@ namespace TIckets
         private void выгрузкаВExcelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ExcelReporter.GetReport(UsersFormGridView);
+        }
+
+        private void UsersFormExportBtn_Click(object sender, EventArgs e)
+        {
+            ExcelReporter.GetReport(UsersFormGridView);
+        }
+
+        private void UsersFormAddUserBtn_Click(object sender, EventArgs e)
+        {
+            UserHandleForm userHandleForm = new UserHandleForm();
+            userHandleForm.StartPosition = FormStartPosition.CenterScreen;
+            (userHandleForm.Controls["UserHandlerFormEditBtn"] as Button).Enabled = false;
+            (userHandleForm.Controls["UserHandlerFormResetPwdChb"] as CheckBox).Enabled = false;
+            userHandleForm.Owner = this;
+            userHandleForm.ShowDialog();
+        }
+
+        private void UsersFormFilterBtn_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand("SELECT UserID AS ID, UserName AS ФИО, RoleName AS [Роль], UserLogin AS Логин, UserPassword AS [Пароль MD5] " +
+                                 "FROM Users U " +
+                                 "INNER JOIN Roles R ON U.UserRoleID = R.RoleID " +
+                                 "WHERE UPPER (U.UserName) LIKE @userName", connection);
+                command.Parameters.AddWithValue("@userName", "%"+UsersFormSearchTb.Text+"%");
+                SqlDataAdapter adapter = new SqlDataAdapter(command); //  (command, connection);
+
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
+                this.UsersFormGridView.DataSource = ds.Tables[0];
+            }
+        }
+
+        private void UsersFormSearchСb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                SqlCommand getUsers = new SqlCommand();
+                if ((this.Controls["UsersFormSearchСb"] as ComboBox).Text != "Все роли")
+                {
+                    getUsers = new SqlCommand("SELECT UserID AS ID, UserName AS ФИО, RoleName AS Роль, UserLogin AS Логин, UserPassword AS [Пароль MD5] " +
+                                     "FROM Users U " +
+                                     "INNER JOIN Roles R ON U.UserRoleID = R.RoleID " +
+                                     "WHERE RoleID = (SELECT RoleID FROM Roles WHERE RoleName = @roleName)", connection);
+                    getUsers.Parameters.AddWithValue("@roleName", UsersFormSearchСb.Text);
+                }
+                else
+                {
+                    getUsers = new SqlCommand("SELECT UserID AS ID, UserName AS ФИО, RoleName AS Роль, UserLogin AS Логин, UserPassword AS [Пароль MD5] " +
+                                     "FROM Users U " +
+                                     "INNER JOIN Roles R ON U.UserRoleID = R.RoleID ", connection);
+                }
+
+                SqlDataAdapter adapter = new SqlDataAdapter(getUsers);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
+                this.UsersFormGridView.DataSource = ds.Tables[0];
+            }
+        }
+
+        private void UsersFormSearchTb_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                UsersFormFilterBtn_Click(this, e);
+            }
         }
     }
 }

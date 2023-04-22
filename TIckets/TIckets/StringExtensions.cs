@@ -10,7 +10,7 @@ namespace TIckets.Users
     {
         public static bool IsValid(this string input)
         {
-            string template = "!@#$%^&*()_+=-~`//|,<>?:;\\";
+            string template = "!@#$%^&*()_+=~`//|,<>?:;\\";
             for(int i = 0; i< input.Length; i++) 
             {
                 for (int j = 0; j < template.Length; j++)

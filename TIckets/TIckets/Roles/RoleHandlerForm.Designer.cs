@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RoleHandlerForm));
             this.RoleHandlerFormRoleNameLbl = new System.Windows.Forms.Label();
             this.RoleHandlerFormRoleNameTb = new System.Windows.Forms.TextBox();
             this.RoleHandlerFormAddBtn = new System.Windows.Forms.Button();
@@ -97,6 +98,7 @@
             this.Controls.Add(this.RoleHandlerFormRoleNameTb);
             this.Controls.Add(this.RoleHandlerFormRoleNameLbl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "RoleHandlerForm";
             this.Text = "Роль";

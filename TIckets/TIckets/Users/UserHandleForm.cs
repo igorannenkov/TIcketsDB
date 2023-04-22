@@ -32,13 +32,15 @@ namespace TIckets
 
                     SqlCommand cmd = new SqlCommand("SELECT RoleID FROM Roles " +
                                                     "WHERE RoleName = @roleName", connection);
+                                              
 
                     cmd.Parameters.AddWithValue("@roleName", UserHandlerFormUserRoleCb.Text);
 
                     int userRoleID = (int)cmd.ExecuteScalar();
                     int updateID = (int)(this.Owner.Controls["UsersFormGridView"] as DataGridView).CurrentRow.Cells[0].Value;
 
-                    string newPassword = string.Empty;
+
+                string newPassword = string.Empty;
 
                     if (UserHandlerFormResetPwdChb.Checked)
                     {
@@ -48,7 +50,8 @@ namespace TIckets
                     cmd = new SqlCommand("UPDATE Users SET " +
                                             "UserName = @userName, " +
                                             "UserRoleID = @userRoleID, " +
-                                            "UserLogin = @login " + newPassword +
+                                            "UserLogin = @login, " + newPassword +
+                                            "UserPasswordAttemptsCount = @passwordAttemptsCount" +
                                             " WHERE UserID = @updateID", connection);
 
                     cmd.Parameters.AddWithValue("@userName", UserHandlerFormUserNameTb.Text);
@@ -56,6 +59,17 @@ namespace TIckets
                     cmd.Parameters.AddWithValue("@login", UserHandlerFormUserLoginTb.Text);
                     cmd.Parameters.AddWithValue("@password", HashGenerator.GetMD5("1234567890"));
                     cmd.Parameters.AddWithValue("@updateID", updateID);
+
+
+                if (UserHandlerFormUserRoleCb.Text == "Заблокирован")
+                {
+                    cmd.Parameters.AddWithValue("@passwordAttemptsCount", 0);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@passwordAttemptsCount", AuthorizationForm.passwordAttemptsCount);
+                }
+
 
                 try
                 {
