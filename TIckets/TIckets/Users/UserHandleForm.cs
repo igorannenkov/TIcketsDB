@@ -40,7 +40,7 @@ namespace TIckets
                     int updateID = (int)(this.Owner.Controls["UsersFormGridView"] as DataGridView).CurrentRow.Cells[0].Value;
 
 
-                string newPassword = string.Empty;
+                    string newPassword = string.Empty;
 
                     if (UserHandlerFormResetPwdChb.Checked)
                     {
@@ -60,16 +60,15 @@ namespace TIckets
                     cmd.Parameters.AddWithValue("@password", HashGenerator.GetMD5("1234567890"));
                     cmd.Parameters.AddWithValue("@updateID", updateID);
 
-
                 if (UserHandlerFormUserRoleCb.Text == "Заблокирован")
                 {
-                    cmd.Parameters.AddWithValue("@passwordAttemptsCount", 0);
+                    cmd.Parameters.AddWithValue("@passwordAttemptsCount", Account.GetPasswordEntryAttemptsCount(connection, UserHandlerFormUserLoginTb.Text));
                 }
                 else
                 {
-                    cmd.Parameters.AddWithValue("@passwordAttemptsCount", AuthorizationForm.passwordAttemptsCount);
+                    cmd.Parameters.AddWithValue("@passwordAttemptsCount", AuthorizationForm.defaultPasswordEntryAttemptsCount);
                 }
-
+            
 
                 try
                 {
@@ -83,7 +82,6 @@ namespace TIckets
                     return;
                 }
                 
-
                     SqlDataAdapter adapter = new SqlDataAdapter("SELECT UserID AS ID, UserName AS ФИО, RoleName AS Роль, UserLogin AS Логин, UserPassword AS [Пароль MD5] " +
                                                                 "FROM Users U " +
                                                                 "INNER JOIN Roles R ON U.UserRoleID = R.RoleID", connection);

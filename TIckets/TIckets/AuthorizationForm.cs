@@ -8,7 +8,7 @@ namespace TIckets
     public partial class AuthorizationForm : Form
     {
         public static string currentUserRole;
-        public static int passwordAttemptsCount = 3;
+        public static int defaultPasswordEntryAttemptsCount = 3;
         public AuthorizationForm()
         {
             InitializeComponent();            
@@ -41,108 +41,88 @@ namespace TIckets
 
         private void authEnterBtn_Click(object sender, EventArgs e)
         {
-            if (authUserNameTb.Text != string.Empty && authUserPwdTb.Text != string.Empty)
+            string login = authUserNameTb.Text;
+            string password = authUserPwdTb.Text;
+
+            if (login != string.Empty && password != string.Empty)
             {
                 using (SqlConnection connection = Database.GetConnection())
                 {
-                    connection.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Users WHERE UserLogin = @userLogin AND UserPassword = @userPassword", connection);
-                    cmd.Parameters.AddWithValue("@userLogin", authUserNameTb.Text);
-                    cmd.Parameters.AddWithValue("@userPassword", HashGenerator.GetMD5(authUserPwdTb.Text));
-                    int result = (int)cmd.ExecuteScalar();
-                    //если логин и пароль одновременно неверны
-                    if (result == 0)
+                    if (!Account.IsLoginAndPasswordCorrect(connection, login, password))
                     {
-                        //проверяем, есть ли вообще такой логин?
-                        SqlCommand getUsersCount = new SqlCommand("SELECT COUNT(*) FROM Users WHERE UserLogin = @userLogin", connection);
-                        getUsersCount.Parameters.AddWithValue("@userLogin", authUserNameTb.Text);
-                        int usersCount = (int)getUsersCount.ExecuteScalar();
-                        //логин есть
-                        if (usersCount > 0)
+                        if (Account.IsLoginCorrect(connection, login))
                         {
-                            SqlCommand getUserPasswordsAttempts = new SqlCommand("SELECT UserPasswordAttemptsCount FROM Users where UserLogin = @userLogin", connection);
-                            getUserPasswordsAttempts.Parameters.AddWithValue("@userLogin", authUserNameTb.Text);
-                            int userAttempsCount = (int)getUserPasswordsAttempts.ExecuteScalar();
-                            // если логин правильный, а пароль - нет то уменьшаем счетчик на 1
-                            if (userAttempsCount > 0)
+                            int passwordEntryAttemptsCount = Account.GetPasswordEntryAttemptsCount(connection, login);
+                            if (passwordEntryAttemptsCount > 1)
                             {
-                                SqlCommand decrementPasswordAttempt = new SqlCommand("UPDATE Users SET UserPasswordAttemptsCount = UserPasswordAttemptsCount -1 WHERE UserLogin = @userLogin", connection);
-                                decrementPasswordAttempt.Parameters.AddWithValue("@userLogin", authUserNameTb.Text);
-                                decrementPasswordAttempt.ExecuteNonQuery();
+                                MessageBox.Show("Неверное имя пользователя или пароль. Проверьте правильность введенных данных.", "Ошибка авторизации", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+                                if (passwordEntryAttemptsCount == 2)
+                                {
+                                    MessageBox.Show("У Вас осталась 1 попытка ввода пароля. В случае некорректного ввода учетная запись будет заблокирована.", "Ошибка авторизации", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
 
-                                //уменьшим на 1
-                                //не пустим и скажем что неправильно
+                                Account.DecrementPasswordEntryAttempts(connection, login);
+                                authUserPwdTb.Text = string.Empty;
+                                return;
                             }
-                            else if (userAttempsCount == 0)
+                            else if (passwordEntryAttemptsCount == 1)
                             {
+                                Account.DecrementPasswordEntryAttempts(connection, login);
+
                                 SqlCommand getRoleID = new SqlCommand("SELECT RoleID FROM Roles " +
-                                                    "WHERE RoleName = N\'Заблокирован\'", connection);
+                                                                      "WHERE RoleName = N\'Заблокирован\'", connection);
 
                                 int userRoleID = (int)getRoleID.ExecuteScalar();
 
                                 SqlCommand banUser = new SqlCommand($"UPDATE Users SET UserRoleID = {userRoleID} WHERE UserLogin = @userLogin", connection);
-                                banUser.Parameters.AddWithValue("@userLogin", authUserNameTb.Text);
+                                banUser.Parameters.AddWithValue("@userLogin", login);
                                 banUser.ExecuteNonQuery();
-                                MessageBox.Show("Учетная запись пользователя " + authUserNameTb.Text + " заблокирована. Для разблокировки обратитесь к администратору системы.",
-                                          "Ошибка авторизации", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("Превышено количество попыток ввода пароля. Учетная запись пользователя " + login + " заблокирована и не может использоваться для входа в систему. " +
+                                    "Для разблокировки обратитесь к администратору.", "Ошибка авторизации", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                authUserPwdTb.Text = string.Empty;
                                 return;
-
+                            }
+                            else
+                            {
+                                MessageBox.Show("Учетная запись пользователя " + login + " заблокирована и не может использоваться для входа в систему. " +
+                                    "Для разблокировки обратитесь к администратору.", "Ошибка авторизации", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                authUserPwdTb.Text = string.Empty;
+                                return;
                             }
                         }
-                        //логина нет, ничего не делаем, просто говорим отвали
-                        else if(usersCount == 0)
+                        //иначе если логин некорректный - отбраковываем вход в систему
+                        else
                         {
-
-                            
-                            MessageBox.Show("Неверное имя пользователя или пароль. Проверьте правильность введенных данных.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Неверное имя пользователя или пароль. Проверьте правильность введенных данных.", "Ошибка авторизации", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             authUserPwdTb.Text = string.Empty;
                             return;
-
-           
                         }
                     }
-
-
-                    if (result > 0)
+                    else
                     {
-
-                        // если логин и пароль правильный, обновляем кол-во попыток ввода до стандартного значения
-
-                        SqlCommand setPasswordAttemptsByDefault = new SqlCommand($"UPDATE Users SET UserPasswordAttemptsCount = {passwordAttemptsCount} WHERE UserLogin = @userLogin", connection);
-                        setPasswordAttemptsByDefault.Parameters.AddWithValue("@userLogin", authUserNameTb.Text);
-                        setPasswordAttemptsByDefault.ExecuteNonQuery();
-
-
-
-
-
-                        cmd = new SqlCommand("SELECT RoleName FROM Roles R " +
-                                             "INNER JOIN Users U " +
-                                             "ON R.RoleID = U.UserRoleID " +
-                                             "WHERE U.UserLogin = @userLogin ", connection);
-
-                        cmd.Parameters.AddWithValue("@userLogin", authUserNameTb.Text);
-
-                        currentUserRole = (string)cmd.ExecuteScalar();
+                        // если логин и пароль правильный, обновляем кол-во попыток ввода до стандартного значения и авторизуем
+                        Account.ResetPasswordEntryAttempts(connection, login, defaultPasswordEntryAttemptsCount);
+                        currentUserRole = Account.GetCurrentUserRole(connection, login);
 
                         switch (currentUserRole)
                         {
                             case "Заблокирован":
-                                if (authUserNameTb.Text == "administrator")
+                                if (login == "administrator")
                                 {
                                     goto case "Администратор";
                                 }
-                                MessageBox.Show("Учетная запись пользователя " + authUserNameTb.Text + " заблокирована. Для разблокировки обратитесь к администратору системы.",
+                                MessageBox.Show("Учетная запись пользователя " + login + " заблокирована. Для разблокировки обратитесь к администратору системы.",
                                         "Ошибка авторизации", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                authUserPwdTb.Text = string.Empty;
                                 break;
 
                             case "Администратор":
                                 authUserPwdTb.Text = String.Empty;
                                 AdminForm admForm = new AdminForm();
                                 admForm.StartPosition = FormStartPosition.CenterScreen;
-                                admForm.Text = "Администратор@" + authUserNameTb.Text;
-                                Observer.currentUserLogin = authUserNameTb.Text;
+                                admForm.Text = "Администратор@" + login;
+                                Observer.currentUserLogin = login;
                                 admForm.ShowDialog();
                                 break;
 
@@ -150,8 +130,8 @@ namespace TIckets
                                 authUserPwdTb.Text = String.Empty;
                                 UserMainForm userMainForm = new UserMainForm();
                                 userMainForm.StartPosition = FormStartPosition.CenterScreen;
-                                userMainForm.Text = "Пользователь@" + authUserNameTb.Text;
-                                Observer.currentUserLogin = authUserNameTb.Text;
+                                userMainForm.Text = "Пользователь@" + login;
+                                Observer.currentUserLogin = login;
                                 userMainForm.ShowDialog();
                                 break;
 
@@ -159,16 +139,11 @@ namespace TIckets
                                 authUserPwdTb.Text = String.Empty;
                                 TechnicMainForm technicMainForm = new TechnicMainForm();
                                 technicMainForm.StartPosition = FormStartPosition.CenterScreen;
-                                technicMainForm.Text = "Техник@" + authUserNameTb.Text;
-                                Observer.currentUserLogin = authUserNameTb.Text;
+                                technicMainForm.Text = "Техник@" + login;
+                                Observer.currentUserLogin = login;
                                 technicMainForm.ShowDialog();
                                 break;
                         }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Неверное имя пользователя или пароль. Проверьте правильность введенных данных.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        authUserPwdTb.Text = string.Empty;
                     }
                 }
             }
@@ -179,26 +154,7 @@ namespace TIckets
             MessageBox.Show("Для выполнения сброса пароля или регистрации новой учетной записи необходимо обратиться к Администратору системы.",
                 "Регистрация / сброс пароля", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-        private void dbPathLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Master Data Files(*.mdf)|*.mdf|All files(*.*)|*.*";
-            if (openFileDialog.ShowDialog() == DialogResult.Cancel)
-            { return; }
-            string filePath = openFileDialog.FileName;
-            string connectionString = "Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename =" + filePath + "; Integrated Security = True";
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.ConnectionStrings.ConnectionStrings.Remove("TicketsDB");
-            config.ConnectionStrings.ConnectionStrings.Add(new ConnectionStringSettings("TicketsDB", connectionString));
-
-            config.Save(ConfigurationSaveMode.Modified);
-            ConfigurationManager.RefreshSection("connectionStrings");
-
-            MessageBox.Show("Параметры соединения изменены. Проверьте подключение к БД.",
-                               "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
+   
         private void authUserPwdTb_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -225,7 +181,7 @@ namespace TIckets
                 ConfigurationManager.RefreshSection("connectionStrings");
 
                 MessageBox.Show("Параметры соединения изменены. Проверьте подключение к БД.",
-                                   "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
