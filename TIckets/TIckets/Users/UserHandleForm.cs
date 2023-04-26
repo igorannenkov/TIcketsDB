@@ -42,11 +42,10 @@ namespace TIckets
 
                     string newPassword = string.Empty;
 
-                    if (UserHandlerFormResetPwdChb.Checked)
-                    {
-                        newPassword = ", UserPassword = @password ";
-                    }
-
+                if (UserHandlerFormResetPwdChb.Checked)
+                {
+                    newPassword = "UserPassword = @password, ";
+                }
                     cmd = new SqlCommand("UPDATE Users SET " +
                                             "UserName = @userName, " +
                                             "UserRoleID = @userRoleID, " +
@@ -68,8 +67,6 @@ namespace TIckets
                 {
                     cmd.Parameters.AddWithValue("@passwordAttemptsCount", AuthorizationForm.defaultPasswordEntryAttemptsCount);
                 }
-            
-
                 try
                 {
                     cmd.ExecuteNonQuery();

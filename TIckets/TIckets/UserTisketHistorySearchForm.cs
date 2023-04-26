@@ -18,14 +18,7 @@ namespace TIckets
         }
 
         private void ticketHistorySearchBtn_Click(object sender, EventArgs e)
-        {
-            if (!ticketHistorySearchTb.Text.IsValid())
-            {
-                MessageBox.Show("В поле для ввода ФИО пользователя содержатся недопустимые символы. Проверьте ввод и попробуйте снова.",
-                    "Ошибка ввода данных", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
+        {    
             using (SqlConnection connection = Database.GetConnection())
             {
                 connection.Open();
