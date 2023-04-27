@@ -123,7 +123,7 @@ namespace TIckets
                                                                    "ON D.DeviceType = DT.DeviceTypeID " +
                                                                    "WHERE U.UserLogin = @userLogin", connection);
 
-                cmd.Parameters.AddWithValue("@userLogin", Observer.currentUserLogin);
+                cmd.Parameters.AddWithValue("@userLogin", Account.currentUserLogin);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
@@ -159,7 +159,7 @@ namespace TIckets
                                                                    "ON D.DeviceType = DT.DeviceTypeID " +
                                                                    "WHERE U.UserLogin = @userLogin AND TS.TicketStatusName = N'Новая'", connection);
 
-                cmd.Parameters.AddWithValue("@userLogin", Observer.currentUserLogin);
+                cmd.Parameters.AddWithValue("@userLogin", Account.currentUserLogin);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
@@ -196,7 +196,7 @@ namespace TIckets
                                                                    "WHERE U.UserLogin = @userLogin AND TS.TicketStatusName = N'Выполнена'", connection);
 
 
-                cmd.Parameters.AddWithValue("@userLogin", Observer.currentUserLogin);
+                cmd.Parameters.AddWithValue("@userLogin", Account.currentUserLogin);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
@@ -232,7 +232,7 @@ namespace TIckets
                                                                    "ON D.DeviceType = DT.DeviceTypeID " +
                                                                    "WHERE U.UserLogin = @userLogin AND TS.TicketStatusName = N'Отклонена'", connection);
 
-                cmd.Parameters.AddWithValue("@userLogin", Observer.currentUserLogin);
+                cmd.Parameters.AddWithValue("@userLogin", Account.currentUserLogin);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
@@ -268,7 +268,7 @@ namespace TIckets
                                                                    "ON D.DeviceType = DT.DeviceTypeID " +
                                                                    "WHERE U.UserLogin = @userLogin AND TS.TicketStatusName = N'Переоткрыта'", connection);
 
-                cmd.Parameters.AddWithValue("@userLogin", Observer.currentUserLogin);
+                cmd.Parameters.AddWithValue("@userLogin", Account.currentUserLogin);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
@@ -304,7 +304,7 @@ namespace TIckets
                                                                    "ON D.DeviceType = DT.DeviceTypeID " +
                                                                    "WHERE U.UserLogin = @userLogin AND TS.TicketStatusName = N'Отменена'", connection);
 
-                cmd.Parameters.AddWithValue("@userLogin", Observer.currentUserLogin);
+                cmd.Parameters.AddWithValue("@userLogin", Account.currentUserLogin);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
@@ -340,7 +340,7 @@ namespace TIckets
                                                                    "ON D.DeviceType = DT.DeviceTypeID " +
                                                                    "WHERE U.UserLogin = @userLogin AND TS.TicketStatusName = N'Принята в работу'", connection);
 
-                cmd.Parameters.AddWithValue("@userLogin", Observer.currentUserLogin);
+                cmd.Parameters.AddWithValue("@userLogin", Account.currentUserLogin);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
@@ -379,7 +379,7 @@ namespace TIckets
                                                                    "WHERE U.UserLogin =@userLogin " +
                                                                    "AND (TS.TicketStatusName = N'Принята в работу' OR TS.TicketStatusName = N'Новая' OR TS.TicketStatusName = N'Переоткрыта')) AS ticketsCount;", connection);
 
-                    cmd.Parameters.AddWithValue("@userLogin", Observer.currentUserLogin);
+                    cmd.Parameters.AddWithValue("@userLogin", Account.currentUserLogin);
                                       
                     return (int)cmd.ExecuteScalar();
                 }

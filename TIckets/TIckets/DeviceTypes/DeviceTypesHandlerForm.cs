@@ -14,7 +14,7 @@ namespace TIckets
         }
         private void DeviceTypesHandlerFormAddBtn_Click(object sender, EventArgs e)
         {
-            if (!DeviceTypesHandlerFormTb.Text.IsValid())
+            if (!DeviceTypesHandlerFormTb.Text.IsValidInput())
             {
                 MessageBox.Show("В наименовании устройства содержатся недопустимые символы. Проверьте ввод и попробуйте снова.",
                     "Ошибка ввода данных", MessageBoxButtons.OK, MessageBoxIcon.Warning);

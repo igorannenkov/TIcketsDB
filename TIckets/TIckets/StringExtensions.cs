@@ -8,7 +8,7 @@ namespace TIckets.Users
 {
     public static class StringExtensions
     {
-        public static bool IsValid(this string input)
+        public static bool IsValidInput(this string input)
         {
             string template = "!@#$%^&*()_+=~`//|,<>?:;\\";
             for(int i = 0; i< input.Length; i++) 

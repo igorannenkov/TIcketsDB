@@ -20,7 +20,7 @@ namespace TIckets
                     connection.Open();
 
                     SqlCommand command = new SqlCommand("SELECT UserID FROM Users WHERE UserLogin = @userLogin", connection);
-                    command.Parameters.AddWithValue("@userLogin", Observer.currentUserLogin);
+                    command.Parameters.AddWithValue("@userLogin", Account.currentUserLogin);
                     int userID = (int)command.ExecuteScalar();
 
                     command = new SqlCommand("SELECT TicketStatusID FROM TicketStatuses WHERE TicketStatusName = N'Новая'", connection);
@@ -66,7 +66,7 @@ namespace TIckets
                                                                     "WHERE U.UserLogin = @userLogin", connection);
 
 
-                    cmd.Parameters.AddWithValue("@userLogin", Observer.currentUserLogin);
+                    cmd.Parameters.AddWithValue("@userLogin", Account.currentUserLogin);
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);

@@ -15,7 +15,7 @@ namespace TIckets
 
         private void ticketHandlerFormEditBtn_Click(object sender, EventArgs e)
         {
-            string currentRole = Observer.GetCurrentUserRole(Observer.currentUserLogin);
+            string currentRole = Account.GetCurrentUserRole(Account.currentUserLogin);
 
             switch (currentRole)
             {
@@ -61,7 +61,6 @@ namespace TIckets
                         }
                         if (ticketTicketStatusCb.Text == "Выполнена" || ticketTicketStatusCb.Text == "Отклонена")
                         {
-
                             updateCommand.Parameters.AddWithValue("@ticketEndDatetime", DateTime.Now);
 
                             // получаем ID статуса заявки
@@ -89,12 +88,12 @@ namespace TIckets
                             if (ticketCommentTb.Text != string.Empty)
                             {
                                 updateCommand.Parameters.AddWithValue("@ticketComment", ticketCommentTb.Text + " ("
-                                + Observer.currentUserLogin + ")");
+                                + Account.currentUserLogin + ")");
                             }
                             else
                             {
                                 updateCommand.Parameters.AddWithValue("@ticketComment", ticketTicketStatusCb.Text + " администратором ("
-                                + Observer.currentUserLogin + ")");
+                                + Account.currentUserLogin + ")");
                             }
                         }
 
@@ -130,7 +129,6 @@ namespace TIckets
                     using (SqlConnection connection = Database.GetConnection())
                     {
                         connection.Open();
-
                         SqlCommand updateCommand = new SqlCommand("UPDATE Tickets SET " +
                                                                   "TicketStatusID = @ticketStatusID, " +
                                                                   "TicketEndDateTime = @ticketEndDatetime, " +
@@ -155,7 +153,7 @@ namespace TIckets
                             if (ticketCommentTb.Text != string.Empty)
                             {
                                 updateCommand.Parameters.AddWithValue("@ticketComment", ticketCommentTb.Text + " ("
-                                + Observer.currentUserLogin + ")");
+                                + Account.currentUserLogin + ")");
                             }
                             else
                             {
@@ -166,7 +164,7 @@ namespace TIckets
                                     return;
                                 }
                                 updateCommand.Parameters.AddWithValue("@ticketComment", ticketUserCommentTb.Text + " ("
-                                + Observer.currentUserLogin + ")");
+                                + Account.currentUserLogin + ")");
                             }
 
                             updateCommand.Parameters.AddWithValue("@ticketEndDatetime", DateTime.Now);
@@ -185,7 +183,7 @@ namespace TIckets
                             if (ticketCommentTb.Text != string.Empty)
                             {
                                 updateCommand.Parameters.AddWithValue("@ticketComment", ticketCommentTb.Text + " ("
-                                + Observer.currentUserLogin + ")");
+                                + Account.currentUserLogin + ")");
                             }
                             else
                             {
@@ -196,7 +194,7 @@ namespace TIckets
                                     return;
                                 }
                                 updateCommand.Parameters.AddWithValue("@ticketComment", ticketUserCommentTb.Text + " ("
-                                + Observer.currentUserLogin + ")");
+                                + Account.currentUserLogin + ")");
                             }
 
                             if (sparePartChekBox.Checked)
@@ -254,14 +252,11 @@ namespace TIckets
                             SqlCommand getStatusID = new SqlCommand("SELECT TicketStatusID FROM TicketStatuses WHERE TicketStatusName = @ticketStatusName", connection);
                             getStatusID.Parameters.AddWithValue("@ticketStatusName", this.ticketTicketStatusCb.Text);
                             int ticketStatusID = (int)getStatusID.ExecuteScalar();
-
                             updateCommand.Parameters.AddWithValue("@ticketStatusID", ticketStatusID);
-
-
                         }
 
                         updateCommand.ExecuteNonQuery();
-                        //ПРАВИЛЬНЫЙ ЗАПРОС
+
                         SqlDataAdapter adapter = new SqlDataAdapter("SELECT T.TicketID AS [ID Заявки], " +
                                                                     "U.UserName AS Пользователь, " +
                                                                     "T.TicketUserComment AS [Текст обращения], " +
@@ -282,7 +277,7 @@ namespace TIckets
                                                                     "ON T.TicketStatusID = TS.TicketStatusID " +
                                                                     "LEFT JOIN DeviceTypes AS DT " +
                                                                     "ON D.DeviceType = DT.DeviceTypeID " +
-                                                                    "WHERE UN.UserLogin = N'" + Observer.currentUserLogin + "';", connection);
+                                                                    "WHERE UN.UserLogin = N'" + Account.currentUserLogin + "';", connection);
                         DataTable dt = new DataTable();
                         adapter.Fill(dt);
                         (this.Owner.Controls["technicGridView"] as DataGridView).DataSource = dt;
@@ -293,7 +288,6 @@ namespace TIckets
                     // пользователь не может редактировать обращение, ему разрешено только переоткрыть его с новым комментарием
                     break;
             }
-
             this.Close();
         }
 
@@ -320,34 +314,34 @@ namespace TIckets
                 cmd.Parameters.AddWithValue("@ticketUserComment", ticketUserCommentTb.Text);
                 cmd.Parameters.AddWithValue("@ticketStatusID", ticketStatusID);
                 cmd.Parameters.AddWithValue("@ticketEndDatetime", DateTime.Now);
-                cmd.Parameters.AddWithValue("@ticketComment", "Отменена пользователем " + Observer.currentUserLogin);
+                cmd.Parameters.AddWithValue("@ticketComment", "Отменена пользователем " + Account.currentUserLogin);
                 cmd.Parameters.AddWithValue("@ticketID", this.Tag.ToString());
 
                 cmd.ExecuteNonQuery();
 
                 cmd = new SqlCommand("SELECT T.TicketID AS [ID Заявки], " +
-                                                                    "U.UserName AS Пользователь, " +
-                                                                    "T.TicketUserComment AS [Текст обращения], " +
-                                                                    "COALESCE(UN.UserName, N'Не назначен') AS [Назначенный техник], " +
-                                                                    "TS.TicketStatusName AS [Статус заявки], " +
-                                                                    "T.TicketStartDateTime AS [Время регистрации], " +
-                                                                    "T.TicketEndDateTime AS [Время выполнения], " +
-                                                                    "T.TicketComment AS [Ответ по обращению], " +
-                                                                    "DT.DeviceTypeName AS [Используемые материалы] " +
-                                                                    "FROM Tickets AS T " +
-                                                                    "LEFT JOIN Users AS U " +
-                                                                    "ON T.UserID = U.UserID " +
-                                                                    "LEFT JOIN  Users AS UN " +
-                                                                    "ON T.TechnicID = UN.UserID " +
-                                                                    "LEFT JOIN Devices AS D " +
-                                                                    "ON T.UsedDeviceID = D.DeviceID " +
-                                                                    "LEFT JOIN TicketStatuses TS " +
-                                                                    "ON T.TicketStatusID = TS.TicketStatusID " +
-                                                                    "LEFT JOIN DeviceTypes AS DT " +
-                                                                    "ON D.DeviceType = DT.DeviceTypeID " +
-                                                                    "WHERE U.UserLogin = @userLogin", connection);
+                                     "U.UserName AS Пользователь, " +
+                                     "T.TicketUserComment AS [Текст обращения], " +
+                                     "COALESCE(UN.UserName, N'Не назначен') AS [Назначенный техник], " +
+                                     "TS.TicketStatusName AS [Статус заявки], " +
+                                     "T.TicketStartDateTime AS [Время регистрации], " +
+                                     "T.TicketEndDateTime AS [Время выполнения], " +
+                                     "T.TicketComment AS [Ответ по обращению], " +
+                                     "DT.DeviceTypeName AS [Используемые материалы] " +
+                                     "FROM Tickets AS T " +
+                                     "LEFT JOIN Users AS U " +
+                                     "ON T.UserID = U.UserID " +
+                                     "LEFT JOIN  Users AS UN " +
+                                     "ON T.TechnicID = UN.UserID " +
+                                     "LEFT JOIN Devices AS D " +
+                                     "ON T.UsedDeviceID = D.DeviceID " +
+                                     "LEFT JOIN TicketStatuses TS " +
+                                     "ON T.TicketStatusID = TS.TicketStatusID " +
+                                     "LEFT JOIN DeviceTypes AS DT " +
+                                     "ON D.DeviceType = DT.DeviceTypeID " +
+                                     "WHERE U.UserLogin = @userLogin", connection);
 
-                cmd.Parameters.AddWithValue("@userLogin", Observer.currentUserLogin);
+                cmd.Parameters.AddWithValue("@userLogin", Account.currentUserLogin);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);

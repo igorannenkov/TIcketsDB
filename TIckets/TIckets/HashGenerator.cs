@@ -11,7 +11,7 @@ namespace TIckets
     {
         public static string GetMD5(string input)
         {
-            using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
+            using (MD5 md5 = MD5.Create())
             {
                 byte[] inputBytes = Encoding.Unicode.GetBytes(input);
                 byte[] hashBytes = md5.ComputeHash(inputBytes);

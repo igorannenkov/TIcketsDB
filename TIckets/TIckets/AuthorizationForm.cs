@@ -122,7 +122,7 @@ namespace TIckets
                                 AdminForm admForm = new AdminForm();
                                 admForm.StartPosition = FormStartPosition.CenterScreen;
                                 admForm.Text = "Администратор@" + login;
-                                Observer.currentUserLogin = login;
+                                Account.currentUserLogin = login;
                                 admForm.ShowDialog();
                                 break;
 
@@ -131,7 +131,7 @@ namespace TIckets
                                 UserMainForm userMainForm = new UserMainForm();
                                 userMainForm.StartPosition = FormStartPosition.CenterScreen;
                                 userMainForm.Text = "Пользователь@" + login;
-                                Observer.currentUserLogin = login;
+                                Account.currentUserLogin = login;
                                 userMainForm.ShowDialog();
                                 break;
 
@@ -140,7 +140,7 @@ namespace TIckets
                                 TechnicMainForm technicMainForm = new TechnicMainForm();
                                 technicMainForm.StartPosition = FormStartPosition.CenterScreen;
                                 technicMainForm.Text = "Техник@" + login;
-                                Observer.currentUserLogin = login;
+                                Account.currentUserLogin = login;
                                 technicMainForm.ShowDialog();
                                 break;
                         }

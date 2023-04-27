@@ -9,6 +9,7 @@ namespace TIckets
 {
     static class Account
     {
+        public static string currentUserLogin;
         public static bool IsLoginAndPasswordCorrect(SqlConnection connection, string login, string password)
         {
             connection.Open();
@@ -73,6 +74,22 @@ namespace TIckets
             cmd.Parameters.AddWithValue("@userLogin", login);
 
             return (string)cmd.ExecuteScalar();
+        }
+
+        public static string GetCurrentUserRole(string login)
+        {
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand("SELECT RoleName FROM Roles R " +
+                                                "INNER JOIN Users U " +
+                                                "ON R.RoleID = U.UserRoleID " +
+                                                "WHERE U.UserLogin = @userLogin ", connection);
+
+                cmd.Parameters.AddWithValue("@userLogin", login);
+                string currentUserRole = (string)cmd.ExecuteScalar();
+                return currentUserRole;
+            }
         }
     }
 }

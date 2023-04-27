@@ -17,7 +17,7 @@ namespace TIckets
             {
                 connection.Open();
                 SqlCommand cmd = new SqlCommand("SELECT UserPassword FROM Users WHERE UserLogin = @currentLogin", connection);
-                cmd.Parameters.AddWithValue("@currentLogin", Observer.currentUserLogin);
+                cmd.Parameters.AddWithValue("@currentLogin", Account.currentUserLogin);
                 string currentPwdHashMd5 = (string)cmd.ExecuteScalar();
 
                 if (currentPwdHashMd5 != HashGenerator.GetMD5(oldPwdTb.Text))
@@ -38,7 +38,7 @@ namespace TIckets
                                         "WHERE UserLogin = @userLogin", connection);
 
                 cmd.Parameters.AddWithValue("@userPassword", HashGenerator.GetMD5(newPwdTb.Text));
-                cmd.Parameters.AddWithValue("@userLogin", Observer.currentUserLogin);
+                cmd.Parameters.AddWithValue("@userLogin", Account.currentUserLogin);
                 cmd.ExecuteNonQuery();
 
                 MessageBox.Show("Пароль успешно изменен.", "Смена пароля", MessageBoxButtons.OK, MessageBoxIcon.Information);

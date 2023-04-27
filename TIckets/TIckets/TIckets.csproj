@@ -92,7 +92,6 @@
     </Compile>
     <Compile Include="ExcelReporter.cs" />
     <Compile Include="HashGenerator.cs" />
-    <Compile Include="Observer.cs" />
     <Compile Include="PlaceHolder.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

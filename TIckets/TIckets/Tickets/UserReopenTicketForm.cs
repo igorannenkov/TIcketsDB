@@ -76,7 +76,7 @@ namespace TIckets.Tickets
                                                                    "ON D.DeviceType = DT.DeviceTypeID " +
                                                                    "WHERE U.UserLogin = @userLogin", connection);
 
-                cmd.Parameters.AddWithValue("@userLogin", Observer.currentUserLogin);
+                cmd.Parameters.AddWithValue("@userLogin", Account.currentUserLogin);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);

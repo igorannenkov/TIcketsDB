@@ -92,8 +92,8 @@ namespace TIckets
         private void UserHandlerFormAddBtn_Click(object sender, EventArgs e)
         {
             // Проверка на наличие недопустимых символов
-            if (!UserHandlerFormUserNameTb.Text.IsValid()  ||
-                !UserHandlerFormUserLoginTb.Text.IsValid() )
+            if (!UserHandlerFormUserNameTb.Text.IsValidInput()  ||
+                !UserHandlerFormUserLoginTb.Text.IsValidInput() )
                 {
                 MessageBox.Show("В ФИО пользователя или логине содержатся недопустимые символы. Проверьте ввод и попробуйте снова.", 
                     "Ошибка ввода данных", MessageBoxButtons.OK, MessageBoxIcon.Warning);
