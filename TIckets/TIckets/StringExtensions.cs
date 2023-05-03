@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace TIckets.Users
 {
@@ -22,6 +24,33 @@ namespace TIckets.Users
                 }
             }
             return true;
+        }
+
+        public static string GetPasswordStrength(this string input, out Color color )
+        {
+            if (input.Length > 8 &&
+                input.Any(p => Char.IsLetterOrDigit(p) &&
+                input.Any(q => !Char.IsLetterOrDigit(q) &&
+                input.Any(r => Char.IsLower(r) &&
+                input.Any(s => Char.IsUpper(s))))))
+            {
+                color = Color.Green;
+                return "Высокая";
+            }
+
+            if (input.Length < 8 || input.All(p => char.IsDigit(p)))
+            {
+                color = Color.Red;
+                return "Низкая";
+            }
+            else if (input.Length > 8 && input.Any(p => Char.IsLetterOrDigit(p)))
+            {
+                color = Color.Orange;
+                return "Средняя";
+            }
+            
+            color = Color.Red;
+            return "Низкая";
         }
     }
 }

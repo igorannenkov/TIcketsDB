@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
+using TIckets.Users;
 
 namespace TIckets
 {
@@ -49,6 +52,12 @@ namespace TIckets
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void newPwdTb_TextChanged(object sender, EventArgs e)
+        {
+            PasswordStrengthLbl.Text = newPwdTb.Text.GetPasswordStrength(out Color color);
+            PasswordStrengthLbl.ForeColor = color;    
         }
     }
 }
