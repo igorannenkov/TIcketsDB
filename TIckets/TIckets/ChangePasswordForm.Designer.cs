@@ -40,9 +40,9 @@
             this.PasswordStrengthLbl = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.ShowConfirmPwdBtn = new System.Windows.Forms.Button();
-            this.ShowNewPwdBtn = new System.Windows.Forms.Button();
             this.ShowCurrentPwdBtn = new System.Windows.Forms.Button();
+            this.ShowNewPwdBtn = new System.Windows.Forms.Button();
+            this.ShowConfirmPwdBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -106,7 +106,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(37, 225);
+            this.button1.Location = new System.Drawing.Point(46, 225);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(145, 39);
             this.button1.TabIndex = 3;
@@ -117,7 +117,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(190, 225);
+            this.button2.Location = new System.Drawing.Point(199, 225);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(145, 39);
             this.button2.TabIndex = 4;
@@ -157,17 +157,17 @@
     "ифры, большие и маленькие английские буквы и спецсимволы.";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // ShowConfirmPwdBtn
+            // ShowCurrentPwdBtn
             // 
-            this.ShowConfirmPwdBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ShowConfirmPwdBtn.BackgroundImage")));
-            this.ShowConfirmPwdBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ShowConfirmPwdBtn.Location = new System.Drawing.Point(369, 83);
-            this.ShowConfirmPwdBtn.Name = "ShowConfirmPwdBtn";
-            this.ShowConfirmPwdBtn.Size = new System.Drawing.Size(25, 26);
-            this.ShowConfirmPwdBtn.TabIndex = 8;
-            this.ShowConfirmPwdBtn.UseVisualStyleBackColor = true;
-            this.ShowConfirmPwdBtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ShowConfirmPwdBtn_MouseDown);
-            this.ShowConfirmPwdBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ShowConfirmPwdBtn_MouseUp);
+            this.ShowCurrentPwdBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ShowCurrentPwdBtn.BackgroundImage")));
+            this.ShowCurrentPwdBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ShowCurrentPwdBtn.Location = new System.Drawing.Point(369, 20);
+            this.ShowCurrentPwdBtn.Name = "ShowCurrentPwdBtn";
+            this.ShowCurrentPwdBtn.Size = new System.Drawing.Size(25, 26);
+            this.ShowCurrentPwdBtn.TabIndex = 8;
+            this.ShowCurrentPwdBtn.UseVisualStyleBackColor = true;
+            this.ShowCurrentPwdBtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ShowCurrentPwdBtn_MouseDown);
+            this.ShowCurrentPwdBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ShowCurrentPwdBtn_MouseUp);
             // 
             // ShowNewPwdBtn
             // 
@@ -181,17 +181,17 @@
             this.ShowNewPwdBtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ShowNewPwdBtn_MouseDown);
             this.ShowNewPwdBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ShowNewPwdBtn_MouseUp);
             // 
-            // ShowCurrentPwdBtn
+            // ShowConfirmPwdBtn
             // 
-            this.ShowCurrentPwdBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ShowCurrentPwdBtn.BackgroundImage")));
-            this.ShowCurrentPwdBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ShowCurrentPwdBtn.Location = new System.Drawing.Point(369, 20);
-            this.ShowCurrentPwdBtn.Name = "ShowCurrentPwdBtn";
-            this.ShowCurrentPwdBtn.Size = new System.Drawing.Size(25, 26);
-            this.ShowCurrentPwdBtn.TabIndex = 8;
-            this.ShowCurrentPwdBtn.UseVisualStyleBackColor = true;
-            this.ShowCurrentPwdBtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ShowCurrentPwdBtn_MouseDown);
-            this.ShowCurrentPwdBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ShowCurrentPwdBtn_MouseUp);
+            this.ShowConfirmPwdBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ShowConfirmPwdBtn.BackgroundImage")));
+            this.ShowConfirmPwdBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ShowConfirmPwdBtn.Location = new System.Drawing.Point(369, 83);
+            this.ShowConfirmPwdBtn.Name = "ShowConfirmPwdBtn";
+            this.ShowConfirmPwdBtn.Size = new System.Drawing.Size(25, 26);
+            this.ShowConfirmPwdBtn.TabIndex = 8;
+            this.ShowConfirmPwdBtn.UseVisualStyleBackColor = true;
+            this.ShowConfirmPwdBtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ShowConfirmPwdBtn_MouseDown);
+            this.ShowConfirmPwdBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ShowConfirmPwdBtn_MouseUp);
             // 
             // ChangePasswordForm
             // 

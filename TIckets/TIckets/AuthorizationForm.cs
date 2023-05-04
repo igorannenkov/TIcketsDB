@@ -184,5 +184,15 @@ namespace TIckets
                     "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void authShowPasswordBtn_MouseDown(object sender, MouseEventArgs e)
+        {
+            authUserPwdTb.PasswordChar = '\0';
+        }
+
+        private void authShowPasswordBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+            authUserPwdTb.PasswordChar = '*';
+        }
     }
 }
