@@ -40,6 +40,9 @@
             this.PasswordStrengthLbl = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.ShowConfirmPwdBtn = new System.Windows.Forms.Button();
+            this.ShowNewPwdBtn = new System.Windows.Forms.Button();
+            this.ShowCurrentPwdBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -154,11 +157,50 @@
     "ифры, большие и маленькие английские буквы и спецсимволы.";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // ShowConfirmPwdBtn
+            // 
+            this.ShowConfirmPwdBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ShowConfirmPwdBtn.BackgroundImage")));
+            this.ShowConfirmPwdBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ShowConfirmPwdBtn.Location = new System.Drawing.Point(369, 83);
+            this.ShowConfirmPwdBtn.Name = "ShowConfirmPwdBtn";
+            this.ShowConfirmPwdBtn.Size = new System.Drawing.Size(25, 26);
+            this.ShowConfirmPwdBtn.TabIndex = 8;
+            this.ShowConfirmPwdBtn.UseVisualStyleBackColor = true;
+            this.ShowConfirmPwdBtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ShowConfirmPwdBtn_MouseDown);
+            this.ShowConfirmPwdBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ShowConfirmPwdBtn_MouseUp);
+            // 
+            // ShowNewPwdBtn
+            // 
+            this.ShowNewPwdBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ShowNewPwdBtn.BackgroundImage")));
+            this.ShowNewPwdBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ShowNewPwdBtn.Location = new System.Drawing.Point(369, 51);
+            this.ShowNewPwdBtn.Name = "ShowNewPwdBtn";
+            this.ShowNewPwdBtn.Size = new System.Drawing.Size(25, 26);
+            this.ShowNewPwdBtn.TabIndex = 8;
+            this.ShowNewPwdBtn.UseVisualStyleBackColor = true;
+            this.ShowNewPwdBtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ShowNewPwdBtn_MouseDown);
+            this.ShowNewPwdBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ShowNewPwdBtn_MouseUp);
+            // 
+            // ShowCurrentPwdBtn
+            // 
+            this.ShowCurrentPwdBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ShowCurrentPwdBtn.BackgroundImage")));
+            this.ShowCurrentPwdBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ShowCurrentPwdBtn.Location = new System.Drawing.Point(369, 20);
+            this.ShowCurrentPwdBtn.Name = "ShowCurrentPwdBtn";
+            this.ShowCurrentPwdBtn.Size = new System.Drawing.Size(25, 26);
+            this.ShowCurrentPwdBtn.TabIndex = 8;
+            this.ShowCurrentPwdBtn.UseVisualStyleBackColor = true;
+            this.ShowCurrentPwdBtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ShowCurrentPwdBtn_MouseDown);
+            this.ShowCurrentPwdBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ShowCurrentPwdBtn_MouseUp);
+            // 
             // ChangePasswordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(380, 279);
+            this.ClientSize = new System.Drawing.Size(400, 279);
+            this.Controls.Add(this.ShowCurrentPwdBtn);
+            this.Controls.Add(this.ShowNewPwdBtn);
+            this.Controls.Add(this.ShowConfirmPwdBtn);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.PasswordStrengthLbl);
@@ -193,5 +235,8 @@
         private System.Windows.Forms.Label PasswordStrengthLbl;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button ShowConfirmPwdBtn;
+        private System.Windows.Forms.Button ShowNewPwdBtn;
+        private System.Windows.Forms.Button ShowCurrentPwdBtn;
     }
 }

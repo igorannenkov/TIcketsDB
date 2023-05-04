@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using TIckets.Users;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TIckets
 {
@@ -58,6 +59,37 @@ namespace TIckets
         {
             PasswordStrengthLbl.Text = newPwdTb.Text.GetPasswordStrength(out Color color);
             PasswordStrengthLbl.ForeColor = color;    
+        }
+
+        private void ShowCurrentPwdBtn_MouseDown(object sender, MouseEventArgs e)
+        {
+            oldPwdTb.PasswordChar = '\0';
+        }
+
+        private void ShowCurrentPwdBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+            oldPwdTb.PasswordChar = '*';
+        }
+
+        private void ShowNewPwdBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+
+            newPwdTb.PasswordChar = '*';
+        }
+
+        private void ShowNewPwdBtn_MouseDown(object sender, MouseEventArgs e)
+        {
+            newPwdTb.PasswordChar = '\0';
+        }
+
+        private void ShowConfirmPwdBtn_MouseDown(object sender, MouseEventArgs e)
+        {        
+            confirmPwdTb.PasswordChar = '\0';
+        }
+
+        private void ShowConfirmPwdBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+            confirmPwdTb.PasswordChar = '*';
         }
     }
 }
