@@ -161,7 +161,7 @@
             // 
             this.ShowCurrentPwdBtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ShowCurrentPwdBtn.BackgroundImage")));
             this.ShowCurrentPwdBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ShowCurrentPwdBtn.Location = new System.Drawing.Point(369, 20);
+            this.ShowCurrentPwdBtn.Location = new System.Drawing.Point(369, 18);
             this.ShowCurrentPwdBtn.Name = "ShowCurrentPwdBtn";
             this.ShowCurrentPwdBtn.Size = new System.Drawing.Size(25, 26);
             this.ShowCurrentPwdBtn.TabIndex = 8;

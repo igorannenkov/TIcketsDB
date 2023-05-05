@@ -71,16 +71,16 @@ namespace TIckets
             oldPwdTb.PasswordChar = '*';
         }
 
-        private void ShowNewPwdBtn_MouseUp(object sender, MouseEventArgs e)
-        {
-
-            newPwdTb.PasswordChar = '*';
-        }
-
         private void ShowNewPwdBtn_MouseDown(object sender, MouseEventArgs e)
         {
             newPwdTb.PasswordChar = '\0';
         }
+
+        private void ShowNewPwdBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+
+            newPwdTb.PasswordChar = '*';
+        } 
 
         private void ShowConfirmPwdBtn_MouseDown(object sender, MouseEventArgs e)
         {        
@@ -93,4 +93,3 @@ namespace TIckets
         }
     }
 }
-
