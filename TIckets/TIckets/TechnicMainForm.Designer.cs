@@ -66,8 +66,9 @@
             this.складToolStripMenuItem,
             this.сменаПароляToolStripMenuItem,
             this.выходИзСистемыToolStripMenuItem});
+            this.менюToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("менюToolStripMenuItem.Image")));
             this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
-            this.менюToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.менюToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.менюToolStripMenuItem.Text = "Меню";
             // 
             // складToolStripMenuItem
@@ -102,8 +103,9 @@
             this.выполненныеЗаявкиToolStripMenuItem,
             this.возобновленныеToolStripMenuItem,
             this.историяЗаявокКлиентаToolStripMenuItem});
+            this.моиЗаявкиToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("моиЗаявкиToolStripMenuItem.Image")));
             this.моиЗаявкиToolStripMenuItem.Name = "моиЗаявкиToolStripMenuItem";
-            this.моиЗаявкиToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.моиЗаявкиToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
             this.моиЗаявкиToolStripMenuItem.Text = "Заявки";
             // 
             // моиЗаявкиToolStripMenuItem1

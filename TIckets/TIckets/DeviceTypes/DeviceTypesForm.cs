@@ -21,14 +21,7 @@ namespace TIckets
             }
         }
 
-        private void добавитьКатегориюToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DeviceTypesHandlerForm devTypeHandlerForm = new DeviceTypesHandlerForm();
-            devTypeHandlerForm.StartPosition = FormStartPosition.CenterScreen;
-            (devTypeHandlerForm.Controls["DeviceTypesHandlerFormEditBtn"] as Button).Enabled = false;
-            devTypeHandlerForm.Owner = this;
-            devTypeHandlerForm.ShowDialog();
-        }
+
 
         private void DeviceTypesGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -67,6 +60,15 @@ namespace TIckets
                     this.DeviceTypesGridView.DataSource = ds.Tables[0];
                 }
             }
+        }
+
+        private void добавитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeviceTypesHandlerForm devTypeHandlerForm = new DeviceTypesHandlerForm();
+            devTypeHandlerForm.StartPosition = FormStartPosition.CenterScreen;
+            (devTypeHandlerForm.Controls["DeviceTypesHandlerFormEditBtn"] as Button).Enabled = false;
+            devTypeHandlerForm.Owner = this;
+            devTypeHandlerForm.ShowDialog();
         }
     }
 }

@@ -414,5 +414,114 @@ namespace TIckets
                 tnf.ShowDialog();
             }
         }
+
+        private void количествоЗаявокВРаботеУТехниковToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT U.UserName AS \"Техник\", COUNT(*) AS[Количество заявок] FROM Tickets T " +
+                                                            "LEFT JOIN Users U ON T.TechnicID = U.UserID " +
+                                                            "LEFT JOIN TicketStatuses TS ON T.TicketStatusID = TS.TicketStatusID " +
+                                                            "WHERE TS.TicketStatusName = N'Принята в работу' OR TS.TicketStatusName = N'Переоткрыта' " +
+                                                            "GROUP BY U.UserName;", connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                admGridView.DataSource = dt;
+            }
+        }
+
+        private void отклоненныеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT T.TicketID AS [ID Заявки], " +
+                                                                 "U.UserName AS Пользователь, " +
+                                                                 "T.TicketUserComment AS [Текст обращения], " +
+                                                                 "COALESCE(UN.UserName, N'Не назначен') AS [Назначенный техник], " +
+                                                                 "TS.TicketStatusName AS [Статус заявки], " +
+                                                                 "T.TicketStartDateTime AS [Время регистрации], " +
+                                                                 "T.TicketEndDateTime AS [Время выполнения], " +
+                                                                 "T.TicketComment AS [Ответ по обращению], " +
+                                                                 "DT.DeviceTypeName AS [Используемые материалы] " +
+                                                                 "FROM Tickets AS T " +
+                                                                 "LEFT JOIN Users AS U " +
+                                                                 "ON T.UserID = U.UserID " +
+                                                                 "LEFT JOIN  Users AS UN " +
+                                                                 "ON T.TechnicID = UN.UserID " +
+                                                                 "LEFT JOIN Devices AS D " +
+                                                                 "ON T.UsedDeviceID = D.DeviceID " +
+                                                                 "LEFT JOIN TicketStatuses TS " +
+                                                                 "ON T.TicketStatusID = TS.TicketStatusID " +
+                                                                 "LEFT JOIN DeviceTypes AS DT " +
+                                                                 "ON D.DeviceType = DT.DeviceTypeID " +
+                                                                 "WHERE TS.TicketStatusName = N'Отклонена'", connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                admGridView.DataSource = dt;
+            }
+        }
+
+        private void отмененныеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT T.TicketID AS [ID Заявки], " +
+                                                                 "U.UserName AS Пользователь, " +
+                                                                 "T.TicketUserComment AS [Текст обращения], " +
+                                                                 "COALESCE(UN.UserName, N'Не назначен') AS [Назначенный техник], " +
+                                                                 "TS.TicketStatusName AS [Статус заявки], " +
+                                                                 "T.TicketStartDateTime AS [Время регистрации], " +
+                                                                 "T.TicketEndDateTime AS [Время выполнения], " +
+                                                                 "T.TicketComment AS [Ответ по обращению], " +
+                                                                 "DT.DeviceTypeName AS [Используемые материалы] " +
+                                                                 "FROM Tickets AS T " +
+                                                                 "LEFT JOIN Users AS U " +
+                                                                 "ON T.UserID = U.UserID " +
+                                                                 "LEFT JOIN  Users AS UN " +
+                                                                 "ON T.TechnicID = UN.UserID " +
+                                                                 "LEFT JOIN Devices AS D " +
+                                                                 "ON T.UsedDeviceID = D.DeviceID " +
+                                                                 "LEFT JOIN TicketStatuses TS " +
+                                                                 "ON T.TicketStatusID = TS.TicketStatusID " +
+                                                                 "LEFT JOIN DeviceTypes AS DT " +
+                                                                 "ON D.DeviceType = DT.DeviceTypeID " +
+                                                                 "WHERE TS.TicketStatusName = N'Отменена'", connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                admGridView.DataSource = dt;
+            }
+
+        }
+
+        private void переоткрытыеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                SqlDataAdapter adapter = new SqlDataAdapter("SELECT T.TicketID AS [ID Заявки], " +
+                                                                 "U.UserName AS Пользователь, " +
+                                                                 "T.TicketUserComment AS [Текст обращения], " +
+                                                                 "COALESCE(UN.UserName, N'Не назначен') AS [Назначенный техник], " +
+                                                                 "TS.TicketStatusName AS [Статус заявки], " +
+                                                                 "T.TicketStartDateTime AS [Время регистрации], " +
+                                                                 "T.TicketEndDateTime AS [Время выполнения], " +
+                                                                 "T.TicketComment AS [Ответ по обращению], " +
+                                                                 "DT.DeviceTypeName AS [Используемые материалы] " +
+                                                                 "FROM Tickets AS T " +
+                                                                 "LEFT JOIN Users AS U " +
+                                                                 "ON T.UserID = U.UserID " +
+                                                                 "LEFT JOIN  Users AS UN " +
+                                                                 "ON T.TechnicID = UN.UserID " +
+                                                                 "LEFT JOIN Devices AS D " +
+                                                                 "ON T.UsedDeviceID = D.DeviceID " +
+                                                                 "LEFT JOIN TicketStatuses TS " +
+                                                                 "ON T.TicketStatusID = TS.TicketStatusID " +
+                                                                 "LEFT JOIN DeviceTypes AS DT " +
+                                                                 "ON D.DeviceType = DT.DeviceTypeID " +
+                                                                 "WHERE TS.TicketStatusName = N'Переоткрыта'", connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                admGridView.DataSource = dt;
+            }
+        }
     }
 }
