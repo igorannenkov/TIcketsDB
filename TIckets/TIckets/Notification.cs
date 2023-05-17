@@ -84,7 +84,7 @@ namespace TIckets
                                                                              "LEFT JOIN DeviceTypes AS DT " +
                                                                              "ON D.DeviceType = DT.DeviceTypeID " +
                                                                              "WHERE UN.UserLogin = @userLogin " +
-                                                                             "AND (TS.TicketStatusName = N'Принята в работу' OR TS.TicketStatusName = N'Переоткрыта';", connection);
+                                                                             "AND (TS.TicketStatusName = N'Принята в работу' OR TS.TicketStatusName = N'Переоткрыта');", connection);
                         cmd.Parameters.AddWithValue("@userLogin", Account.currentUserLogin);
                         SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                         DataTable dt = new DataTable();
