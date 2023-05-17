@@ -271,7 +271,7 @@ namespace TIckets
                                                     "LEFT JOIN DeviceTypes AS DT " +
                                                     "ON D.DeviceType = DT.DeviceTypeID " +
                                                     "WHERE UN.UserLogin = N'" + Account.currentUserLogin + "' " +
-                                                    "AND TS.TicketStatusName = N'Принята в работу') AS ticketsCount;", connection);
+                                                    "AND (TS.TicketStatusName = N'Принята в работу' OR TS.TicketStatusName = N'Переоткрыта')) AS ticketsCount;", connection);
                     return (int)cmd.ExecuteScalar();
                 }
             }

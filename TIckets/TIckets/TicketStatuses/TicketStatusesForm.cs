@@ -70,7 +70,7 @@ namespace TIckets
             }
         }
 
-        private void добавитьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void добавитьСтатусToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TicketStatusHandlerForm TicketStatusHandleForm = new TicketStatusHandlerForm();
             TicketStatusHandleForm.StartPosition = FormStartPosition.CenterScreen;

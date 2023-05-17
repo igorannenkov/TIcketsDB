@@ -152,7 +152,7 @@
             // 
             this.выгрузкаВExcelToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("выгрузкаВExcelToolStripMenuItem.Image")));
             this.выгрузкаВExcelToolStripMenuItem.Name = "выгрузкаВExcelToolStripMenuItem";
-            this.выгрузкаВExcelToolStripMenuItem.Size = new System.Drawing.Size(125, 20);
+            this.выгрузкаВExcelToolStripMenuItem.Size = new System.Drawing.Size(124, 20);
             this.выгрузкаВExcelToolStripMenuItem.Text = "Выгрузка в Excel";
             this.выгрузкаВExcelToolStripMenuItem.Click += new System.EventHandler(this.выгрузкаВExcelToolStripMenuItem_Click);
             // 
